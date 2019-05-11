@@ -3,45 +3,36 @@ package by.training.oop.entity;
 import by.training.oop.enm.ComfortLevel;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class PassengerWagon extends Wagon {
 
-    private int countSeats;
-
-    private ArrayList<Passenger> passengers;
-
-    public ArrayList<Passenger> getPassengers() {
-        return passengers;
-    }
-    public void setPassengers(ArrayList<Passenger> passengers) {
-        this.passengers = passengers;
-    }
+    private int countPassengers;
 
     private ComfortLevel comfortLevel;
 
-    public int getCountSeats() {
-        return countSeats;
+    private  int countItems;
+
+    public int getCountPassengers() {
+        return countPassengers;
     }
 
-    public void setCountSeats(int countSeats) {
-        this.countSeats = countSeats;
-    }
-
-
-    public ComfortLevel getComfortLevel() {
-        return comfortLevel;
-    }
-
-    public void setComfortLevel(ComfortLevel comfortLevel) {
-        this.comfortLevel = comfortLevel;
+    public void setCountPassengers(int countPassengers) {
+        this.countPassengers = countPassengers;
     }
 
     @Override
-    public String toString() {
-        return "PassengerWagon{" +
-                "countSeats=" + countSeats +
-                ", passengers=" + passengers +
-                ", comfortLevel=" + comfortLevel +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PassengerWagon that = (PassengerWagon) o;
+        return countPassengers == that.countPassengers &&
+                countItems == that.countItems &&
+                comfortLevel == that.comfortLevel;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(countPassengers, comfortLevel, countItems);
     }
 }

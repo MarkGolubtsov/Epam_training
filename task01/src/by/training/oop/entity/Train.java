@@ -2,22 +2,16 @@ package by.training.oop.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Train implements Serializable {
+public class Train {
 
-    private  int trainID;
     private Wagon head;
+
     private Wagon tail;
-    private ArrayList<Wagon> wagons;
 
-    public int getTrainID() {
-        return trainID;
-    }
-
-    public void setTrainID(int trainID) {
-        this.trainID = trainID;
-    }
+    private List<Wagon> wagons;
 
     public Wagon getHead() {
         return head;
@@ -35,27 +29,26 @@ public class Train implements Serializable {
         this.tail = tail;
     }
 
-    public ArrayList<Wagon> getWagons() {
+    public List<Wagon> getWagons() {
         return wagons;
     }
 
-    public void setWagons(ArrayList<Wagon> wagons) {
+    public void setWagons(List<Wagon> wagons) {
         this.wagons = wagons;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Train train = (Train) o;
-        return trainID == train.trainID;
+        return Objects.equals(head, train.head) &&
+                Objects.equals(tail, train.tail) &&
+                Objects.equals(wagons, train.wagons);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(trainID, head, tail, wagons);
+        return Objects.hash(head, tail, wagons);
     }
-
-
 }
