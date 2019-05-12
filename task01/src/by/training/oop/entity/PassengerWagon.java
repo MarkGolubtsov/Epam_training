@@ -21,6 +21,22 @@ public class PassengerWagon extends Wagon {
         this.countPassengers = countPassengers;
     }
 
+    public ComfortLevel getComfortLevel() {
+        return comfortLevel;
+    }
+
+    public void setComfortLevel(ComfortLevel comfortLevel) {
+        this.comfortLevel = comfortLevel;
+    }
+
+    public int getCountItems() {
+        return countItems;
+    }
+
+    public void setCountItems(int countItems) {
+        this.countItems = countItems;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
