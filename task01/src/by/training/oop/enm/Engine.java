@@ -1,5 +1,7 @@
 package by.training.oop.enm;
 
 public enum Engine {
-     DIESEL, PETROL, ELECTRIC_MOTOR
+     DIESEL, PETROL,ELECTRIC_MOTOR
+
+
 }

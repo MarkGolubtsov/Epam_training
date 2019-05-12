@@ -3,14 +3,13 @@ package by.training.oop.entity;
 
 public abstract  class Wagon {
 
-
-    private  int WheelsCount;
+    private  int wheelsCount;
 
     public int getWheelsCount() {
-        return WheelsCount;
+        return wheelsCount;
     }
 
     public void setWheelsCount(int wheelsCount) {
-        WheelsCount = wheelsCount;
+        this.wheelsCount = wheelsCount;
     }
 }

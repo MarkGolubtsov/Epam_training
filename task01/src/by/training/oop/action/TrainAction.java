@@ -1,18 +1,19 @@
 package by.training.oop.action;
 
-import by.training.oop.entity.Locomotive;
 import by.training.oop.entity.PassengerWagon;
 import by.training.oop.entity.Train;
 import by.training.oop.entity.Wagon;
+import by.training.oop.validator.WagonValidator;
 
 import java.awt.*;
 import java.util.List;
 
 public  class  TrainAction {
+private TrainAction(){}
 
     public static void addWagon(Train tr, Wagon wagon)
     {
-        if ( !isLocomative(wagon) )
+        if ( !WagonValidator.isLocomative(wagon) )
         {
             List<Wagon> wagons= tr.getWagons();
             wagons.add(wagon);
@@ -23,23 +24,14 @@ public  class  TrainAction {
 
     public static void setHead(Train tr,Wagon wagon)
     {
-        if (isLocomative(wagon))
-        {
             tr.setHead(wagon);
-        }
     }
     public static void setTail(Train tr,Wagon wagon)
     {
-        if (isLocomative(wagon))
-        {
             tr.setTail(wagon);
-        }
     }
 
-    private static boolean isLocomative(Wagon wagon)
-    {
-        return Locomotive.class.equals(wagon.getClass());
-    }
+
 
     public static void deleteWagon(Train tr, Wagon wagon)
     {
