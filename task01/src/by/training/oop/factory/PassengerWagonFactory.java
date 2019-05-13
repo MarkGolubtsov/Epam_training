@@ -22,7 +22,7 @@ public class PassengerWagonFactory implements Factory{
 
             return passengerWagon;
         }
-        throw new NotCorrectData("Need a coorrect data");
+        throw new NotCorrectData("Need  correct data");
 
     }
     private void parserParam(List<String> params)

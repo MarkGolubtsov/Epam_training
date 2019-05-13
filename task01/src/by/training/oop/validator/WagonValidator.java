@@ -5,6 +5,7 @@ import by.training.oop.entity.Wagon;
 
 public class WagonValidator {
 private  WagonValidator(){}
+
     public static boolean isLocomative(Wagon wagon)
     {
         return Locomotive.class.equals(wagon.getClass());
