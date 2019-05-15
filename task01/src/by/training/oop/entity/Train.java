@@ -18,6 +18,9 @@ public class Train {
     private int countBaggage;
 
     private int size;
+
+
+
     private List<Wagon> wagons = new ArrayList<>();
 
     private  void countCharacteristic()
@@ -33,6 +36,7 @@ public class Train {
             int localCountPeople = ((PassengerWagon)wagon).getCountPassengers();
             countPassagers=countPassagers+ localCountPeople;
         }
+
     }
 
     public void addWagon(Wagon wagon)
@@ -40,6 +44,7 @@ public class Train {
         if ( !WagonValidator.isLocomative(wagon) ) {
             wagons.add(wagon);
         }
+        countCharacteristic();
     }
 
     public  Wagon getWagon(int index) throws NotCorrectData {
@@ -53,6 +58,7 @@ public class Train {
     public void deleteWagon(Wagon wagon)
     {
         wagons.remove(wagon);
+        countCharacteristic();
     }
 
     public Wagon getHead() {
@@ -60,7 +66,9 @@ public class Train {
     }
 
     public void setHead(Wagon head) {
-        this.head = head;
+        if (WagonValidator.isLocomative(head)) {
+            this.head = head;
+        }
     }
 
     public Wagon getTail() {
@@ -68,36 +76,28 @@ public class Train {
     }
 
     public void setTail(Wagon tail) {
-        this.tail = tail;
+        if (WagonValidator.isLocomative(tail)) {
+            this.tail = tail;
+        }
     }
 
 
     public void setWagons(List<Wagon> wagons) {
-        countCharacteristic();
         this.wagons = wagons;
+        countCharacteristic();
     }
 
     public int getCountPassagers() {
         return countPassagers;
     }
 
-    public void setCountPassagers(int countPassagers) {
-        this.countPassagers = countPassagers;
-    }
-
     public int getCountBaggage() {
         return countBaggage;
-    }
-
-    public void setCountBaggage(int countBaggage) {
-        this.countBaggage = countBaggage;
     }
 
     public int getSize() {
         return size;
     }
-
-
 
 
     //TODO GOOD!!!!!!!!!!!
@@ -117,5 +117,17 @@ public class Train {
     @Override
     public int hashCode() {
         return Objects.hash(head, tail, countPassagers, countBaggage, size, wagons);
+    }
+
+    @Override
+    public String toString() {
+        return "Train{" +
+                "head=" + head +
+                ", tail=" + tail +
+                ", countPassagers=" + countPassagers +
+                ", countBaggage=" + countBaggage +
+                ", size=" + size +
+                ", wagons=" + wagons +
+                '}';
     }
 }

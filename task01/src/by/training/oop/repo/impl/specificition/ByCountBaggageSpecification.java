@@ -1,4 +1,4 @@
-package by.training.oop.repo.impl.find;
+package by.training.oop.repo.impl.specificition;
 
 import by.training.oop.entity.Train;
 

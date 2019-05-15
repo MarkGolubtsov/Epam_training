@@ -1,4 +1,4 @@
-package by.training.oop.repo.impl.find;
+package by.training.oop.repo.impl.specificition;
 
 
 import by.training.oop.entity.Train;
@@ -13,6 +13,6 @@ public class ByCountPassengerSpecification implements Specification<Train> {
     }
 
     public boolean match(Train tr) {
-        return count ==tr.getCountPassagers();
+        return count==tr.getCountPassagers();
     }
 }

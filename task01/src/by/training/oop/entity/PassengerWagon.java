@@ -33,6 +33,15 @@ public class PassengerWagon extends Wagon {
         return countItems;
     }
 
+    @Override
+    public String toString() {
+        return "PassengerWagon{" +
+                "countPassengers=" + countPassengers +
+                ", comfortLevel=" + comfortLevel +
+                ", countItems=" + countItems +
+                '}';
+    }
+
     public void setCountItems(int countItems) {
         this.countItems = countItems;
     }
