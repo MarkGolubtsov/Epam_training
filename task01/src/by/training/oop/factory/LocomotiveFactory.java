@@ -29,21 +29,15 @@ public class LocomotiveFactory implements Factory {
         throw new NotCorrectData("Need  correct data");
     }
 
-    private void createParam(List<String> params)
-    {
-        String localEngine=params.get(0);
+    private void createParam(List<String> params) throws NotCorrectData {
         wheelsCount = Integer.parseInt(params.get(1));
-        switch (localEngine) {
-            case "electric":
-                this.engine =ELECTRIC_MOTOR;
-                break;
-            case "petrol":
-                this.engine = PETROL;
-                break;
-            case "diesel":
-                this.engine=DIESEL;
-                break;
+        engine=Engine.valueOf(params.get(0));
+        try {
+            engine=Engine.valueOf(params.get(0));
+        } catch (IllegalArgumentException ex){
+            throw new NotCorrectData("Need  correct data");
         }
+
     }
 
 }
