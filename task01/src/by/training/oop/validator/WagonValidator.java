@@ -8,6 +8,7 @@ private  WagonValidator(){}
 
     public static boolean isLocomative(Wagon wagon)
     {
+        if (wagon==null) return false;
         return Locomotive.class.equals(wagon.getClass());
     }
 

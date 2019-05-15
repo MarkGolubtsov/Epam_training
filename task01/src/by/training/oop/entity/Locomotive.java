@@ -19,7 +19,7 @@ public class Locomotive extends Wagon  {
     @Override
     public String toString() {
         return "Locomotive{" +
-                "engine=" + engine +
+                "engine=" + engine + " wheels="+getWheelsCount()+
                 '}';
     }
 

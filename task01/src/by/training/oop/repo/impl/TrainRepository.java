@@ -3,6 +3,7 @@ package by.training.oop.repo.impl;
 import by.training.oop.entity.Train;
 import by.training.oop.repo.Repository;
 import by.training.oop.repo.Specification;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -10,8 +11,20 @@ import java.util.List;
 
 public class TrainRepository implements Repository<Train> {
 
+   private static Logger logger = Logger.getLogger(TrainRepository.class.getSimpleName());
+
     private static TrainRepository repository;
-    private TrainRepository(){}
+    private int numberID;
+    private int size;
+
+    public int getSize() {
+        return size;
+    }
+
+    private TrainRepository(){
+        numberID=0;
+        logger.info("Repository was create");
+    }
 
     public static TrainRepository getRepository(){
         if(repository == null){
@@ -24,11 +37,16 @@ public class TrainRepository implements Repository<Train> {
 
     @Override
     public void add(Train item) {
+        item.setId(numberID);
         trains.add(item);
-    }
-    @Override
-    public void remove(Train item) {
-        trains.remove(item);
+        numberID=numberID+1;
+
+        if(isChangeSize())
+        {
+            logger.info("Train was add");
+        }
+        size=trains.size();
+
     }
 
     @Override
@@ -47,6 +65,12 @@ public class TrainRepository implements Repository<Train> {
                 i++;
             }
         }
+
+        if(isChangeSize())
+        {
+            logger.info("Train was remove "+spec.getClass().getSimpleName());
+        }
+        size=trains.size();
     }
 
     @Override
@@ -59,12 +83,12 @@ public class TrainRepository implements Repository<Train> {
     @Override
     public void sort(Comparator<Train> comparator) {
         trains.sort(comparator);
+        logger.info("Train was sort, "+comparator.getClass().getSimpleName());
         }
 
     @Override
     public List<Train> find(Specification<Train> spec) {
         List<Train> result = new ArrayList<>();
-        int size=trains.size();
         int i = 0;
         Train train;
         while (i<size)
@@ -73,13 +97,18 @@ public class TrainRepository implements Repository<Train> {
             if (spec.match(train))
             {
                result.add(train);
-               i++;
             }
-            else
-            {
-                i++;
-            }
+            i++;
+
+        }
+        if (result.size()>0)
+        {
+            logger.info("Train was found, " + spec.getClass().getSimpleName());
         }
         return result;
+    }
+    private boolean isChangeSize()
+    {
+        return trains.size()!=size;
     }
 }

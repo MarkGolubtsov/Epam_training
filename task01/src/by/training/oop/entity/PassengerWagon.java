@@ -2,7 +2,6 @@ package by.training.oop.entity;
 
 import by.training.oop.enm.ComfortLevel;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class PassengerWagon extends Wagon {
@@ -39,6 +38,7 @@ public class PassengerWagon extends Wagon {
                 "countPassengers=" + countPassengers +
                 ", comfortLevel=" + comfortLevel +
                 ", countItems=" + countItems +
+                ", wheels=" + getWheelsCount() +
                 '}';
     }
 

@@ -19,6 +19,7 @@ public class Train {
 
     private int size;
 
+    private int id;
 
 
     private List<Wagon> wagons = new ArrayList<>();
@@ -81,6 +82,13 @@ public class Train {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setWagons(List<Wagon> wagons) {
         this.wagons = wagons;
@@ -101,6 +109,7 @@ public class Train {
 
 
     //TODO GOOD!!!!!!!!!!!
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -116,7 +125,7 @@ public class Train {
 
     @Override
     public int hashCode() {
-        return Objects.hash(head, tail, countPassagers, countBaggage, size, wagons);
+        return Objects.hash(head, tail, countPassagers, countBaggage, size,wagons);
     }
 
     @Override
