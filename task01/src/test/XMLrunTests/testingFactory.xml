@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" >
+    <test name="test all Factory">
+        <classes>
+
+            <class name="test.factory.PassagerFactoryTest">
+                <methods>
+                    <include name="createPassagerWagonTest" />
+                </methods>
+            </class>
+
+            <class name="test.factory.LocomotiveFactoryTest">
+                <methods>
+                    <include name="createLocomativeTest" />
+                </methods>
+            </class>
+            <class name="test.factory.TrainFactoryTest">
+                <methods>
+                    <include name="createTrainTest" />
+                </methods>
+            </class>
+            <!-- <class name="test.sample.ParameterTest"/> -->
+        </classes>
+    </test>
+</suite>

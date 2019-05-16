@@ -1,7 +1,6 @@
 package by.training.oop.reader;
 
 
-import by.training.oop.enm.Engine;
 import by.training.oop.enm.TypeWagon;
 import by.training.oop.entity.Train;
 import by.training.oop.entity.Wagon;
@@ -36,12 +35,9 @@ public class ReaderFromFile {
     private static final String COUNT_WHEELS="countWheels";
     private static final String PATH="D:\\EPAM_JAVA\\TASK\\task01\\src\\by\\training\\oop\\data\\initial.txt";
     public List<Train> getTrainsFromFile(String path) {
-
-        try {
-            new File(path);
-        } catch (Exception ex)
+        if(!TextValidator.isRealFile(path))
         {
-            path=PATH;
+            path= PATH;
         }
 
         ArrayList<String> file= justRead(path);
@@ -128,7 +124,7 @@ public class ReaderFromFile {
                         }
                     else {
                             logger.error("not int wheels");
-                            correcr = false;
+                             correcr = false;
                         }
                     break;
 
@@ -193,14 +189,19 @@ public class ReaderFromFile {
                     params.add("");
                     params.add("");
                     params.add("");
-                    if(head.isPresent() && tail.isPresent()) {
+                    if(head.isPresent() && tail.isPresent() && (!wagons.isEmpty())) {
                         try {
                             train = trainFactory.create(head.get(), tail.get(), wagons);
                             result.add(train);
+                            logger.info("Train create");
                         } catch (NotLocomativeException e) {
                             logger.error("Need locomotive");
                         }
                     }
+                    else {
+                        logger.error("Train not add");
+                    }
+
                     break;
                 default:
             }

@@ -1,7 +1,7 @@
 beginTrain
 startWagon
 type
-
+LOCOMOTIVE
 countWheels
 8
 engine
@@ -51,14 +51,18 @@ countWheels
 12
 engine
 PETROL
+
 endWagon
 startWagon
 type
 LOCOMOTIVE
 countWheels
 12
+
 engine
+
 DIESEL
+
 endWagon
 startWagon
 type

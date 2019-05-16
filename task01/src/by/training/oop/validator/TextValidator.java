@@ -4,6 +4,8 @@ import by.training.oop.enm.ComfortLevel;
 import by.training.oop.enm.Engine;
 import by.training.oop.enm.TypeWagon;
 
+import java.io.File;
+
 import static java.lang.Integer.parseInt;
 
 public class TextValidator {
@@ -47,6 +49,14 @@ public class TextValidator {
         {
             return false;
         }
+    }
+    public static boolean isRealFile(String path)
+    {
+        File file = new File(path);
+        if (file.exists() && file.isFile()) {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -12,7 +12,7 @@ public class BySizeWagonSpecification implements Specification<Train> {
     }
 
     public boolean match(Train tr) {
-        return count ==tr.getSize();
+        return count ==tr.getCountWagon();
     }
 
 }

@@ -17,7 +17,7 @@ public class Train {
 
     private int countBaggage;
 
-    private int size;
+    private int countWagon;
 
     private int id;
 
@@ -28,7 +28,7 @@ public class Train {
     {
         countBaggage=0;
         countPassagers=0;
-        size=wagons.size();
+        countWagon=wagons.size();
 
         for (Wagon wagon : wagons) {
             int localCountBaggage = ((PassengerWagon)wagon).getCountItems();
@@ -49,7 +49,7 @@ public class Train {
     }
 
     public  Wagon getWagon(int index) throws NotCorrectData {
-        if((index>-1)&&(index<=size))
+        if((index>-1)&&(index<=countWagon))
         {
             return wagons.get(index);
         }
@@ -103,12 +103,11 @@ public class Train {
         return countBaggage;
     }
 
-    public int getSize() {
-        return size;
+    public int getCountWagon() {
+        return countWagon;
     }
 
 
-    //TODO GOOD!!!!!!!!!!!
 
     @Override
     public boolean equals(Object o) {
@@ -117,7 +116,7 @@ public class Train {
         Train train = (Train) o;
         return countPassagers == train.countPassagers &&
                 countBaggage == train.countBaggage &&
-                size == train.size &&
+                countWagon == train.countWagon &&
                 Objects.equals(head, train.head) &&
                 Objects.equals(tail, train.tail) &&
                 Objects.equals(wagons, train.wagons);
@@ -125,7 +124,7 @@ public class Train {
 
     @Override
     public int hashCode() {
-        return Objects.hash(head, tail, countPassagers, countBaggage, size,wagons);
+        return Objects.hash(head, tail, countPassagers, countBaggage, countWagon,wagons);
     }
 
     @Override
@@ -135,7 +134,7 @@ public class Train {
                 ", tail=" + tail +
                 ", countPassagers=" + countPassagers +
                 ", countBaggage=" + countBaggage +
-                ", size=" + size +
+                ", size=" + countWagon +
                 ", wagons=" + wagons +
                 '}';
     }

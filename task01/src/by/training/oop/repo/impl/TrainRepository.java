@@ -1,6 +1,7 @@
 package by.training.oop.repo.impl;
 
 import by.training.oop.entity.Train;
+import by.training.oop.exception.NotCorrectData;
 import by.training.oop.repo.Repository;
 import by.training.oop.repo.Specification;
 import org.apache.log4j.Logger;
@@ -72,6 +73,18 @@ public class TrainRepository implements Repository<Train> {
         }
         size=trains.size();
     }
+    public void clear()
+    {
+        logger.info("Repository clear");
+        numberID=0;
+        trains.clear();
+    }
+    public Train getTrain(int i) throws NotCorrectData {
+        if(i<getSize()) {
+            return trains.get(i);
+        }
+        throw new NotCorrectData("");
+    }
 
     @Override
     public String toString() {
@@ -101,7 +114,7 @@ public class TrainRepository implements Repository<Train> {
             i++;
 
         }
-        if (result.size()>0)
+        if (!result.isEmpty())
         {
             logger.info("Train was found, " + spec.getClass().getSimpleName());
         }
@@ -111,4 +124,5 @@ public class TrainRepository implements Repository<Train> {
     {
         return trains.size()!=size;
     }
+
 }
