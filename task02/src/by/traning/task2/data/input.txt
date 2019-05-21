@@ -1,11 +1,11 @@
-		It has survived not only five centuries, but also the leap into electronic
+    It has survived not only five centuries, but also the leap into electronic
 typesetting, remaining essentially unchanged. It was popularised in the with the
 release of Letraset sheets containing Lorem Ipsum passages, and more recently with
 desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-		It is a long established fact that a reader will be distracted by the readable
+    It is a long established fact that a reader will be distracted by the readable
 content of a page when looking at its layout. The point of using Ipsum is that it has a
 more-or-less normal distribution of letters, as opposed to using 'Content here, content
 here', making it look like readable English.
-		It is a established fact that a reader will be of a page when looking at its
+    It is a established fact that a reader will be of a page when looking at its
 layout.
-		Bye.
+    Bye.

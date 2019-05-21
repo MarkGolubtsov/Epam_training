@@ -1,3 +1,3 @@
-    Testim testim test.
-My test.Test.
-    Test.
+	Test;
+My test.Test.Test.
+	test.

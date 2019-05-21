@@ -1,10 +1,16 @@
 package by.traning.task2.entity;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Paragraph {
 
-    private String paragraph;
+    private ArrayList<Sentence> sentences = new ArrayList<>();
 
-    private LinkedList<Sentence> sentences;
+    public void addSentence(Sentence s)
+    {
+        sentences.add(s);
+    }
+
+
+
 }

@@ -4,7 +4,23 @@ import by.traning.task2.enm.TypeSympol;
 
 public class Symbol {
 
-    TypeSympol typeSympol;
+    private   TypeSympol typeSympol;
 
-    char symbol;
+    private  Character symbol;
+
+    public TypeSympol getTypeSympol() {
+        return typeSympol;
+    }
+
+    public void setTypeSympol(TypeSympol typeSympol) {
+        this.typeSympol = typeSympol;
+    }
+
+    public Character getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(Character symbol) {
+        this.symbol = symbol;
+    }
 }

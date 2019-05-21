@@ -1,20 +1,26 @@
 package by.traning.task2.parser;
 
 import by.traning.task2.entity.Paragraph;
+import by.traning.task2.entity.TextAll;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-//TODo GOOD
+
 public class TextParser {
+    private static final String PARAGRAPH_SPLIT_REGEX = "\n[ ]{4}";
+    private static final String NEW_LINE_REGEX="\r\n";
 
-    public  static LinkedList<String> getParagraph(String text)
+    public  static void getParagraph(String text, TextAll textAll)
     {
-        LinkedList<String> paragraphs = new LinkedList<>();
+        String[] buf =text.split(PARAGRAPH_SPLIT_REGEX);
+        String buf1;
+        ArrayList<String> paragraphs = new ArrayList<>(Arrays.asList(buf));
 
-        String[] buf =text.split("\\n{2,}");
+        for (int i = 0; i < paragraphs.size(); i++) {
+            Paragraph paragraph = new Paragraph();
+            ParagraphParser.setSentence(paragraphs.get(i), paragraph);
+            textAll.addParagraph(paragraph);
+        }
 
-        LinkedList<String> з = new  LinkedList<String>(
-                Arrays.asList(buf));
-        return  paragraphs;
     }
 }
