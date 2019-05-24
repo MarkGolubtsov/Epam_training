@@ -1,4 +1,4 @@
-package by.traning.task2.enm;
+package by.traning.task02.enm;
 
 public enum TypeSympol {
     LETTER,

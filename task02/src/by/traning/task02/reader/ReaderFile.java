@@ -1,12 +1,10 @@
-package by.traning.task2.reader;
+package by.traning.task02.reader;
 
-import org.apache.log4j.Logger;
 
-import java.io.BufferedReader;
+
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.StringTokenizer;
+import java.util.logging.Logger;
 
 public class ReaderFile {
     private static  final Logger logger = Logger.getLogger(ReaderFile.class.getSimpleName());

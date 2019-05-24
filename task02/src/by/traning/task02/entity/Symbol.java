@@ -1,8 +1,8 @@
-package by.traning.task2.entity;
+package by.traning.task02.entity;
 
-import by.traning.task2.enm.TypeSympol;
+import by.traning.task02.enm.TypeSympol;
 
-public class Symbol {
+public class Symbol implements Component {
 
     private   TypeSympol typeSympol;
 
@@ -22,5 +22,10 @@ public class Symbol {
 
     public void setSymbol(Character symbol) {
         this.symbol = symbol;
+    }
+
+    @Override
+    public String compose() {
+        return  symbol.toString();
     }
 }
