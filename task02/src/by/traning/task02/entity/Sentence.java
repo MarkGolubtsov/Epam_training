@@ -11,9 +11,15 @@ public class Sentence implements  Composite{
         for (int i = 0; i <list.size(); i++) {
             result = result + list.get(i).compose();
         }
-        result = result+".";
+        if(!("".equals(result.trim())))
+        {
+            result = result+".";
+        }
+
         return  result;
     }
+
+
 
     @Override
     public void add(Component component) {

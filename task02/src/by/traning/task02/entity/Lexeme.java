@@ -21,20 +21,20 @@ public class Lexeme implements Composite{
 
     @Override
     public void add(Component component) {
-//        Symbol symbol = (Symbol) component;
-//        if (symbol.getTypeSympol()== TypeSympol.LETTER)
-//        {
-//            word.add(component);
-//        }
-//        else {
+       Symbol symbol = (Symbol) component;
+       if (symbol.getTypeSympol()== TypeSympol.LETTER)
+       {
+           word.add(component);
+       }
+       else {
          list.add(component);
-//        }
+        }
     }
 
     @Override
     public String compose() {
         String result="";
-        //result = result+" "+word.compose();
+        result = result+" "+word.compose();
         for (int i = 0; i <list.size(); i++) {
             result =result+list.get(i).compose();
         }

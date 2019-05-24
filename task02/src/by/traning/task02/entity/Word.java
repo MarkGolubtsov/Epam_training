@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Word implements Composite {
 
-   public ArrayList<Component> list = new ArrayList<>();
+
+
+    private ArrayList<Component> list = new ArrayList<>();
     @Override
     public String compose() {
         String result ="";

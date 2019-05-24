@@ -24,6 +24,9 @@ public class Main {
         TextAll textAll= new TextAll();
         fist.handle1(text,textAll);
         System.out.println(textAll.compose());
+        textAll.sortCount();
+        System.out.println(textAll.compose());
+
     }
 
 

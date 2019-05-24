@@ -11,12 +11,15 @@ public class Paragraph implements Composite{
         for (int i = 0; i < list.size(); i++) {
             result = result + list.get(i).compose();
         }
-        result=result;
-        return  result;
+        return  result+"    ";
     }
 
     @Override
     public void add(Component component) {
         list.add(component);
+    }
+    public int counSentence()
+    {
+        return list.size();
     }
 }

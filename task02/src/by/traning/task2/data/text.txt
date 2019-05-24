@@ -1,3 +1,0 @@
-	Test;
-My test.Test.Test.
-	test.

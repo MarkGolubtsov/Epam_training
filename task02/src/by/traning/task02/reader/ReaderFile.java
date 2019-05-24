@@ -2,6 +2,7 @@ package by.traning.task02.reader;
 
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ public class ReaderFile {
     {
         String result = "";
         byte[] res = new byte[0];
+        File a = new File(path);
         try(FileInputStream fin=new FileInputStream(path))
         {
            logger.info("File size: %d bytes \n"+fin.available());
@@ -27,6 +29,7 @@ public class ReaderFile {
             result=result+(char)res[j];
         }
         logger.info("Read File "+path);
+        result.replace("\r","");
         return result;
     }
 
