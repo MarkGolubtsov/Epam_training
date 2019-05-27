@@ -5,6 +5,7 @@ import by.traning.task02.comparator.DecCountSentence;
 import by.traning.task02.comparator.IncreaseCountSentence;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class TextAll implements Composite{
 
@@ -25,8 +26,8 @@ public class TextAll implements Composite{
         list.add(component);
     }
 
-    public void sortCount()
+    public void sortCountSentenseInParagraph(Comparator comparator)
     {
-        list.sort(new DecCountSentence());
+        list.sort(comparator);
     }
 }

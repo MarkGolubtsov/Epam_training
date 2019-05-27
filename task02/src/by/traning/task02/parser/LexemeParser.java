@@ -3,10 +3,10 @@ package by.traning.task02.parser;
 import by.traning.task02.entity.Component;
 import by.traning.task02.entity.Composite;
 import by.traning.task02.entity.Lexeme;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Logger;
 
 public class LexemeParser implements Handle {
     private static final String LEXEM_REGEX = "\\s";

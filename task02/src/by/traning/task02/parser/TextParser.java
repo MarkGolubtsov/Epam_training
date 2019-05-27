@@ -3,12 +3,12 @@ package by.traning.task02.parser;
 import by.traning.task02.entity.Component;
 import by.traning.task02.entity.Composite;
 import by.traning.task02.entity.Paragraph;
+import org.apache.log4j.Logger;
 
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Logger;
 
 public class TextParser implements Handle {
     private static final String PARAGRAPH_SPLIT_REGEX = "\n[ ]{4}";

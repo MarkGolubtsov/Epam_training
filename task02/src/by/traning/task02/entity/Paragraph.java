@@ -18,6 +18,7 @@ public class Paragraph implements Composite{
     public void add(Component component) {
         list.add(component);
     }
+
     public int counSentence()
     {
         return list.size();

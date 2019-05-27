@@ -13,7 +13,7 @@ public class Sentence implements  Composite{
         }
         if(!("".equals(result.trim())))
         {
-            result = result+".";
+            result = result;
         }
 
         return  result;

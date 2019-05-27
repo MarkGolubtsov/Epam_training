@@ -2,10 +2,12 @@ package by.traning.task02.reader;
 
 
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.logging.Logger;
+
 
 public class ReaderFile {
     private static  final Logger logger = Logger.getLogger(ReaderFile.class.getSimpleName());
