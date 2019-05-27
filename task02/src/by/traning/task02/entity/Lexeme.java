@@ -15,9 +15,6 @@ public class Lexeme implements Composite{
         return word;
     }
 
-    public void setWord(Composite word) {
-        this.word = word;
-    }
 
     @Override
     public void add(Component component) {
@@ -29,6 +26,11 @@ public class Lexeme implements Composite{
        else {
          list.add(component);
         }
+    }
+    
+    public  int getSizeWord(){
+        Word word =(Word) getWord();
+        return word.getSize();
     }
 
     @Override

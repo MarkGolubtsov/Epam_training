@@ -1,9 +1,6 @@
 package by.traning.task02.entity;
 
 
-import by.traning.task02.comparator.DecCountSentence;
-import by.traning.task02.comparator.IncreaseCountSentence;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -13,10 +10,10 @@ public class TextAll implements Composite{
 
     @Override
     public String compose() {
-        String result = "";
+        String result = "   ";
 
         for (int i = 0; i < list.size(); i++) {
-            result = result + list.get(i).compose()+"\n    ";
+            result = result + list.get(i).compose()+"\n   ";
         }
         return result;
     }
@@ -29,5 +26,16 @@ public class TextAll implements Composite{
     public void sortCountSentenseInParagraph(Comparator comparator)
     {
         list.sort(comparator);
+    }
+    public Paragraph getParagrapg(int i)
+    {
+        if (i<list.size())
+        {
+            return (Paragraph ) list.get(i);
+        }
+        else
+        {
+            return new Paragraph();
+        }
     }
 }

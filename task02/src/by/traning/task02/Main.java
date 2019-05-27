@@ -2,7 +2,10 @@ package by.traning.task02;
 
 
 
-import by.traning.task02.comparator.DecCountSentence;
+import by.traning.task02.comparator.paragraph.DecCountSentence;
+import by.traning.task02.comparator.paragraph.IncreaseCountSentence;
+import by.traning.task02.comparator.sentences.IncreaseCountWord;
+import by.traning.task02.entity.Sentence;
 import by.traning.task02.entity.TextAll;
 import by.traning.task02.parser.LexemeParser;
 import by.traning.task02.parser.ParagraphParser;
@@ -27,8 +30,11 @@ public class Main {
         TextAll textAll= new TextAll();
         fist.handle1(text,textAll);
         System.out.println(textAll.compose());
+        Sentence sentence =textAll.getParagrapg(0).getSentence(0);
+        sentence.sort(new IncreaseCountWord());
+        System.out.println(sentence.compose() );
         textAll.sortCountSentenseInParagraph(new DecCountSentence());
-        System.out.println(textAll.compose());
+        //System.out.println(textAll.compose());
     }
 
 

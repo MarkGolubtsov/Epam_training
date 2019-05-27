@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Word implements Composite {
 
-
-
     private ArrayList<Component> list = new ArrayList<>();
     @Override
     public String compose() {
@@ -15,7 +13,10 @@ public class Word implements Composite {
         }
         return result;
     }
-
+    public int getSize()
+    {
+        return list.size();
+    }
     @Override
     public void add(Component component) {
         list.add(component);

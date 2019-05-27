@@ -23,4 +23,15 @@ public class Paragraph implements Composite{
     {
         return list.size();
     }
+    
+    public Sentence getSentence(int i)
+    {
+        if (i<list.size())
+        {
+            return (Sentence) list.get(i);
+        }
+        else {
+            return new Sentence();
+        }
+    }
 }
