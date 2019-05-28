@@ -36,4 +36,14 @@ public class Sentence implements  Composite{
     public void add(Component component) {
         list.add(component);
     }
+    public  Lexeme getLexem(int index)
+    {
+        if(index<list.size())
+        {
+         return (Lexeme) list.get(index);
+        } else
+        {
+            return new Lexeme();
+        }
+    }
 }

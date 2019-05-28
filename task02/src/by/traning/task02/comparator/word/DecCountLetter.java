@@ -5,7 +5,7 @@ import by.traning.task02.entity.Lexeme;
 
 import java.util.Comparator;
 
-public class DecCountWord implements Comparator<Component> {
+public class DecCountLetter implements Comparator<Component> {
     @Override
     public int compare(Component o1, Component o2) {
         if (((Lexeme) o1).getSizeWord() == ((Lexeme) o2).getSizeWord()) {

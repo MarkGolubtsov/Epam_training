@@ -2,9 +2,7 @@ package by.traning.task02;
 
 
 
-import by.traning.task02.comparator.paragraph.DecCountSentence;
 import by.traning.task02.comparator.sentences.IncreaseCountSymbol;
-import by.traning.task02.comparator.word.IncreaseCountWord;
 import by.traning.task02.entity.Paragraph;
 import by.traning.task02.entity.Sentence;
 import by.traning.task02.entity.TextAll;
@@ -37,7 +35,7 @@ public class Main {
         paragraph.sortSentence(new IncreaseCountSymbol('a'));
 
         System.out.println(paragraph.compose());
-        //sentence.sort(new IncreaseCountWord());
+        //sentence.sort(new IncreaseCountLetter());
         //System.out.println(sentence.compose() );
         //textAll.sortCountSentenseInParagraph(new DecCountSentence());
         //System.out.println(textAll.compose());
