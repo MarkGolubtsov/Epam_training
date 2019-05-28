@@ -1,17 +1,18 @@
 package by.traning.task02.entity;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Paragraph implements Composite{
 
-    ArrayList<Component> list = new ArrayList<>();
+    private  ArrayList<Component> list = new ArrayList<>();
     @Override
     public String compose() {
-        String result="";
+        StringBuilder result=new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
-            result = result + list.get(i).compose();
+            result.append(list.get(i).compose());
         }
-        return  result+"    ";
+        return  result.append("    ").toString();
     }
 
     @Override
@@ -23,7 +24,10 @@ public class Paragraph implements Composite{
     {
         return list.size();
     }
-    
+
+    public void sortSentence(Comparator comparator){
+        list.sort(comparator);
+    }
     public Sentence getSentence(int i)
     {
         if (i<list.size())

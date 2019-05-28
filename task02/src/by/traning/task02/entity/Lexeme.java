@@ -11,10 +11,9 @@ public class Lexeme implements Composite{
 
     private Composite word =new Word();
 
-    public Component getWord() {
+    private Component getWord() {
         return word;
     }
-
 
     @Override
     public void add(Component component) {
@@ -32,15 +31,29 @@ public class Lexeme implements Composite{
         Word word =(Word) getWord();
         return word.getSize();
     }
+    public int countSymbol(char symbol)
+    {
+     int result=0;
+
+        for (Component symbol1: list) {
+            Symbol s=(Symbol) symbol1;
+            if (symbol==s.getSymbol().charValue())
+            {
+                result=result+1;
+            }
+        }
+        result= result+((Word) word).countSymbolInWord(symbol);
+        return result;
+    }
 
     @Override
     public String compose() {
-        String result="";
-        result = result+" "+word.compose();
+        StringBuilder result=new StringBuilder();
+        result.append(" "+word.compose());
         for (int i = 0; i <list.size(); i++) {
-            result =result+list.get(i).compose();
+            result.append(list.get(i).compose());
         }
-        return result;
+        return result.toString();
     }
 
 }

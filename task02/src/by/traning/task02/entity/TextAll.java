@@ -10,12 +10,12 @@ public class TextAll implements Composite{
 
     @Override
     public String compose() {
-        String result = "   ";
-
+        StringBuilder result = new StringBuilder() ;
+        result.append("   ");
         for (int i = 0; i < list.size(); i++) {
-            result = result + list.get(i).compose()+"\n   ";
+            result.append(list.get(i).compose()+"\n   ");
         }
-        return result;
+        return result.toString();
     }
 
     @Override
@@ -27,6 +27,7 @@ public class TextAll implements Composite{
     {
         list.sort(comparator);
     }
+
     public Paragraph getParagrapg(int i)
     {
         if (i<list.size())

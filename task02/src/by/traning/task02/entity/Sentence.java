@@ -7,17 +7,14 @@ public class Sentence implements  Composite{
     private  ArrayList<Component> list = new ArrayList<>();
     @Override
     public String compose(){
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (int i = 0; i <list.size(); i++) {
-            result = result + list.get(i).compose();
-        }
-        if(!("".equals(result.trim())))
-        {
-            result = result;
+            result.append(list.get(i).compose());
         }
 
-        return  result;
+
+        return  result.toString();
     }
 
     public void sort(Comparator comparator)
@@ -25,6 +22,16 @@ public class Sentence implements  Composite{
         list.sort(comparator);
     }
 
+     public int  getCountSymbol(char s)
+    {
+        int result=0;
+
+        for (Component buf: list) {
+            Lexeme lexeme=(Lexeme) buf;
+           result=result+lexeme.countSymbol(s);
+        }
+        return result;
+    }
     @Override
     public void add(Component component) {
         list.add(component);

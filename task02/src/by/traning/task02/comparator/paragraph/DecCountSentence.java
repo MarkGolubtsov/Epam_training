@@ -2,8 +2,6 @@ package by.traning.task02.comparator.paragraph;
 
 import by.traning.task02.entity.Component;
 import by.traning.task02.entity.Paragraph;
-import by.traning.task02.entity.Sentence;
-import by.traning.task02.validator.SentenceClassValid;
 
 import java.util.Comparator;
 

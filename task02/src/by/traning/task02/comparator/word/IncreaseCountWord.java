@@ -1,8 +1,7 @@
-package by.traning.task02.comparator.sentences;
+package by.traning.task02.comparator.word;
 
 import by.traning.task02.entity.Component;
 import by.traning.task02.entity.Lexeme;
-import by.traning.task02.entity.Sentence;
 
 import java.util.Comparator;
 

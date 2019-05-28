@@ -16,16 +16,13 @@ public class ReaderFile {
     {
         String result = "";
         byte[] res = new byte[0];
-        File a = new File(path);
         try(FileInputStream fin=new FileInputStream(path))
         {
-           logger.info("File size: %d bytes \n"+fin.available());
-
             res= fin.readAllBytes();
         }
         catch(IOException ex){
 
-            System.out.println(ex.getMessage());
+            logger.error("Exception with file");
         }
         for (int j = 0; j <res.length ; j++) {
             result=result+(char)res[j];
