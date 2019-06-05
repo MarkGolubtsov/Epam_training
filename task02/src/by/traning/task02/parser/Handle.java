@@ -6,7 +6,7 @@ import by.traning.task02.entity.Composite;
 
 public interface Handle {
 
-    void setNext( Handle h);
+    void setNext(Handle h);
     void  handle1(String text, Composite composite);
 
 }

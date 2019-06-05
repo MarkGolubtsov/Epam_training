@@ -7,11 +7,11 @@ import java.util.Comparator;
 
 public class IncreaseCountLetter implements Comparator<Component> {
     @Override
-    public int compare(Component o1, Component o2) {
-        if (((Lexeme) o1).getSizeWord() == ((Lexeme) o2).getSizeWord()) {
+    public int compare(final Component o1, final Component o2) {
+        if (((Lexeme) o1).countLetter() == ((Lexeme) o2).countLetter()) {
             return 0;
         }
-        if (((Lexeme) o1).getSizeWord() > ((Lexeme) o2).getSizeWord()) {
+        if (((Lexeme) o1).countLetter() > ((Lexeme) o2).countLetter()) {
             return 1;
         } else {
             return -1;

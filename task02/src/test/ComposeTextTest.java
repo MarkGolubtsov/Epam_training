@@ -10,12 +10,14 @@ import by.traning.task02.reader.ReaderFile;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Scanner;
-
 public class ComposeTextTest {
+        /**
+            Test for show compose
+         */
     @Test(description = "Read text from file  and compose this text")
-    public void ReadAndCompose()
-    {   String  text = ReaderFile.getFile("D:\\EPAM_JAVA\\TASK\\task02\\data\\input.txt");
+    public void readAndCompose() {
+        ReaderFile readerFile = new ReaderFile("data\\input.txt");
+        String  text = readerFile.getFile();
         System.out.println(text);
         TextParser fist = new TextParser();
         ParagraphParser second = new ParagraphParser();
@@ -25,10 +27,10 @@ public class ComposeTextTest {
         fist.setNext(second);
         second.setNext(third);
         third.setNext(last);
-        TextAll textAll= new TextAll();
-        fist.handle1(text,textAll);
+        TextAll textAll = new TextAll();
+        fist.handle1(text, textAll);
 
-        System.out.println("\nCompose :\n"+textAll.compose());
-        Assert.assertEquals(true,true);
+        System.out.println("\n Compose :\n" + textAll.compose());
+        Assert.assertEquals(true, true);
     }
 }
