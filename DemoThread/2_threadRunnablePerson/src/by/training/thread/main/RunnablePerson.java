@@ -12,13 +12,16 @@ public class RunnablePerson extends Person implements Runnable {
             System.out.println(getName()+": Hello Word");
         }
     }
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("Main start");
         RunnablePerson p1 = new RunnablePerson("Alice");
         Thread t1 = new Thread(p1);
         t1.start();
         RunnablePerson p2 = new RunnablePerson("Bob");
         Thread t2 = new Thread(p2);
         t2.start();
+        t2.join();
+        System.out.println("Main end");
+
     }
 }
