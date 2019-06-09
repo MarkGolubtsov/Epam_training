@@ -15,13 +15,9 @@ public class Matrix {
     }
 
     public void changeElementOnDiagonal(final int i,final int value ) {
-        if (matrix[i][i]==0) {
-            LOGGER.info("change i");
+            LOGGER.info("change "+i);
             matrix[i][i] = value;
-        }
-        else {
-            LOGGER.info("not change i");
-        }
+
     }
 
     public int[][] getMatrix() {

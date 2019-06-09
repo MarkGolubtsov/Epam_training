@@ -16,7 +16,7 @@ public class FactoryThread {
     private Semaphore sem;
     private FactoryThread() {
     id=1;
-    sem = new Semaphore(1,false);
+    sem = new Semaphore(1,true);
     }
 
     private static class LazySomethingHolder {

@@ -32,15 +32,17 @@ public class ThreadMatrix  implements Runnable{
                     sem.acquire();
                     if (matrix.getMatrix()[i][i]==0) {
                         matrix.changeElementOnDiagonal(i, id);
-                        LOGGER.info(i + " element change Number=" + id);
+                        LOGGER.info(i + " element change ");
+                    }
+                    else {
+                        LOGGER.info(i + " element not change");
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
                     sem.release();
-
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(5);
+                   try {
+                       TimeUnit.MILLISECONDS.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
