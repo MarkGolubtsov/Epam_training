@@ -1,4 +1,4 @@
-package by.bsuir.task3.controller;
+package by.bsuir.task3.thread;
 
 import by.bsuir.task3.ent.Matrix;
 import org.apache.log4j.Logger;

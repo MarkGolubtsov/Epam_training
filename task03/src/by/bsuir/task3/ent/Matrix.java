@@ -1,6 +1,5 @@
 package by.bsuir.task3.ent;
 
-import by.bsuir.task3.controller.ThreadMatrix;
 import org.apache.log4j.Logger;
 
 public class Matrix {

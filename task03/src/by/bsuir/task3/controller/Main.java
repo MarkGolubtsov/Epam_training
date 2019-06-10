@@ -1,13 +1,11 @@
-package by.bsuir.task3;
+package by.bsuir.task3.controller;
 
-import by.bsuir.task3.controller.FactoryThread;
+import by.bsuir.task3.thread.FactoryThread;
 import by.bsuir.task3.ent.Matrix;
 import by.bsuir.task3.reader.ReaderMatrix;
 import by.bsuir.task3.reader.ReaderThread;
 import org.apache.log4j.Logger;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Main {
