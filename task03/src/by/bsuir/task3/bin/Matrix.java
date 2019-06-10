@@ -1,4 +1,4 @@
-package by.bsuir.task3.ent;
+package by.bsuir.task3.bin;
 
 import org.apache.log4j.Logger;
 
@@ -6,7 +6,10 @@ public class Matrix {
 
     private static  final Logger LOGGER
             = Logger.getLogger(Matrix.class.getSimpleName());
-    private int[][] matrix;
+
+    private int[][] matrix = null;
+
+    private  int current =0;
 
     public Matrix(int[][] matrix)
     {
@@ -14,14 +17,13 @@ public class Matrix {
     }
 
     public void changeElementOnDiagonal(final int i,final int value ) {
-            LOGGER.info("change "+i);
             matrix[i][i] = value;
-
     }
 
     public int[][] getMatrix() {
         return matrix;
     }
+
     public boolean isRepeatChange()
     {
         boolean result = false;
@@ -32,7 +34,13 @@ public class Matrix {
         }
         return result;
     }
+    public  int getCurrent() {
+        return current;
+    }
 
+    public  void setCurrent(int current) {
+        this.current = current;
+    }
     public void setMatrix(int[][] matrix) {
         this.matrix = matrix;
     }

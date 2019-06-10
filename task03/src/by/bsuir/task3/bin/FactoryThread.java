@@ -1,6 +1,5 @@
-package by.bsuir.task3.thread;
+package by.bsuir.task3.bin;
 
-import by.bsuir.task3.ent.Matrix;
 import org.apache.log4j.Logger;
 
 import java.util.concurrent.Semaphore;
@@ -8,15 +7,14 @@ import java.util.concurrent.Semaphore;
 public class FactoryThread {
     private static  final Logger LOGGER
             = Logger.getLogger(FactoryThread.class.getSimpleName());
-
     private int id;
 
-    private Matrix matrix;
+    private Matrix matrix = null;
 
     private Semaphore sem;
     private FactoryThread() {
     id=1;
-    sem = new Semaphore(1,true);
+    sem = new Semaphore(1,false);
     }
 
     private static class LazySomethingHolder {
