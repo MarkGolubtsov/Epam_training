@@ -15,10 +15,12 @@ public class ThreadMatrix  implements Runnable {
 
     private Semaphore sem;
 
-    public ThreadMatrix(Matrix matrix, final int id, final Semaphore sem) {
-        this.id = id;
-        this.matrix = matrix;
-        this.sem = sem;
+    public ThreadMatrix(final Matrix m,
+                        final int i,
+                        final Semaphore s) {
+        this.id = i;
+        this.matrix = m;
+        this.sem = s;
     }
 
     @Override
@@ -26,9 +28,9 @@ public class ThreadMatrix  implements Runnable {
         while (matrix.isRepeatChange()) {
             try {
                 sem.acquire();
-                int i =matrix.getCurrent();
+                int i = matrix.getCurrent();
                 if ((i < matrix.getMatrix().length)) {
-                    if ((matrix.getMatrix()[i][i] == 0 ) ) {
+                    if ((matrix.getMatrix()[i][i] == 0)) {
                         matrix.changeElementOnDiagonal(i, id);
                         LOGGER.info(i + " element change ");
                         matrix.setCurrent(i + 1);
@@ -37,13 +39,13 @@ public class ThreadMatrix  implements Runnable {
                     }
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                LOGGER.error("problem Semaphore");
             } finally {
                 sem.release();
                try {
                     TimeUnit.MILLISECONDS.sleep(5);
                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    LOGGER.error("problem sleep");
                }
 
             }

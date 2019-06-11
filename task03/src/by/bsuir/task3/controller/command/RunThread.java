@@ -8,7 +8,7 @@ import by.bsuir.task3.service.ThreadService;
 
 public class RunThread implements Command {
     @Override
-    public int execute(String request) {
+    public int execute(final String request) {
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ThreadService threadService = serviceFactory.getThreadService();

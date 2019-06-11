@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 import java.util.concurrent.Semaphore;
 
-public class FactoryThread {
+public final class FactoryThread {
     private static  final Logger LOGGER
             = Logger.getLogger(FactoryThread.class.getSimpleName());
     private int id;
@@ -13,8 +13,8 @@ public class FactoryThread {
 
     private Semaphore sem;
     private FactoryThread() {
-    id=1;
-    sem = new Semaphore(1,false);
+    id = 1;
+    sem = new Semaphore(1, false);
     }
 
     private static class LazySomethingHolder {
@@ -24,13 +24,13 @@ public class FactoryThread {
 
     public static FactoryThread getInstance() {
 
-        return LazySomethingHolder.singletonInstance ;
+        return LazySomethingHolder.singletonInstance;
     }
 
     public Thread createThread() {
-        ThreadMatrix threadMatrix = new ThreadMatrix(matrix,id,sem);
-        LOGGER.info("create Thread "+id);
-        id=id+1;
+        ThreadMatrix threadMatrix = new ThreadMatrix(matrix, id, sem);
+        LOGGER.info("create Thread " + id);
+        id = id + 1;
         Thread thread  = new Thread(threadMatrix);
         return thread;
     }
@@ -39,7 +39,7 @@ public class FactoryThread {
         return matrix;
     }
 
-    public void setMatrix(Matrix matrix) {
-        this.matrix = matrix;
+    public void setMatrix(final Matrix m) {
+        this.matrix = m;
     }
 }

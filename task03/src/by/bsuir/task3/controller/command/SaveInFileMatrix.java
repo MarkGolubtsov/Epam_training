@@ -7,7 +7,7 @@ import by.bsuir.task3.service.ServiceFactory;
 
 public class SaveInFileMatrix implements Command {
     @Override
-    public int execute(String path) {
+    public int execute(final String path) {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
         MatrixService matrixService = serviceFactory.getMatrixService();

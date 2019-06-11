@@ -1,8 +1,8 @@
 package by.bsuir.task3.exc;
 
-public class MatrixException extends Exception {
+public  class MatrixException extends Exception {
 
-    public MatrixException(String messag){
+    public MatrixException(final String messag) {
         super(messag);
     }
 }

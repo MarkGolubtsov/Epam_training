@@ -1,7 +1,6 @@
 package by.bsuir.task3.dao;
 
 import by.bsuir.task3.exc.SizeCountException;
-import by.bsuir.task3.valid.SizeValid;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,22 +13,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FileDao implements Dao {
+public final class FileDao implements Dao {
 
-    private static final FileDao instance = new FileDao();
-    private FileDao(){}
+    private static final FileDao INSTANCE = new FileDao();
+    private FileDao() {
+    }
     @Override
-    public int[][] readMatrix(String path) throws SizeCountException {
+    public int[][] readMatrix(final String path) throws SizeCountException {
         List<String> lines = new ArrayList<>();
-        try (Stream<String> lineStream = Files.newBufferedReader(Paths.get(path)).lines()) {
+        try (Stream<String> lineStream
+                     = Files.newBufferedReader(Paths.get(path)).lines()) {
             lines = lineStream.collect(Collectors.toList());
         } catch (IOException ignored) {
+            throw new SizeCountException("problem with file!");
         }
         int[][]  result = new int[lines.size()][];
-        SizeValid sizeValid = new SizeValid();
             for (int i = 0; i < lines.size(); i++) {
                 String[] buf = lines.get(i).split("\\s+");
-                result[i]= new int[buf.length];
+                result[i] = new int[buf.length];
                 for (int j = 0; j < buf.length; j++) {
                     result[i][j] = Integer.parseInt(buf[j]);
                 }
@@ -39,8 +40,10 @@ public class FileDao implements Dao {
     }
 
     @Override
-    public void saveMatrix(String path, int[][] matrix) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path)));
+    public void saveMatrix(final String path, final int[][] matrix)
+            throws IOException {
+        BufferedWriter writer
+                = new BufferedWriter(new FileWriter(new File(path)));
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 writer.write(String.valueOf(matrix[i][j]));
@@ -52,10 +55,11 @@ public class FileDao implements Dao {
     }
 
     @Override
-    public int countThread(String path)  throws SizeCountException {
+    public int countThread(final String path)  throws SizeCountException {
         int result;
         List<String> lines = new ArrayList<>();
-        try (Stream<String> lineStream = Files.newBufferedReader(Paths.get(path)).lines()) {
+        try (Stream<String> lineStream
+                     = Files.newBufferedReader(Paths.get(path)).lines()) {
             lines = lineStream.collect(Collectors.toList());
         } catch (IOException ignored) {
             throw  new SizeCountException("problem with file for Thread");
@@ -64,7 +68,7 @@ public class FileDao implements Dao {
 
         return result;
     }
-    public static FileDao getInstance(){
-        return instance;
+    public static FileDao getInstance() {
+        return INSTANCE;
     }
 }

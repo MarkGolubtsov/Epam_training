@@ -9,7 +9,7 @@ public class PrintMatrix implements Command {
 
 
     @Override
-    public int execute(String request)  {
+    public int execute(final String request)  {
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
 

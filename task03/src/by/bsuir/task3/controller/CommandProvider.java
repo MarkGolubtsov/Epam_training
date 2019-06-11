@@ -17,13 +17,13 @@ final class CommandProvider {
         repository.put(Commands.RUN, new RunThread());
         repository.put(Commands.SAVE, new SaveInFileMatrix());
     }
-    Command getCommand(String name){
-        Commands commandName =null;
+    Command getCommand(final String name) {
+        Commands commandName = null;
         Command command = null;
-        try{
+        try {
             commandName = Commands.valueOf(name.toUpperCase());
             command = repository.get(commandName);
-        }catch(IllegalArgumentException | NullPointerException e){
+        } catch (IllegalArgumentException | NullPointerException e) {
             command = repository.get(Commands.WRONG);
         }
         return command;

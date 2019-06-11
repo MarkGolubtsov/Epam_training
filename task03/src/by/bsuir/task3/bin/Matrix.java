@@ -2,21 +2,20 @@ package by.bsuir.task3.bin;
 
 import org.apache.log4j.Logger;
 
-public class Matrix {
+public final class Matrix {
 
     private static  final Logger LOGGER
             = Logger.getLogger(Matrix.class.getSimpleName());
 
     private int[][] matrix = null;
 
-    private  int current =0;
+    private  int current = 0;
 
-    public Matrix(int[][] matrix)
-    {
-        this.matrix=matrix;
+    public Matrix(final int[][] m) {
+        this.matrix = m;
     }
 
-    public void changeElementOnDiagonal(final int i,final int value ) {
+    public void changeElementOnDiagonal(final int i, final int value) {
             matrix[i][i] = value;
     }
 
@@ -24,12 +23,11 @@ public class Matrix {
         return matrix;
     }
 
-    public boolean isRepeatChange()
-    {
+    public boolean isRepeatChange() {
         boolean result = false;
-        for (int i = 0; i <matrix.length; i++) {
-            if (matrix[i][i]==0) {
-                result=true;
+        for (int i = 0; i < matrix.length; i++) {
+            if (matrix[i][i] == 0) {
+                result = true;
             }
         }
         return result;
@@ -38,10 +36,10 @@ public class Matrix {
         return current;
     }
 
-    public  void setCurrent(int current) {
-        this.current = current;
+    public  void setCurrent(final int c) {
+        this.current = c;
     }
-    public void setMatrix(int[][] matrix) {
-        this.matrix = matrix;
+    public void setMatrix(final int[][] m) {
+        this.matrix = m;
     }
 }
