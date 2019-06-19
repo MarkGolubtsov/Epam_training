@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flowers>
+    <flower>
+        <name> </name>
+        <soil></soil>
+        <origin></origin>
+        <visual_param color="">
+            <size>
+
+            </size>
+        </visual_param>
+        <Growing_tips lighting="">
+                <watering>  </watering>
+                <temperature>   </temperature>
+        </Growing_tips>
+        <multipluing>   </multipluing>
+
+
+    </flower>
+</flowers>
