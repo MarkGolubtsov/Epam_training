@@ -8,6 +8,15 @@ import java.util.Comparator;
 public class IncreaseCountSentence implements Comparator<Component> {
     @Override
     public int compare(final Component o1, final  Component o2) {
-            return  ((Paragraph) o1).counSentence() - ((Paragraph) o2).counSentence();
+            if (((Paragraph) o1).counSentence()
+                    == ((Paragraph) o2).counSentence()) {
+                return 0;
+            }
+            if (((Paragraph) o1).counSentence()
+                    > ((Paragraph) o2).counSentence()) {
+                return 1;
+            } else {
+                return -1;
+            }
     }
 }

@@ -1,13 +1,12 @@
-package by.training.task04.parser;
+package parser;
 
-import by.training.task04.entity.*;
+import entity.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.net.URISyntaxException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,11 +104,5 @@ public class SAXFlowerHandler extends DefaultHandler {
 
     public List<Flower> getFlowers() {
         return flowers;
-    }
-    public static void main(String[] args) throws URISyntaxException, ParserException {
-        SAXParser saxCardParser = SAXParser.getInstance();
-        Path path = Path.of("D:\\EPAM_JAVA\\TASK\\task04\\src\\by\\training\\task04\\data\\sxema.xml");
-        List<Flower> flowers1 = saxCardParser.getData(path.toString());
-        flowers1.forEach(System.out::println);
     }
 }

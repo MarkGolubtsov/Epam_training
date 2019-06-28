@@ -1,6 +1,6 @@
-package by.training.task04.parser;
+package parser;
 
-import by.training.task04.entity.*;
+import entity.*;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -181,10 +181,4 @@ public class StAXParser implements XmlParser<Flower> {
         throw new ParserException("Unknown element in visual");
     }
 
-    public static void main(String[] args) throws URISyntaxException, ParserException {
-        StAXParser stAXParser = StAXParser.getInstance();
-        Path path = Path.of("D:\\EPAM_JAVA\\TASK\\task04\\src\\by\\training\\task04\\data\\sxema.xml");
-        List<Flower> flowers1 = stAXParser.getData(path.toString());
-        flowers1.forEach(System.out::println);
-    }
 }

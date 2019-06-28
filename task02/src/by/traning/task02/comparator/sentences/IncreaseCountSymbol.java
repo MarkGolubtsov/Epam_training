@@ -13,6 +13,15 @@ public class IncreaseCountSymbol  implements Comparator<Component> {
     }
     @Override
     public int compare(final  Component o1, final  Component o2) {
-        return ((Sentence) o1).getCountSymbol(symbol)-((Sentence) o2).getCountSymbol(symbol);
+        if (((Sentence) o1).getCountSymbol(symbol)
+                == ((Sentence) o2).getCountSymbol(symbol)) {
+            return 0;
+        }
+        if (((Sentence) o1).getCountSymbol(symbol)
+                > ((Sentence) o2).getCountSymbol(symbol)) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
