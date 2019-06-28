@@ -7,7 +7,7 @@ public final class Matrix {
     private static  final Logger LOGGER
             = Logger.getLogger(Matrix.class.getSimpleName());
 
-    private int[][] matrix = null;
+    private int[][] matrix;
 
     private  int current = 0;
 

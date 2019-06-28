@@ -18,8 +18,8 @@ final class CommandProvider {
         repository.put(Commands.SAVE, new SaveInFileMatrix());
     }
     Command getCommand(final String name) {
-        Commands commandName = null;
-        Command command = null;
+        Commands commandName;
+        Command command;
         try {
             commandName = Commands.valueOf(name.toUpperCase());
             command = repository.get(commandName);

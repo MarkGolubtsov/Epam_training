@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flowers>
+<flowers xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+        xs:noNamespaceSchemaLocation="sxemaXSD.xsd">
     <flower>
-        <name> </name>
-        <soil></soil>
-        <origin></origin>
-        <visual_param color="">
-            <size>
-
-            </size>
-        </visual_param>
-        <Growing_tips lighting="">
-                <watering>  </watering>
-                <temperature>   </temperature>
-        </Growing_tips>
-        <multipluing>   </multipluing>
-
-
+        <name>Mark</name>
+        <soil>ground</soil>
+        <origin>Minsk</origin>
+        <visual-paremeters>
+            <color>Red</color>
+            <size>120</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>30</watering>
+            <temperature>23.5</temperature>
+        </growing-tips>
+        <multiplying>seeds</multiplying>
+    </flower>
+    <flower>
+        <multiplying>seeds</multiplying>
+        <name>Mark2</name>
+        <soil>ground</soil>
+        <origin>Minsk</origin>
+        <visual-paremeters>
+            <color>Red</color>
+            <size>120</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>30</watering>
+            <temperature>23.5</temperature>
+        </growing-tips>
     </flower>
 </flowers>

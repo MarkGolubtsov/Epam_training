@@ -29,8 +29,8 @@ public final class ThreadServiceImpl implements ThreadService {
         if (factoryThread.getMatrix().getMatrix() == null) {
             throw new ThreadRunException("Set matrix pls!");
         }
-        for (Thread t
-                : list) {
+
+        for (Thread t : list) {
             t.start();
         }
 

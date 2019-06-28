@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema elementFormDefault="qualified"
+           attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="flowers">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="flower"
+                        type="flower"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+    <xs:complexType name="flower">
+        <xs:all>
+            <xs:element name="name" type="xs:string" default="NoName"/>
+            <xs:element name="soil" type="soil-type"  default="podzol"/>
+            <xs:element name="origin" type="xs:string"  default="NoOrigin"/>
+           <xs:element name="visual-paremeters" type="visual-parametrs"/>
+            <xs:element name="growing-tips" type="growing-tips-type"/>
+            <xs:element name="multiplying" type="multipluing-type" default="seeds" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="soil-type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="podzol"/>
+            <xs:enumeration value="ground"/>
+            <xs:enumeration value="sod-podzolic"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:complexType name="visual-parametrs">
+        <xs:all>
+            <xs:element name="color" type="xs:string"/>
+            <xs:element name="size" type="xs:integer"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="growing-tips-type">
+    <xs:all>
+        <xs:element name="temperature" type="xs:decimal" default="0.0"/>
+        <xs:element name="lighting" type="xs:boolean" default="false"/>
+        <xs:element name="watering" type="xs:integer" default="0"/>
+    </xs:all>
+    </xs:complexType>
+    <xs:simpleType name="multipluing-type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="seeds"/>
+            <xs:enumeration value="leaves"/>
+            <xs:enumeration value="cuttings"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
