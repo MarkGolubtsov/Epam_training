@@ -92,9 +92,9 @@ public class DOMCardParser implements XmlParser<Flower> {
         return text;
     }
         public static void main(String[] args) throws URISyntaxException, ParserException {
-        DOMCardParser domCardParser = DOMCardParser.getInstance();
-        List<Flower> postCards = domCardParser.getData("D:\\EPAM_JAVA\\TASK\\task04\\src\\by\\training\\task04\\data\\sxema.xml");
-        postCards.forEach(System.out::println);
+        DOMCardParser domParser = DOMCardParser.getInstance();
+        List<Flower> post = domParser.getData("D:\\EPAM_JAVA\\TASK\\task04\\src\\by\\training\\task04\\data\\sxema.xml");
+        post.forEach(System.out::println);
     }
 
 }

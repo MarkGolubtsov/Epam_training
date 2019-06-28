@@ -39,9 +39,9 @@ public class StAXParser implements XmlParser<Flower> {
                 if (type == XMLStreamReader.START_ELEMENT) {
                     name = reader.getLocalName();
                     if (name.equals("flower")) {
-                        Flower card = buildFlower(reader);
-                       // logger.debug("Add " + card.toString());
-                        flowers.add(card);
+                        Flower flower = buildFlower(reader);
+                       // logger.debug("Add " + flower.toString());
+                        flowers.add(flower);
                     }
                 }
 
@@ -108,7 +108,7 @@ public class StAXParser implements XmlParser<Flower> {
             reader.next();
             text = reader.getText();
         }
-        //logger.debug("Add data to card" + text);
+        //logger.debug("Add data to " + text);
         return text;
     }
     private Visual getXMLVisual(XMLStreamReader reader) throws XMLStreamException, ParserException {

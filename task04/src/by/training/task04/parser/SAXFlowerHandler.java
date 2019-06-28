@@ -40,7 +40,7 @@ public class SAXFlowerHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         switch (qName) {
             case "flower":
-               // logger.debug("Add " + card.toString());
+               // logger.debug("Add " .toString());
                 flowers.add(flower);
                 break;
             case "name":
@@ -107,9 +107,9 @@ public class SAXFlowerHandler extends DefaultHandler {
         return flowers;
     }
     public static void main(String[] args) throws URISyntaxException, ParserException {
-        SAXParser saxCardParser = SAXParser.getInstance();
+        SAXParser saxParser = SAXParser.getInstance();
         Path path = Path.of("D:\\EPAM_JAVA\\TASK\\task04\\src\\by\\training\\task04\\data\\sxema.xml");
-        List<Flower> flowers1 = saxCardParser.getData(path.toString());
+        List<Flower> flowers1 = saxParser.getData(path.toString());
         flowers1.forEach(System.out::println);
     }
 }
