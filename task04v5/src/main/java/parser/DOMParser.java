@@ -13,6 +13,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +69,7 @@ public class DOMParser implements XmlParser<Flower> {
         Flower flower = new Flower();
         flower.setName(getElementTextContent(element,"name"));
         flower.setOrigin(getElementTextContent(element,"origin"));
+        flower.setID(getElementTextContent(element,"id"));
         String soil= getElementTextContent(element,"soil");
         String color=getElementTextContent(element,"color");
         int size = Integer.valueOf(getElementTextContent(element,"size"));
@@ -89,11 +92,6 @@ public class DOMParser implements XmlParser<Flower> {
         String text = node.getTextContent();
         //logger.debug("Add to  " + text);
         return text;
-    }
-        public static void main(String[] args) throws URISyntaxException, ParserException {
-        DOMParser domParser = DOMParser.getInstance();
-        List<Flower> post = domParser.getData("D:\\EPAM_JAVA\\TASK\\task04\\src\\by\\training\\task04\\data\\sxema.xml");
-        post.forEach(System.out::println);
     }
 
 }

@@ -74,6 +74,9 @@ public class StAXParser implements XmlParser<Flower> {
                         case "origin":
                             flower.setOrigin(getXMLText(reader));
                             break;
+                        case "id":
+                            flower.setID(getXMLText(reader));
+                            break;
                         case "multiplying":
                             flower.setMultiplying(Multiplying.of(getXMLText(reader)));
                             break;

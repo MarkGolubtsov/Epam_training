@@ -72,6 +72,9 @@ public class SAXFlowerHandler extends DefaultHandler {
                 //logger.debug("Add " + year);
                 flower.setVisual(visual);
                 break;
+            case "id":
+                flower.setID(content);
+                break;
             case "lighting":
                // logger.debug("Set author" + name);
                 isLikeLighting = Boolean.valueOf(content);

@@ -2,6 +2,7 @@
 <flowers xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
         xs:noNamespaceSchemaLocation="sxemaXSD.xsd">
     <flower>
+        <id>asd123</id>
         <name>Mark</name>
         <soil>ground</soil>
         <origin>Minsk</origin>
@@ -17,6 +18,7 @@
         <multiplying>seeds</multiplying>
     </flower>
     <flower>
+        <id>asd124</id>
         <multiplying>seeds</multiplying>
         <name>Mark2</name>
         <soil>ground</soil>

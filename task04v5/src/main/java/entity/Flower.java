@@ -9,6 +9,15 @@ public class Flower {
     private Visual  visual;
     private GrowingTips growingTips;
     private Multiplying multiplying;
+    private String ID;
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public String getName() {
         return name;
@@ -68,12 +77,13 @@ public class Flower {
                 Objects.equals(origin, flower.origin) &&
                 Objects.equals(visual, flower.visual) &&
                 Objects.equals(growingTips, flower.growingTips) &&
-                multiplying == flower.multiplying;
+                multiplying == flower.multiplying &&
+                Objects.equals(ID, flower.ID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, soil, origin, visual, growingTips, multiplying);
+        return Objects.hash(name, soil, origin, visual, growingTips, multiplying, ID);
     }
 
     @Override
@@ -85,6 +95,7 @@ public class Flower {
                 ", visual=" + visual +
                 ", growingTips=" + growingTips +
                 ", multiplying=" + multiplying +
+                ", ID='" + ID + '\'' +
                 '}';
     }
 }

@@ -13,6 +13,7 @@
 
     <xs:complexType name="flower">
         <xs:all>
+            <xs:element name="id" type="id"/>
             <xs:element name="name" type="xs:string" default="NoName"/>
             <xs:element name="soil" type="soil-type"  default="podzol"/>
             <xs:element name="origin" type="xs:string"  default="NoOrigin"/>
@@ -21,6 +22,11 @@
             <xs:element name="multiplying" type="multipluing-type" default="seeds" />
         </xs:all>
     </xs:complexType>
+    <xs:simpleType name="id">
+        <xs:restriction base="xs:ID">
+            <!--            <xs:pattern value="^[a-z]{2}\d{6}$"/>-->
+        </xs:restriction>
+    </xs:simpleType>
 
     <xs:simpleType name="soil-type">
         <xs:restriction base="xs:string">
