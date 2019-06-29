@@ -1,16 +1,16 @@
 package parser;
 
 import entity.*;
+import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-import java.net.URISyntaxException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SAXFlowerHandler extends DefaultHandler {
+
+    private final static Logger logger = Logger.getLogger(SAXFlowerHandler.class);
     private List<Flower> flowers = new ArrayList<>();
     private Flower flower;
     private String content;
@@ -39,24 +39,25 @@ public class SAXFlowerHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         switch (qName) {
             case "flower":
-               // logger.debug("Add " .toString());
+                logger.debug("Add " +flower.toString());
                 flowers.add(flower);
                 break;
             case "name":
-                //logger.debug("Add " + content);
+                logger.debug("Add " + content);
                 flower.setName(content);
                 break;
             case "soil":
-                //logger.debug("Add " + content);
+               logger.debug("Add " + content);
                 flower.setSoil(Soil.of(content));
                 break;
             case "multiplying":
             {
+                logger.debug("Add " + content);
                 flower.setMultiplying(Multiplying.of(content));
                 break;
             }
             case "origin":
-                //logger.debug("Add " + content);
+                logger.debug("Add " + content);
                 flower.setOrigin(content);
                 break;
             case "color":
@@ -76,16 +77,16 @@ public class SAXFlowerHandler extends DefaultHandler {
                 flower.setID(content);
                 break;
             case "lighting":
-               // logger.debug("Set author" + name);
+               logger.debug("Set light" + isLikeLighting);
                 isLikeLighting = Boolean.valueOf(content);
                 break;
             case "watering":
-                //logger.debug("Set author" + surname);
+                logger.debug("Set watering" + watering);
                watering = Integer.valueOf(content);
                 break;
 
             case "growing-tips":
-                //logger.debug("Set author" + content);
+                logger.debug("Set growing-tips" + content);
                 GrowingTips growingTips = new GrowingTips(temperature,isLikeLighting,watering);
                 flower.setGrowingTips(growingTips);
                 break;

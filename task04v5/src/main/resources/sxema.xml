@@ -1,36 +1,297 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flowers xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
         xs:noNamespaceSchemaLocation="sxemaXSD.xsd">
+
+
     <flower>
-        <id>asd123</id>
-        <name>Mark</name>
+        <id>a120</id>
+        <name>Lutik</name>
         <soil>ground</soil>
-        <origin>Minsk</origin>
+        <origin>Dubai</origin>
+        <visual-paremeters>
+            <color>Blue</color>
+            <size>100</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>5</watering>
+            <temperature>21.5</temperature>
+        </growing-tips>
+        <multiplying>cuttings</multiplying>
+    </flower>
+
+    <flower>
+        <id>a121</id>
+        <multiplying>leaves</multiplying>
+        <name>Rose</name>
+        <soil>sod-podzolic</soil>
+        <origin>USA</origin>
         <visual-paremeters>
             <color>Red</color>
             <size>120</size>
         </visual-paremeters>
         <growing-tips>
             <lighting>true</lighting>
-            <watering>30</watering>
-            <temperature>23.5</temperature>
+            <watering>45</watering>
+            <temperature>25.5</temperature>
         </growing-tips>
-        <multiplying>seeds</multiplying>
     </flower>
+
     <flower>
-        <id>asd124</id>
-        <multiplying>seeds</multiplying>
-        <name>Mark2</name>
-        <soil>ground</soil>
-        <origin>Minsk</origin>
+        <id>a122</id>
+        <multiplying>leaves</multiplying>
+        <name>Azalea</name>
+        <soil>podzol</soil>
+        <origin>USSR</origin>
         <visual-paremeters>
-            <color>Red</color>
-            <size>120</size>
+            <color>Green</color>
+            <size>20</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>false</lighting>
+            <watering>10</watering>
+            <temperature>10.0</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <id>a123</id>
+        <multiplying>seeds</multiplying>
+        <name>Aloe</name>
+        <soil>podzol</soil>
+        <origin>BY</origin>
+        <visual-paremeters>
+            <color>dark-green</color>
+            <size>15</size>
         </visual-paremeters>
         <growing-tips>
             <lighting>true</lighting>
             <watering>30</watering>
-            <temperature>23.5</temperature>
+            <temperature>18.0</temperature>
         </growing-tips>
     </flower>
+
+    <flower>
+        <id>a124</id>
+        <multiplying>leaves</multiplying>
+        <soil>podzol</soil>
+        <origin>RY</origin>
+        <name>Stinging-nettle</name>
+        <visual-paremeters>
+            <color>dark-green</color>
+            <size>40</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>20</watering>
+            <temperature>10.0</temperature>
+        </growing-tips>
+    </flower>
+
+
+    <flower>
+        <name>hosta</name>
+        <multiplying>cuttings</multiplying>
+        <id>a125</id>
+        <soil>sod-podzolic</soil>
+        <origin>USA</origin>
+        <visual-paremeters>
+            <color>yellow</color>
+            <size>23</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>false</lighting>
+            <watering>100</watering>
+            <temperature>12.1</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>phlox</name>
+        <multiplying>cuttings</multiplying>
+        <id>a126</id>
+        <soil>sod-podzolic</soil>
+        <origin>CY</origin>
+        <visual-paremeters>
+            <color>orange</color>
+            <size>12</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>42</watering>
+            <temperature>15.9</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>ficus</name>
+        <multiplying>seeds</multiplying>
+        <id>a127</id>
+        <soil>podzol</soil>
+        <origin>BY</origin>
+        <visual-paremeters>
+            <color>red</color>
+            <size>44</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>false</lighting>
+            <watering>41</watering>
+            <temperature>15.0</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>Cane</name>
+        <multiplying>cuttings</multiplying>
+        <id>a128</id>
+        <soil>podzol</soil>
+        <origin>PL</origin>
+        <visual-paremeters>
+            <color>black</color>
+            <size>46</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>100</watering>
+            <temperature>20.5</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>Burdock</name>
+        <multiplying>seeds</multiplying>
+        <id>a129</id>
+        <soil>ground</soil>
+        <origin>fr</origin>
+        <visual-paremeters>
+            <color>silver</color>
+            <size>70</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>false</lighting>
+            <watering>28</watering>
+            <temperature>15.0</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>phlox</name>
+        <multiplying>cuttings</multiplying>
+        <id>a130</id>
+        <soil>sod-podzolic</soil>
+        <origin>Dubai</origin>
+        <visual-paremeters>
+            <color>green</color>
+            <size>151</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>false</lighting>
+            <watering>25</watering>
+            <temperature>10.0</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>MarkFlower</name>
+        <multiplying>cuttings</multiplying>
+        <id>a131</id>
+        <soil>sod-podzolic</soil>
+        <origin>Minsk</origin>
+        <visual-paremeters>
+            <color>purple</color>
+            <size>251</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>270</watering>
+            <temperature>50.0</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>sage</name>
+        <multiplying>leaves</multiplying>
+        <id>a132</id>
+        <soil>podzol</soil>
+        <origin>Paris</origin>
+        <visual-paremeters>
+            <color>yellow</color>
+            <size>100</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>270</watering>
+            <temperature>12.0</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>orchid</name>
+        <multiplying>cuttings</multiplying>
+        <id>a133</id>
+        <soil>sod-podzolic</soil>
+        <origin>Canada</origin>
+        <visual-paremeters>
+            <color>green</color>
+            <size>60</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>false</lighting>
+            <watering>75</watering>
+            <temperature>15.6</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>daffodil</name>
+        <multiplying>seeds</multiplying>
+        <id>a134</id>
+        <soil>sod-podzolic</soil>
+        <origin>Moscow</origin>
+        <visual-paremeters>
+            <color>yellow</color>
+            <size>23</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>24</watering>
+            <temperature>25.0</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>narcissus</name>
+        <multiplying>cuttings</multiplying>
+        <id>a135</id>
+        <soil>sod-podzolic</soil>
+        <origin>USA</origin>
+        <visual-paremeters>
+            <color>yellow</color>
+            <size>40</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>67</watering>
+            <temperature>14.5</temperature>
+        </growing-tips>
+    </flower>
+
+    <flower>
+        <name>milkweed</name>
+        <multiplying>cuttings</multiplying>
+        <id>a136</id>
+        <soil>podzol</soil>
+        <origin>by</origin>
+        <visual-paremeters>
+            <color>green</color>
+            <size>54</size>
+        </visual-paremeters>
+        <growing-tips>
+            <lighting>true</lighting>
+            <watering>24</watering>
+            <temperature>11.9</temperature>
+        </growing-tips>
+    </flower>
+
+
 </flowers>

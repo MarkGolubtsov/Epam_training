@@ -1,7 +1,10 @@
 package parser;
 
 
+import controller.Controller;
 import entity.*;
+
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -19,16 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DOMParser implements XmlParser<Flower> {
-
+    private final static Logger logger = Logger.getLogger(DOMParser.class);
     private static DOMParser ourInstance;
     private DocumentBuilder documentBuilder;
 
     static {
-      ///
         try {
             ourInstance = new DOMParser();
         } catch (ParserException e) {
-            e.printStackTrace();
+            logger.error("Error creare");
         }
 
     }
@@ -47,6 +49,7 @@ public class DOMParser implements XmlParser<Flower> {
 
     @Override
     public List<Flower> getData(String path) throws ParserException {
+        logger.info("Start DOM");
         List<Flower> flowers = new ArrayList<>();
         Document document;
         try {
@@ -90,7 +93,7 @@ public class DOMParser implements XmlParser<Flower> {
         NodeList nList = element.getElementsByTagName(elementName);
         Node node = nList.item(0);
         String text = node.getTextContent();
-        //logger.debug("Add to  " + text);
+        logger.info("Add to  " + text);
         return text;
     }
 

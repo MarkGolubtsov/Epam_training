@@ -1,6 +1,8 @@
 package parser;
 
+import controller.Controller;
 import entity.*;
+import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -11,6 +13,7 @@ import java.util.List;
 
 public class SAXParser implements XmlParser<Flower> {
 
+    private final static Logger logger = Logger.getLogger(SAXParser.class);
     private static  SAXParser ourInstance = new SAXParser();
 
     public static  SAXParser getInstance() {
@@ -24,7 +27,7 @@ public class SAXParser implements XmlParser<Flower> {
     @Override
     public List<Flower> getData(String path) throws ParserException {
         try {
-
+            logger.info("start SAX");
             SAXParserFactory factoryParser = SAXParserFactory.newInstance();
             javax.xml.parsers.SAXParser parser = factoryParser.newSAXParser();
             SAXFlowerHandler handler = new SAXFlowerHandler();

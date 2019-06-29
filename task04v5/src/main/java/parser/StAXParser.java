@@ -1,6 +1,7 @@
 package parser;
 
 import entity.*;
+import org.apache.log4j.Logger;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -9,8 +10,6 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +24,11 @@ public class StAXParser implements XmlParser<Flower> {
         inputFactory = XMLInputFactory.newInstance();
     }
 
+    private final static Logger logger = Logger.getLogger(StAXParser.class);
     @Override
     public List<Flower> getData(String path) throws ParserException {
         flowers.clear();
+        logger.info("start StAX");
         FileInputStream inputStream;
         XMLStreamReader reader;
         String name;
