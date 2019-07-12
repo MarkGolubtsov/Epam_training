@@ -1,7 +1,15 @@
 package dao;
 
-public interface UserDao {
-    void signIn(String name, String password,String telephone);
+import domain.RoleUser;
+import domain.User;
+import exception.FitalException;
 
-    void registration(String name, String passwprd);
+import java.util.List;
+
+public interface UserDao extends Dao<User> {
+    User read(String name ,String password) throws FitalException;
+
+    List<User> readByRole(RoleUser roleUser) throws FitalException;
+
+    List<User> readByTelephone(String telephone) throws FitalException;
 }

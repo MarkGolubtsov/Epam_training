@@ -1,0 +1,1 @@
+INSERT user (id, name, password, role, telephone_number, img) VALUE (null,'root',md5('root'),'ADMIN','+37291845078',null);

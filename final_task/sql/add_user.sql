@@ -1,0 +1,1 @@
+INSERT INTO user (id, name, password, role, telephone_number, img) VALUE (null,'mark2',md5(123),'ADMIN','123',null);

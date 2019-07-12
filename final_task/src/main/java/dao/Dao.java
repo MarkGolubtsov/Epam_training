@@ -1,13 +1,16 @@
 package dao;
 
-import domain.Entity;
+import exception.FitalException;
 
-public interface Dao <Type extends Entity> {
-    Integer create(Type entity);
+import java.util.List;
 
-    Type read(Integer id);
+public interface Dao <Type> {
+    void create(Type entity) throws FitalException;
 
-    void update(Type entity);
+    void delete(Type entity) throws FitalException;
 
-    void delete(Integer id);
+    void update(Type entity) throws FitalException;
+
+    List<Type> read() throws FitalException;
+
 }

@@ -18,7 +18,6 @@ import java.nio.file.Paths;
 public class FilesWorker {
 
     private  static String UPLOADS;
-
     static {
         try {
             UPLOADS = Paths.get(FilesWorker.class.getResource("/upload").toURI()).toAbsolutePath().toString();
@@ -30,13 +29,11 @@ public class FilesWorker {
 
     String NAME_UPLOAD="sxema2.xml";
 
-
     public void save(HttpServletRequest req) throws IOException, ServletException {
         for (File myFile : new File(UPLOADS).listFiles())
             if (myFile.isFile()) myFile.delete();
 
         Part filePart = req.getPart("file");
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         File uploads = new File(UPLOADS+"\\"+NAME_UPLOAD);
         try (InputStream input = filePart.getInputStream()) {
             Files.copy(input, uploads.toPath());

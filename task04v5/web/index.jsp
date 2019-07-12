@@ -13,8 +13,6 @@
   <body>
   <div class="row" >
     <div class="col 6s">
-
-
       <form  method="post" enctype="multipart/form-data">
         <input  type="file" name="file" />
         <button class="btn waves-effect waves-light"  type="submit" >

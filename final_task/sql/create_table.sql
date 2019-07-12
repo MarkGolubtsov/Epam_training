@@ -4,7 +4,7 @@ CREATE TABLE `user`
 (
   `id` int PRIMARY KEY auto_increment,
   `name` varchar(255) not null ,
-  `password` binary(64) not null ,
+  `password` varchar(64) not null ,
   `role` ENUM ('ADMIN', 'USER','COURIER') not null ,
   `telephone_number` varchar(255) not null ,
     `img` blob
