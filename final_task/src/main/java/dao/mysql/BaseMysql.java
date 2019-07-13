@@ -17,20 +17,37 @@ public abstract  class BaseMysql<T> {
         this.connection = connection;
     }
 
-    void deleteById(String sql, Entity entity, Connection connection) throws FitalException {
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, entity.getId());
-            statement.executeUpdate();
-        } catch(SQLException e) {
-            throw new FitalException(e);
-        } finally {
-            try {
-                statement.close();
-            } catch(SQLException | NullPointerException e) {throw new FitalException();}
+//    void deleteByInt(String sql,int value,  Connection connection) throws FitalException {
+//        PreparedStatement statement = null;
+//        try {
+//            statement = connection.prepareStatement(sql);
+//            statement.setInt(1, value);
+//            statement.executeUpdate();
+//        } catch(SQLException e) {
+//            throw new FitalException(e);
+//        } finally {
+//            try {
+//                statement.close();
+//            } catch(SQLException | NullPointerException e) {throw new FitalException();}
+//        }
+//    }
+void deleteByInt(String sql,int[] value,  Connection connection) throws FitalException {
+    PreparedStatement statement = null;
+    try {
+        statement = connection.prepareStatement(sql);
+
+        for (int i = 1; i <=value.length ; i++) {
+            statement.setInt(i, value[i]-1);
         }
+        statement.executeUpdate();
+    } catch(SQLException e) {
+        throw new FitalException(e);
+    } finally {
+        try {
+            statement.close();
+        } catch(SQLException | NullPointerException e) {throw new FitalException();}
     }
+}
 
     void defultCreate(String sql, Connection connection, T entity) throws FitalException {
         PreparedStatement statement = null;
@@ -68,7 +85,7 @@ public abstract  class BaseMysql<T> {
             }
         }
     }
-    List<T> readBy(String sql, String field, Connection connection) throws FitalException {
+    List<T> readByString(String sql, String field, Connection connection) throws FitalException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
@@ -104,12 +121,15 @@ public abstract  class BaseMysql<T> {
         }
 
     }
-     List<T> readById(Connection connection, String sql, int id ) throws FitalException {
+
+     List<T> readByInt(Connection connection, String sql, int[] value ) throws FitalException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             statement = connection.prepareStatement(sql);
-            statement.setInt(1,id);
+            for (int i = 1; i <=value.length ; i++) {
+                statement.setInt(i, value[i]-1);
+            }
             resultSet = statement.executeQuery();
             return fillList(resultSet);
 

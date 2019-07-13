@@ -25,17 +25,17 @@ public class OrderDaoImpl extends BaseMysql<Order> implements OrderDao {
 
     @Override
     public Order readById(int id) throws FitalException {
-        return  readById(connection,READ_BY_ID,id).get(0);
+        return  readByInt(connection,READ_BY_ID,id).get(0);
     }
 
     @Override
     public List<Order> readByUserId(int user_id) throws FitalException {
-        return  readById(connection,READ_BY_USER_ID,user_id);
+        return  readByInt(connection,READ_BY_USER_ID,user_id);
     }
 
     @Override
     public List<Order> readByDeliveryType(TypeDelivery delivery_type) throws FitalException {
-        return readBy(READ_BY_DELIVERY_TYPE,delivery_type.toString(),connection);
+        return readByString(READ_BY_DELIVERY_TYPE,delivery_type.toString(),connection);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class OrderDaoImpl extends BaseMysql<Order> implements OrderDao {
 
     @Override
     public void delete(Order entity) throws FitalException {
-    deleteById(DELETE_BY_ID, entity, connection);
+        deleteByInt(DELETE_BY_ID, entity.getId(), connection);
     }
 
     @Override

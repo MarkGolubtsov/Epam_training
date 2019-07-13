@@ -53,21 +53,21 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
 
     @Override
     public User readById(int id) throws FitalException {
-    return  readById(connection,READ_BY_ID,id).get(0);
+    return  readByInt(connection,READ_BY_ID,new int[]{id}).get(0);
     }
 
     @Override
     public List<User> readByRole(RoleUser roleUser) throws FitalException {
-        return readBy(READ_BY_ROLE, roleUser.toString(),connection);
+        return readByString(READ_BY_ROLE, roleUser.toString(),connection);
     }
     @Override
     public List<User> readByName(String name) throws FitalException {
-        return readBy(READ_BY_NAME,name,connection);
+        return readByString(READ_BY_NAME,name,connection);
     }
 
     @Override
     public List<User> readByTelephone(String telephone) throws FitalException {
-        return readBy(READ_BY_TELEPHONE, telephone,connection);
+        return readByString(READ_BY_TELEPHONE, telephone,connection);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
 
     @Override
     public void delete(User entity) throws FitalException {
-        deleteById(DELETE_BY_ID,entity,connection);
+        deleteByInt(DELETE_BY_ID,new int[]{entity.getId()},connection);
     }
 
     @Override

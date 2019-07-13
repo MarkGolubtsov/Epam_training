@@ -1,10 +1,10 @@
 package domain;
 
-public class Adress extends Entity {
+public class Address {
 
     private String street;
 
-    private String house;
+    private int house;
 
     User user;
 
@@ -16,11 +16,11 @@ public class Adress extends Entity {
         this.street = street;
     }
 
-    public String getHouse() {
+    public int getHouse() {
         return house;
     }
 
-    public void setHouse(String house) {
+    public void setHouse(int house) {
         this.house = house;
     }
 

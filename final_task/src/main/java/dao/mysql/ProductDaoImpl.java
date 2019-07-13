@@ -52,17 +52,17 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
 
     @Override
     public Product readById(int id) throws FitalException {
-        return  readById(connection,READ_BY_ID,id).get(0);
+        return  readByInt(connection,READ_BY_ID,id).get(0);
     }
 
     @Override
     public List<Product> readByType(String type) throws FitalException {
-        return  readBy(READ_BY_TYPE,type,connection);
+        return  readByString(READ_BY_TYPE,type,connection);
     }
 
     @Override
     public List<Product> readByName(String name) throws FitalException {
-        return  readBy(READ_BY_NAME,name,connection);
+        return  readByString(READ_BY_NAME,name,connection);
     }
 
     @Override
@@ -72,7 +72,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
 
     @Override
     public void delete(Product product) throws FitalException {
-        deleteById(DELETE_BY_ID,product,connection);
+        deleteByInt(DELETE_BY_ID,product.getId(),connection);
     }
 
     @Override
