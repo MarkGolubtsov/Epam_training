@@ -1,15 +1,55 @@
 package domain;
 
 
+import java.sql.Blob;
 import java.util.List;
 
-public class User extends Person {
+public class User extends Entity {
 
-    private List<Adress> adressList;
+    private String name;
+    private String password;
+    private String telephone;
+    private Blob img;
+    private RoleUser roleUser;
+    public Blob getImg() {
+        return img;
+    }
 
-    private List<Order> ordList;
+    public void setImg(Blob img) {
+        this.img = img;
+    }
 
-    private List<Delivery> deliveryList;
+    public RoleUser getRoleUser() {
+        return roleUser;
+    }
+
+    public void setRoleUser(RoleUser roleUser) {
+        this.roleUser = roleUser;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
 
 }

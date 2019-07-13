@@ -6,6 +6,8 @@ public class Adress extends Entity {
 
     private String house;
 
+    User user;
+
     public String getStreet() {
         return street;
     }
@@ -20,5 +22,13 @@ public class Adress extends Entity {
 
     public void setHouse(String house) {
         this.house = house;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

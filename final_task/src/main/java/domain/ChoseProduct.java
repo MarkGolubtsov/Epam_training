@@ -4,6 +4,8 @@ import java.util.List;
 
 public class ChoseProduct {
 
+   private Order order;
+
    private Product product;
 
    private  int count;
@@ -24,5 +26,11 @@ public class ChoseProduct {
       this.count = count;
    }
 
+   public Order getOrder() {
+      return order;
+   }
 
+   public void setOrder(Order order) {
+      this.order = order;
+   }
 }

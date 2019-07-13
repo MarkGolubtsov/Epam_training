@@ -5,11 +5,21 @@ import java.util.List;
 
 public class Order extends Entity {
 
-    private TypePay type_pay;
+
+    private  TypePay type_pay;
     private  Date date;
     private  double total_price;
 
-    private List<ChoseProduct> choseProducts;
+    private  User user;
+    private  TypeDelivery delivery;
+
+    public TypeDelivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(TypeDelivery delivery) {
+        this.delivery = delivery;
+    }
 
     public TypePay getType_pay() {
         return type_pay;
@@ -35,11 +45,11 @@ public class Order extends Entity {
         this.total_price = total_price;
     }
 
-    public List<ChoseProduct> getChoseProducts() {
-        return choseProducts;
+    public User getUser() {
+        return user;
     }
 
-    public void setChoseProducts(List<ChoseProduct> choseProducts) {
-        this.choseProducts = choseProducts;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

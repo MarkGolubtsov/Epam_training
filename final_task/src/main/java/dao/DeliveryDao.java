@@ -9,7 +9,7 @@ public interface DeliveryDao extends Dao<Delivery> {
 
     List<Delivery>  readByCourierId(int courier_id);
 
-    Delivery reead(int order_id,int courier_id);
+    Delivery read(int order_id,int courier_id);
 
     List<Delivery> readByUserId(int user_id);
 
