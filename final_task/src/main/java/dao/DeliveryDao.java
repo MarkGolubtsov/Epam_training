@@ -4,7 +4,7 @@ import domain.Delivery;
 
 import java.util.List;
 
-public interface DeliveryDao extends Dao {
+public interface DeliveryDao extends Dao<Delivery> {
     List<Delivery> readByOrderId(int order_id);
 
     List<Delivery>  readByCourierId(int courier_id);

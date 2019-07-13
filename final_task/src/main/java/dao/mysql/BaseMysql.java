@@ -12,5 +12,4 @@ public abstract  class BaseMysql {
         this.connection = connection;
     }
 
-
 }
