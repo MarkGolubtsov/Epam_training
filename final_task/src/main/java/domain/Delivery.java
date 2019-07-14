@@ -1,12 +1,13 @@
 package domain;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Delivery {
 
    private Order order;
 
-    private double cost;
+    private BigDecimal cost;
 
     private User user;
 
@@ -20,11 +21,11 @@ public class Delivery {
         this.order = order;
     }
 
-    public double getCost() {
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 

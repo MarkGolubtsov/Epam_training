@@ -1,9 +1,11 @@
 package domain;
 
+import java.math.BigDecimal;
+
 public class Product  extends Entity {
     private String name;
     private String type;
-    private double cost;
+    private BigDecimal cost;
     private String img_path;
 
     public String getName() {
@@ -22,11 +24,11 @@ public class Product  extends Entity {
         this.type = type;
     }
 
-    public double getCost() {
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 

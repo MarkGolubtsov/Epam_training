@@ -25,12 +25,12 @@ public class OrderDaoImpl extends BaseMysql<Order> implements OrderDao {
 
     @Override
     public Order readById(int id) throws FitalException {
-        return  readByInt(connection,READ_BY_ID,id).get(0);
+        return  readByInt(connection,READ_BY_ID,new int[]{id}).get(0);
     }
 
     @Override
     public List<Order> readByUserId(int user_id) throws FitalException {
-        return  readByInt(connection,READ_BY_USER_ID,user_id);
+        return  readByInt(connection,READ_BY_USER_ID,new int[]{user_id});
     }
 
     @Override
@@ -45,7 +45,7 @@ public class OrderDaoImpl extends BaseMysql<Order> implements OrderDao {
 
     @Override
     public void delete(Order entity) throws FitalException {
-        deleteByInt(DELETE_BY_ID, entity.getId(), connection);
+        deleteByInt(DELETE_BY_ID, new int[]{entity.getId()}, connection);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class OrderDaoImpl extends BaseMysql<Order> implements OrderDao {
         statement.setInt(1,entity.getUser().getId());
         statement.setString(2, entity.getType_pay().toString());
         statement.setDate(3, entity.getDate());
-        statement.setDouble(4,entity.getTotal_price());
+        statement.setBigDecimal(4,entity.getTotal_price());
     }
 
     @Override
@@ -83,7 +83,7 @@ public class OrderDaoImpl extends BaseMysql<Order> implements OrderDao {
         product.setType_pay(TypePay.valueOf(resultSet.getString("type_pay")));
         product.setDate(resultSet.getDate("date_ord"));
         product.setDelivery(TypeDelivery.valueOf(resultSet.getString("delivery_type")));
-        product.setTotal_price(resultSet.getDouble("total_price"));
+        product.setTotal_price(resultSet.getBigDecimal("total_price"));
     }
 
     @Override

@@ -6,7 +6,7 @@ public class Address {
 
     private int house;
 
-    User user;
+    private User user;
 
     public String getStreet() {
         return street;

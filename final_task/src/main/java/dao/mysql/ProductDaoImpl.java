@@ -52,7 +52,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
 
     @Override
     public Product readById(int id) throws FitalException {
-        return  readByInt(connection,READ_BY_ID,id).get(0);
+        return  readByInt(connection,READ_BY_ID,new int[]{id}).get(0);
     }
 
     @Override
@@ -72,7 +72,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
 
     @Override
     public void delete(Product product) throws FitalException {
-        deleteByInt(DELETE_BY_ID,product.getId(),connection);
+        deleteByInt(DELETE_BY_ID,new int[]{product.getId()},connection);
     }
 
     @Override
@@ -101,7 +101,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
         product.setId(resultSet.getInt("id"));
         product.setName(resultSet.getString("name"));
         product.setType(resultSet.getString("type"));
-        product.setCost(resultSet.getDouble("cost"));
+        product.setCost(resultSet.getBigDecimal("cost"));
         product.setImg_path(resultSet.getString("img"));
     }
 
@@ -126,7 +126,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
     protected void setFieldStatement(PreparedStatement statement, Product entity) throws SQLException {
         statement.setString(1, entity.getName());
         statement.setString(2, entity.getType());
-        statement.setDouble(3, entity.getCost());
+        statement.setBigDecimal(3, entity.getCost());
         statement.setString(4,entity.getImg_path());
     }
 }
