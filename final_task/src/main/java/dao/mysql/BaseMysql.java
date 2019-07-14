@@ -17,21 +17,14 @@ public abstract  class BaseMysql<T> {
         this.connection = connection;
     }
 
-//    void deleteByInt(String sql,int value,  Connection connection) throws FitalException {
-//        PreparedStatement statement = null;
-//        try {
-//            statement = connection.prepareStatement(sql);
-//            statement.setInt(1, value);
-//            statement.executeUpdate();
-//        } catch(SQLException e) {
-//            throw new FitalException(e);
-//        } finally {
-//            try {
-//                statement.close();
-//            } catch(SQLException | NullPointerException e) {throw new FitalException();}
-//        }
-//    }
-void deleteByInt(String sql,int[] value,  Connection connection) throws FitalException {
+    /**
+     *
+     * @param sql request sql with ?
+     * @param value massive of dat Elements which are substituted by a place "?"
+     * @param connection
+     * @throws FitalException
+     */
+    void deleteByInt(String sql,int[] value,  Connection connection) throws FitalException {
     PreparedStatement statement = null;
     try {
         statement = connection.prepareStatement(sql);
@@ -49,6 +42,13 @@ void deleteByInt(String sql,int[] value,  Connection connection) throws FitalExc
     }
 }
 
+    /**
+     * This method use for INSERT request
+     * @param sql INSERT request
+     * @param connection connection to database
+     * @param entity the object that contains  data for the INSERT request
+     * @throws FitalException
+     */
     void defultCreate(String sql, Connection connection, T entity) throws FitalException {
         PreparedStatement statement = null;
         try {
@@ -64,6 +64,13 @@ void deleteByInt(String sql,int[] value,  Connection connection) throws FitalExc
         }
     }
 
+    /**
+     *
+     * @param sql sql request
+     * @param connection connection to database
+     * @return List object which returt sql request
+     * @throws FitalException
+     */
     List<T> defaultRead(String sql, Connection connection) throws FitalException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -85,6 +92,15 @@ void deleteByInt(String sql,int[] value,  Connection connection) throws FitalExc
             }
         }
     }
+
+    /**
+     *
+     * @param sql sql request
+     * @param field  string value which replace "?"
+     * @param connection connection to database
+     * @return List object which returt sql request
+     * @throws FitalException
+     */
     List<T> readByString(String sql, String field, Connection connection) throws FitalException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -105,6 +121,13 @@ void deleteByInt(String sql,int[] value,  Connection connection) throws FitalExc
         }
     }
 
+    /**
+     *
+     * @param sql sql request  UPDATE
+     * @param connection connection databases
+     * @param entity obj which update
+     * @throws FitalException
+     */
     void updateDefault(String sql, Connection connection, T entity) throws FitalException {
         PreparedStatement statement = null;
         try {
@@ -122,6 +145,14 @@ void deleteByInt(String sql,int[] value,  Connection connection) throws FitalExc
 
     }
 
+    /**
+     *
+     * @param connection connection database
+     * @param sql sql reauest
+     * @param value massive vlues which will replace '?'
+     * @return list objects was returned by request
+     * @throws FitalException
+     */
      List<T> readByInt(Connection connection, String sql, int[] value ) throws FitalException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -148,14 +179,46 @@ void deleteByInt(String sql,int[] value,  Connection connection) throws FitalExc
 
     }
 
+    /**
+     * this method create object based on data in ResultSet
+     * @param resultSet result of request
+     * @return returt object
+     * @throws SQLException
+     */
     abstract T fillFieldsObject(ResultSet resultSet) throws SQLException;
 
+
+    /**
+     *
+     * @param statement
+     * @param entity which the object stores fill will replase "?"
+     * @throws SQLException
+     */
     abstract void setFieldStatement(PreparedStatement statement, T entity) throws SQLException;
 
+    /**
+     * this method create  object  based on data in ResultSet
+     * @param resultSet data for objects
+     * @return  list with objects
+     * @throws SQLException
+     */
      abstract List<T> fillList(ResultSet resultSet) throws SQLException ;
 
+    /**
+     * this method fill all filds in objec using data in ResultSet
+     * @param obj
+     * @param resultSet result of sql request
+     * @throws SQLException
+     */
     abstract void setParam(T obj,ResultSet resultSet) throws SQLException;
 
+    /**
+     * This method is used for UPDATE request, for searching by primary keys.
+     * In this method set primary keys in statment
+     * @param statement
+     * @param entity
+     * @throws SQLException
+     */
     abstract  void setPrimary(PreparedStatement statement,T entity) throws SQLException;
 
 }
