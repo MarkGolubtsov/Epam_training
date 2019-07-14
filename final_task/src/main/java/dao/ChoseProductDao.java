@@ -9,4 +9,5 @@ public interface ChoseProductDao extends Dao<ChoseProduct> {
 
     List<ChoseProduct> readByOrderId(int order_id) throws FitalException;
     List<ChoseProduct> readByProductId(int product_id) throws FitalException;
+    void deleteByProductId(int product_id ) throws FitalException;
 }

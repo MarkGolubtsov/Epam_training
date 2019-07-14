@@ -1,12 +1,10 @@
 package dao.mysql;
 
 import dao.ChoseProductDao;
-import domain.Address;
 import domain.ChoseProduct;
 import domain.Order;
 import domain.Product;
 import exception.FitalException;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +16,7 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
     private static final String UPDATE ="UPDATE `address` SET `order_id`=? ,`product_id` = ?, `count`=? WHERE `order_id`=? AND `product_id` =?";
     private static  final String DELETE = "DELETE FROM `address` where `order_id`=? AND `product_id`=?";
 
+    private static final String DELETE_BY_PRODUCT = "DELETE FROM `address` where  `product_id`=?";
     private static final String CREATE = "INSERT INTO `address` (`order_id`,`product_id`,`count`) VALUSES(?,?,?)";
 
     private static final  String READ_ALL = "SELECT `order_id`,`product_id`,`count` FROM `address`";
@@ -75,6 +74,7 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
         return readByInt(connection,READ_BY_PRODUCT_ID,new int[]{product_id});
     }
 
+
     @Override
     public void create(ChoseProduct entity) throws FitalException {
         defultCreate(CREATE,connection,entity);
@@ -93,5 +93,10 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
     @Override
     public List<ChoseProduct> read() throws FitalException {
         return  defaultRead(READ_ALL,connection);
+    }
+
+    @Override
+    public void deleteByProductId(int product_id) throws FitalException {
+    deleteByInt(DELETE_BY_PRODUCT, new int[]{product_id}, connection);
     }
 }
