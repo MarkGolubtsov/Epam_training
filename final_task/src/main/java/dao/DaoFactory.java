@@ -1,10 +1,7 @@
 package dao;
 
+import exception.DBException;
+
 public interface DaoFactory  {
-    AddressDao getAddressDao();
-    ChoseProductDao getChoseProductDaoproductDao();
-    DeliveryDao getDeliveryDao();
-    OrderDao getOrderDao();
-    ProductDao getProductDao();
-    UserDao getUserDao();
+    <Type extends Dao<?>> Type createDao(Class<Type> key) throws DBException;
 }

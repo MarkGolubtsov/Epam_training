@@ -4,7 +4,7 @@ import dao.DeliveryDao;
 import domain.Delivery;
 import domain.Order;
 import domain.User;
-import exception.FitalException;
+import exception.DBException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,42 +31,42 @@ public final  class DeliveryDaoImpl extends BaseMysql<Delivery> implements Deliv
 
 
     @Override
-    public List<Delivery> readByOrderId(int order_id) throws FitalException {
+    public List<Delivery> readByOrderId(int order_id) throws DBException {
         return readByInt(connection,READ_BY_ORDER_ID,new int[]{order_id});
     }
 
     @Override
-    public List<Delivery> readByCourierId(int courier_id) throws FitalException {
+    public List<Delivery> readByCourierId(int courier_id) throws DBException {
         return readByInt(connection,READ_BY_COURIER_ID,new int[]{courier_id});
     }
 
     @Override
-    public Delivery read(int order_id, int courier_id) throws FitalException {
+    public Delivery read(int order_id, int courier_id) throws DBException {
         return readByInt(connection,READ_BY_PRIMARY_KEYS,new int[]{order_id,courier_id}).get(0);
     }
 
     @Override
-    public List<Delivery> readByUserId(int user_id) throws FitalException {
+    public List<Delivery> readByUserId(int user_id) throws DBException {
         return readByInt(connection,READ_BY_USER_ID,new int[]{user_id});
     }
 
     @Override
-    public void create(Delivery entity) throws FitalException {
+    public void create(Delivery entity) throws DBException {
     defultCreate(CREATE,connection,entity);
     }
 
     @Override
-    public void delete(Delivery entity) throws FitalException {
+    public void delete(Delivery entity) throws DBException {
         deleteByInt(DELETE_BY_PRIMARY_KEYS,new int[]{entity.getOrder().getId(),entity.getCourier().getId()},connection);
     }
 
     @Override
-    public void update(Delivery entity) throws FitalException {
+    public void update(Delivery entity) throws DBException {
     updateDefault(UPDATE,connection,entity);
     }
 
     @Override
-    public List<Delivery> read() throws FitalException {
+    public List<Delivery> read() throws DBException {
         return defaultRead(READ_ALL,connection);
     }
 

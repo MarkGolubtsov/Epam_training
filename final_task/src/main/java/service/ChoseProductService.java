@@ -1,13 +1,16 @@
 package service;
 
 import domain.ChoseProduct;
+import exception.DBException;
+
+import java.util.List;
 
 public interface ChoseProductService extends Service<ChoseProduct> {
-    void save(ChoseProduct choseProduct);
+    void save(ChoseProduct choseProduct) throws DBException;
 
-    void findByOrderId(int order_id);
+    List<ChoseProduct> findByOrderId(int order_id) throws DBException;
 
-    void deleteByOrderId(int order_id);
+    void delete(ChoseProduct choseProduct) throws DBException;
+    void update(ChoseProduct choseProduct) throws DBException;
 
-    void deleteByProductId(int user_id);
 }

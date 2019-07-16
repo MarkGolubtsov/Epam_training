@@ -2,7 +2,7 @@ package dao.mysql;
 
 import dao.OrderDao;
 import domain.*;
-import exception.FitalException;
+import exception.DBException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,43 +18,56 @@ public class OrderDaoImpl extends BaseMysql<Order> implements OrderDao {
     private static final String UPDATE="UPDATE `order` SET  `user_id`=?, `type_pay`=?, `date_ord`=?, `delivery_type`=? `total_price`=? WHERE `id` = ?";
 
     private static final String  READ_ALL="SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` ORDER BY `date_ord`";
-    private static final String READ_BY_DELIVERY_TYPE="SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` WHERE `delivery_type=?` ORDER BY `date_ord` ";
+    private static final String READ_BY_DELIVERY_TYPE="SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` WHERE `delivery_type`=? ORDER BY `date_ord`";
 
     private static final String READ_BY_ID="SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` WHERE `id`=?` ORDER BY `date_ord`";
     private static final String READ_BY_USER_ID = "SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` WHERE `user_id`=?` ORDER BY `date_ord`";
+    private static final String DELETE_BY_USER_ID="DELETE FROM `order` WHERE `user_id` = ?";
+
+    private static final String READ_BY_TYPE_PAY="SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` WHERE `type_pay`=? ORDER BY `date_ord`";
 
     @Override
-    public Order readById(int id) throws FitalException {
+    public Order readById(int id) throws DBException {
         return  readByInt(connection,READ_BY_ID,new int[]{id}).get(0);
     }
 
     @Override
-    public List<Order> readByUserId(int user_id) throws FitalException {
+    public void deleteByUserId(int user_id) throws DBException {
+        deleteByInt(DELETE_BY_USER_ID, new int[]{user_id}, connection);
+    }
+
+    @Override
+    public List<Order> readByUserId(int user_id) throws DBException {
         return  readByInt(connection,READ_BY_USER_ID,new int[]{user_id});
     }
 
     @Override
-    public List<Order> readByDeliveryType(TypeDelivery delivery_type) throws FitalException {
+    public List<Order> readByDeliveryType(TypeDelivery delivery_type) throws DBException {
         return readByString(READ_BY_DELIVERY_TYPE,delivery_type.toString(),connection);
     }
 
     @Override
-    public void create(Order entity) throws FitalException {
+    public List<Order> readByPayType(TypePay pay_type) throws DBException {
+        return  readByString(READ_BY_TYPE_PAY,pay_type.toString(),connection);
+    }
+
+    @Override
+    public void create(Order entity) throws DBException {
        defultCreate(CREATE,connection,entity);
     }
 
     @Override
-    public void delete(Order entity) throws FitalException {
+    public void delete(Order entity) throws DBException {
         deleteByInt(DELETE_BY_ID, new int[]{entity.getId()}, connection);
     }
 
     @Override
-    public void update(Order entity) throws FitalException {
+    public void update(Order entity) throws DBException {
     updateDefault(UPDATE,connection,entity);
     }
 
     @Override
-    public List<Order> read() throws FitalException {
+    public List<Order> read() throws DBException {
         return  defaultRead(READ_ALL,connection);
     }
 

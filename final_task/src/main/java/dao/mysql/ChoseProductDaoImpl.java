@@ -4,7 +4,7 @@ import dao.ChoseProductDao;
 import domain.ChoseProduct;
 import domain.Order;
 import domain.Product;
-import exception.FitalException;
+import exception.DBException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -65,38 +65,38 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
     }
 
     @Override
-    public List<ChoseProduct> readByOrderId(int order_id) throws FitalException {
+    public List<ChoseProduct> readByOrderId(int order_id) throws DBException {
         return readByInt(connection,READ_BY_ORDER_ID,new int[]{order_id});
     }
 
     @Override
-    public List<ChoseProduct> readByProductId(int product_id) throws FitalException {
+    public List<ChoseProduct> readByProductId(int product_id) throws DBException {
         return readByInt(connection,READ_BY_PRODUCT_ID,new int[]{product_id});
     }
 
 
     @Override
-    public void create(ChoseProduct entity) throws FitalException {
+    public void create(ChoseProduct entity) throws DBException {
         defultCreate(CREATE,connection,entity);
     }
 
     @Override
-    public void delete(ChoseProduct entity) throws FitalException {
+    public void delete(ChoseProduct entity) throws DBException {
         deleteByInt(DELETE,new int[] {entity.getOrder().getId(),entity.getProduct().getId()},connection);
     }
 
     @Override
-    public void update(ChoseProduct entity) throws FitalException {
+    public void update(ChoseProduct entity) throws DBException {
         updateDefault(UPDATE,connection, entity);
     }
 
     @Override
-    public List<ChoseProduct> read() throws FitalException {
+    public List<ChoseProduct> read() throws DBException {
         return  defaultRead(READ_ALL,connection);
     }
 
     @Override
-    public void deleteByProductId(int product_id) throws FitalException {
+    public void deleteByProductId(int product_id) throws DBException {
     deleteByInt(DELETE_BY_PRODUCT, new int[]{product_id}, connection);
     }
 }

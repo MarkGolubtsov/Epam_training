@@ -1,16 +1,16 @@
 package dao;
 
-import exception.FitalException;
+import exception.DBException;
 
 import java.util.List;
 
 public interface Dao <Type> {
-    void create(Type entity) throws FitalException;
+    void create(Type entity) throws DBException;
 
-    void delete(Type entity) throws FitalException;
+    void delete(Type entity) throws DBException;
 
-    void update(Type entity) throws FitalException;
+    void update(Type entity) throws DBException;
 
-    List<Type> read() throws FitalException;
+    List<Type> read() throws DBException;
 
 }

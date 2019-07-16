@@ -1,13 +1,13 @@
 package service;
 
 import domain.Address;
+import exception.DBException;
 
 import java.util.List;
 
-interface AddressService extends Service<Address> {
-    void  save(Address address);
-    void deleteByUserId(int user_id);
-    void delete(Address address);
-    List<Address> readByStreet(String street);
-    List<Address> readByHouse(int house);
+public interface AddressService extends Service<Address> {
+    void  save(Address address) throws DBException;
+    void delete(Address address) throws DBException;
+    List<Address> readByStreet(String street) throws DBException;
+    List<Address> readByHouse(int house) throws DBException;
 }

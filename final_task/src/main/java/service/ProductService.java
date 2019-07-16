@@ -1,12 +1,13 @@
 package service;
 
 import domain.Product;
+import exception.DBException;
 
 import java.util.List;
 
-interface ProductService extends Service<Product> {
-    void delete(Product product);
-    List<Product>  readByType(String type);
-    List<Product>  readByName(String type);
-    List<String>  readAllTypes();
+public interface ProductService extends Service<Product> {
+    void delete(Product product) throws DBException;
+    List<Product>  readByType(String type) throws DBException;
+    List<Product>  readByName(String name) throws DBException;
+    List<String>  readAllTypes() throws DBException;
 }

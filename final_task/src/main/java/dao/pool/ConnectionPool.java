@@ -10,7 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import exception.FitalException;
+import exception.DBException;
 import org.apache.log4j.Logger;
 
 final public class ConnectionPool {
@@ -28,7 +28,7 @@ final public class ConnectionPool {
 
     private ConnectionPool() {}
 
-    public Connection getConnection() throws FitalException {
+    public Connection getConnection() throws DBException {
         lock.lock();
         PooledConnection connection = null;
         while(connection == null) {
@@ -45,11 +45,11 @@ final public class ConnectionPool {
                     connection = createConnection();
                 } else {
                     logger.error("The limit of number of database connections is exceeded");
-                    throw new FitalException();
+                    throw new DBException();
                 }
             } catch(InterruptedException | SQLException e) {
                 logger.error("It is impossible to connect to a database", e);
-                throw new FitalException(e);
+                throw new DBException(e);
             }
         }
         usedConnections.add(connection);
@@ -77,7 +77,7 @@ final public class ConnectionPool {
         lock.unlock();
     }
 
-    public  void init(String driverClass, String url, String user, String password, int startSize, int maxSize, int checkConnectionTimeout) throws FitalException {
+    public  void init(String driverClass, String url, String user, String password, int startSize, int maxSize, int checkConnectionTimeout) throws DBException {
         lock.lock();
         try {
             destroy();
@@ -92,7 +92,7 @@ final public class ConnectionPool {
             }
         } catch(ClassNotFoundException | SQLException | InterruptedException e) {
             logger.fatal("It is impossible to initialize connection pool", e);
-            throw new FitalException(e);
+            throw new DBException(e);
         }
         lock.unlock();
     }

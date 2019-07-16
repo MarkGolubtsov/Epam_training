@@ -1,12 +1,12 @@
 package dao;
 
 import domain.Address;
-import exception.FitalException;
+import exception.DBException;
 
 import java.util.List;
 
 public interface AddressDao extends Dao<Address>{
 
-    List<Address> readByStreet(String street) throws FitalException;
-    List<Address> readByHouse (int house)  throws FitalException ;
+    List<Address> readByStreet(String street) throws DBException;
+    List<Address> readByHouse (int house)  throws DBException;
 }

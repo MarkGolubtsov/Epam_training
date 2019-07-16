@@ -3,7 +3,7 @@ package dao.mysql;
 import dao.UserDao;
 import domain.RoleUser;
 import domain.User;
-import exception.FitalException;
+import exception.DBException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +22,7 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
     private static final String READ_ALL="SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `user` ORDER BY `name`";
     private static final String UPDATE="UPDATE `user` SET  `name`=?, `password`=?, `role`=?, `telephone_number`=?,`img`=? WHERE `id` = ?";
     @Override
-    public User read(String name, String password) throws FitalException {
+    public User read(String name, String password) throws DBException {
         String sql=READ_BY_NAME_AND_PASSWORD;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -38,7 +38,7 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
             }
             return user;
         } catch (SQLException e) {
-            throw new FitalException(e);
+            throw new DBException(e);
         } finally {
             try {
                 resultSet.close();
@@ -52,41 +52,41 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
     }
 
     @Override
-    public User readById(int id) throws FitalException {
+    public User readById(int id) throws DBException {
     return  readByInt(connection,READ_BY_ID,new int[]{id}).get(0);
     }
 
     @Override
-    public List<User> readByRole(RoleUser roleUser) throws FitalException {
+    public List<User> readByRole(RoleUser roleUser) throws DBException {
         return readByString(READ_BY_ROLE, roleUser.toString(),connection);
     }
     @Override
-    public List<User> readByName(String name) throws FitalException {
+    public List<User> readByName(String name) throws DBException {
         return readByString(READ_BY_NAME,name,connection);
     }
 
     @Override
-    public List<User> readByTelephone(String telephone) throws FitalException {
+    public List<User> readByTelephone(String telephone) throws DBException {
         return readByString(READ_BY_TELEPHONE, telephone,connection);
     }
 
     @Override
-    public void create(User entity) throws FitalException {
+    public void create(User entity) throws DBException {
         defultCreate(CREATE,connection,entity);
     }
 
     @Override
-    public void delete(User entity) throws FitalException {
+    public void delete(User entity) throws DBException {
         deleteByInt(DELETE_BY_ID,new int[]{entity.getId()},connection);
     }
 
     @Override
-    public void update(User entity) throws FitalException {
+    public void update(User entity) throws DBException {
         updateDefault(UPDATE,connection,entity);
     }
 
     @Override
-    public List<User> read() throws FitalException {
+    public List<User> read() throws DBException {
         return defaultRead(READ_ALL,connection);
     }
 

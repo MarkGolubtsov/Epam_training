@@ -1,38 +1,42 @@
 package dao.mysql;
 
 import dao.*;
+import dao.pool.ConnectionPool;
+import exception.DBException;
+
+import java.sql.Connection;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public enum DaoFactoryImpl implements DaoFactory {
     INSTANСE;
-
-    private final  AddressDaoImpl  addressDao = new AddressDaoImpl();
-    private final ChoseProductDaoImpl choseProductDaoproductDao = new ChoseProductDaoImpl();
-    private final DeliveryDaoImpl deliveryDao = new DeliveryDaoImpl();
-    private  final  OrderDaoImpl orderDao = new OrderDaoImpl();
-    private  final  ProductDaoImpl productDao = new ProductDaoImpl();
-    private final UserDaoImpl userDao = new UserDaoImpl();
-
-    public AddressDao getAddressDao() {
-        return addressDao;
+    private static Map<Class<? extends Dao<?>>, Class<? extends BaseMysql>> classes = new ConcurrentHashMap<>();
+    static {
+        classes.put(AddressDao.class, AddressDaoImpl.class);
+        classes.put(ChoseProductDao.class, ChoseProductDaoImpl.class);
+        classes.put(DeliveryDao.class, DeliveryDaoImpl.class);
+        classes.put(OrderDao.class, OrderDaoImpl.class);
+        classes.put(ProductDao.class, ProductDaoImpl.class);
+        classes.put(UserDao.class, UserDaoImpl.class);
     }
 
-    public ChoseProductDao getChoseProductDaoproductDao() {
-        return choseProductDaoproductDao;
+
+
+
+    public <Type extends Dao<?>> Type createDao(Class<Type> key) throws DBException {
+        Class<? extends BaseMysql> value = classes.get(key);
+        if(value != null) {
+            try {
+                BaseMysql dao = value.newInstance();
+                Connection connection = ConnectionPool.getInstance().getConnection();
+                dao.setConnection(connection);
+                return (Type)dao;
+            } catch(InstantiationException | IllegalAccessException e) {
+                //logger.error("It is impossible to create data access object", e);
+                throw new DBException(e);
+            }
+        }
+        return null;
     }
 
-    public DeliveryDao getDeliveryDao() {
-        return deliveryDao;
-    }
-
-    public OrderDao getOrderDao() {
-        return orderDao;
-    }
-
-    public ProductDao getProductDao() {
-        return productDao;
-    }
-
-    public UserDao getUserDao() {
-        return userDao;
-    }
 }

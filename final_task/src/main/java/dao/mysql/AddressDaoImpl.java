@@ -3,7 +3,7 @@ package dao.mysql;
 import dao.AddressDao;
 import domain.Address;
 import domain.User;
-import exception.FitalException;
+import exception.DBException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,34 +22,34 @@ public class AddressDaoImpl extends BaseMysql<Address> implements AddressDao {
     private static final String DELETE= "DELETE FROM `address` WHERE `user_id`=?";
 
     @Override
-    public List<Address> readByStreet(String street) throws FitalException {
+    public List<Address> readByStreet(String street) throws DBException {
         return readByString(READ_BY_STREET,street,connection);
     }
 
     @Override
-    public List<Address> readByHouse(int house) throws FitalException {
+    public List<Address> readByHouse(int house) throws DBException {
         return readByInt(connection,READ_BY_HOUSE,new int[]{house});
     }
 
 
     @Override
-    public void create(Address entity) throws FitalException {
+    public void create(Address entity) throws DBException {
         defultCreate(CREATE,connection,entity);
     }
 
     @Override
-    public void delete(Address entity) throws FitalException {
+    public void delete(Address entity) throws DBException {
         deleteByInt(DELETE, new int[]{entity.getUser().getId()},connection);
     }
 
 
     @Override
-    public void update(Address entity) throws FitalException {
+    public void update(Address entity) throws DBException {
         updateDefault(UPDATE,connection,entity);
     }
 
     @Override
-    public List<Address> read() throws FitalException {
+    public List<Address> read() throws DBException {
        return  defaultRead(READ_ALL,connection);
     }
 

@@ -1,13 +1,13 @@
 package dao;
 
 import domain.ChoseProduct;
-import exception.FitalException;
+import exception.DBException;
 
 import java.util.List;
 
 public interface ChoseProductDao extends Dao<ChoseProduct> {
 
-    List<ChoseProduct> readByOrderId(int order_id) throws FitalException;
-    List<ChoseProduct> readByProductId(int product_id) throws FitalException;
-    void deleteByProductId(int product_id ) throws FitalException;
+    List<ChoseProduct> readByOrderId(int order_id) throws DBException;
+    List<ChoseProduct> readByProductId(int product_id) throws DBException;
+    void deleteByProductId(int product_id ) throws DBException;
 }

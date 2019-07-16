@@ -3,7 +3,7 @@ package dao.mysql;
 import dao.ProductDao;
 import domain.Product;
 
-import exception.FitalException;
+import exception.DBException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +22,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
     private static final String GET_TYPES="SELECT DISTINCT shop.product.type FROM product";
 
     @Override
-    public List<String> getTypes() throws FitalException {
+    public List<String> readTypes() throws DBException {
         String sql = GET_TYPES;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -37,7 +37,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
             }
             return types;
         } catch (SQLException e) {
-            throw new FitalException(e);
+            throw new DBException(e);
         } finally {
             try {
                 resultSet.close();
@@ -51,37 +51,37 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
     }
 
     @Override
-    public Product readById(int id) throws FitalException {
+    public Product readById(int id) throws DBException {
         return  readByInt(connection,READ_BY_ID,new int[]{id}).get(0);
     }
 
     @Override
-    public List<Product> readByType(String type) throws FitalException {
+    public List<Product> readByType(String type) throws DBException {
         return  readByString(READ_BY_TYPE,type,connection);
     }
 
     @Override
-    public List<Product> readByName(String name) throws FitalException {
+    public List<Product> readByName(String name) throws DBException {
         return  readByString(READ_BY_NAME,name,connection);
     }
 
     @Override
-    public void create(Product entity) throws FitalException {
+    public void create(Product entity) throws DBException {
         defultCreate(CREATE,connection,entity);
     }
 
     @Override
-    public void delete(Product product) throws FitalException {
+    public void delete(Product product) throws DBException {
         deleteByInt(DELETE_BY_ID,new int[]{product.getId()},connection);
     }
 
     @Override
-    public void update(Product entity) throws FitalException {
+    public void update(Product entity) throws DBException {
         updateDefault(UPDATE,connection,entity);
     }
 
     @Override
-    public List<Product> read() throws FitalException {
+    public List<Product> read() throws DBException {
         return  defaultRead(READ_ALL,connection);
     }
 

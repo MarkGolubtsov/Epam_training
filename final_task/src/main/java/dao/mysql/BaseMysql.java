@@ -1,13 +1,11 @@
 package dao.mysql;
 
-import domain.Entity;
-import exception.FitalException;
+import exception.DBException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract  class BaseMysql<T> {
@@ -22,9 +20,9 @@ public abstract  class BaseMysql<T> {
      * @param sql request sql with ?
      * @param value massive of dat Elements which are substituted by a place "?"
      * @param connection
-     * @throws FitalException
+     * @throws DBException
      */
-    void deleteByInt(String sql,int[] value,  Connection connection) throws FitalException {
+    void deleteByInt(String sql,int[] value,  Connection connection) throws DBException {
     PreparedStatement statement = null;
     try {
         statement = connection.prepareStatement(sql);
@@ -34,11 +32,11 @@ public abstract  class BaseMysql<T> {
         }
         statement.executeUpdate();
     } catch(SQLException e) {
-        throw new FitalException(e);
+        throw new DBException(e);
     } finally {
         try {
             statement.close();
-        } catch(SQLException | NullPointerException e) {throw new FitalException();}
+        } catch(SQLException | NullPointerException e) {throw new DBException();}
     }
 }
 
@@ -47,20 +45,20 @@ public abstract  class BaseMysql<T> {
      * @param sql INSERT request
      * @param connection connection to database
      * @param entity the object that contains  data for the INSERT request
-     * @throws FitalException
+     * @throws DBException
      */
-    void defultCreate(String sql, Connection connection, T entity) throws FitalException {
+    void defultCreate(String sql, Connection connection, T entity) throws DBException {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(sql);
             setFieldStatement(statement,entity);
             statement.executeUpdate();
         } catch(SQLException e) {
-            throw new FitalException(e);
+            throw new DBException(e);
         } finally {
             try {
                 statement.close();
-            } catch(SQLException | NullPointerException e) {throw new FitalException(e);}
+            } catch(SQLException | NullPointerException e) {throw new DBException(e);}
         }
     }
 
@@ -69,9 +67,9 @@ public abstract  class BaseMysql<T> {
      * @param sql sql request
      * @param connection connection to database
      * @return List object which returt sql request
-     * @throws FitalException
+     * @throws DBException
      */
-    List<T> defaultRead(String sql, Connection connection) throws FitalException {
+    List<T> defaultRead(String sql, Connection connection) throws DBException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
@@ -79,7 +77,7 @@ public abstract  class BaseMysql<T> {
             resultSet = statement.executeQuery();
             return fillList(resultSet);
         } catch (SQLException e) {
-            throw new FitalException(e);
+            throw new DBException(e);
         } finally {
             try {
                 resultSet.close();
@@ -88,7 +86,7 @@ public abstract  class BaseMysql<T> {
             try {
                 statement.close();
             } catch (SQLException | NullPointerException e) {
-                throw new FitalException();
+                throw new DBException();
             }
         }
     }
@@ -98,10 +96,10 @@ public abstract  class BaseMysql<T> {
      * @param sql sql request
      * @param field  string value which replace "?"
      * @param connection connection to database
-     * @return List object which returt sql request
-     * @throws FitalException
+     * @return List object which return sql request
+     * @throws DBException
      */
-    List<T> readByString(String sql, String field, Connection connection) throws FitalException {
+    List<T> readByString(String sql, String field, Connection connection) throws DBException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
@@ -110,7 +108,7 @@ public abstract  class BaseMysql<T> {
             resultSet = statement.executeQuery();
             return fillList(resultSet);
         } catch(SQLException e) {
-            throw new FitalException(e);
+            throw new DBException(e);
         } finally {
             try {
                 resultSet.close();
@@ -126,9 +124,9 @@ public abstract  class BaseMysql<T> {
      * @param sql sql request  UPDATE
      * @param connection connection databases
      * @param entity obj which update
-     * @throws FitalException
+     * @throws DBException
      */
-    void updateDefault(String sql, Connection connection, T entity) throws FitalException {
+    void updateDefault(String sql, Connection connection, T entity) throws DBException {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(sql);
@@ -136,11 +134,11 @@ public abstract  class BaseMysql<T> {
             setPrimary(statement,entity);
             statement.executeUpdate();
         } catch(SQLException e) {
-            throw new FitalException(e);
+            throw new DBException(e);
         } finally {
             try {
                 statement.close();
-            } catch(SQLException | NullPointerException e) {throw new FitalException(e);}
+            } catch(SQLException | NullPointerException e) {throw new DBException(e);}
         }
 
     }
@@ -148,12 +146,12 @@ public abstract  class BaseMysql<T> {
     /**
      *
      * @param connection connection database
-     * @param sql sql reauest
+     * @param sql sql request
      * @param value massive vlues which will replace '?'
      * @return list objects was returned by request
-     * @throws FitalException
+     * @throws DBException
      */
-     List<T> readByInt(Connection connection, String sql, int[] value ) throws FitalException {
+     List<T> readByInt(Connection connection, String sql, int[] value ) throws DBException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
@@ -165,7 +163,7 @@ public abstract  class BaseMysql<T> {
             return fillList(resultSet);
 
         } catch (SQLException e) {
-            throw new FitalException(e);
+            throw new DBException(e);
         } finally {
             try {
                 resultSet.close();
@@ -205,7 +203,7 @@ public abstract  class BaseMysql<T> {
      abstract List<T> fillList(ResultSet resultSet) throws SQLException ;
 
     /**
-     * this method fill all filds in objec using data in ResultSet
+     * this method fill all fields in object using data in ResultSet
      * @param obj
      * @param resultSet result of sql request
      * @throws SQLException
