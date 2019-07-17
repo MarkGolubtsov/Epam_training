@@ -13,16 +13,16 @@ import java.util.List;
 
 public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements ChoseProductDao {
 
-    private static final String UPDATE ="UPDATE `address` SET `order_id`=? ,`product_id` = ?, `count`=? WHERE `order_id`=? AND `product_id` =?";
-    private static  final String DELETE = "DELETE FROM `address` where `order_id`=? AND `product_id`=?";
+    private static final String UPDATE ="UPDATE `chose_product` SET `order_id`=? ,`product_id` = ?, `count`=? WHERE `order_id`=? AND `product_id` =?";
+    private static  final String DELETE = "DELETE FROM `chose_product` where `order_id`=? AND `product_id`=?";
 
-    private static final String DELETE_BY_PRODUCT = "DELETE FROM `address` where  `product_id`=?";
-    private static final String CREATE = "INSERT INTO `address` (`order_id`,`product_id`,`count`) VALUSES(?,?,?)";
+    private static final String DELETE_BY_PRODUCT = "DELETE FROM `chose_product` where  `product_id`=?";
+    private static final String CREATE = "INSERT INTO `chose_product` (`order_id`,`product_id`,`count`) VALUSES(?,?,?)";
 
-    private static final  String READ_ALL = "SELECT `order_id`,`product_id`,`count` FROM `address`";
+    private static final  String READ_ALL = "SELECT `order_id`,`product_id`,`count` FROM `chose_product`";
 
-    private static final String READ_BY_PRODUCT_ID="SELECT `order_id`,`product_id`,`count` FROM `address` WHERE `product_id`=?";
-    private static final String READ_BY_ORDER_ID="SELECT `order_id`,`product_id`,`count` FROM `address` WHERE `product_id`=?";
+    private static final String READ_BY_PRODUCT_ID="SELECT `order_id`,`product_id`,`count` FROM `chose_product` WHERE `product_id`=?";
+    private static final String READ_BY_ORDER_ID="SELECT `order_id`,`product_id`,`count` FROM `chose_product` WHERE `product_id`=?";
     @Override
     ChoseProduct fillFieldsObject(ResultSet resultSet) throws SQLException {
         ChoseProduct obj= new ChoseProduct();
