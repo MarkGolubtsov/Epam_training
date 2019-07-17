@@ -69,7 +69,7 @@ ALTER TABLE `delivery` ADD FOREIGN KEY (`courier_id`) REFERENCES `user` (`id`)
     ON UPDATE CASCADE
     ON DELETE RESTRICT;
 
-ALTER TABLE `order` ADD FOREIGN KEY (`id`) REFERENCES `delivery` (`order_id`)
+ALTER TABLE `delivery` ADD FOREIGN KEY (`order_id`) REFERENCES  `order`(`id`)
     ON UPDATE CASCADE
     ON DELETE RESTRICT;
 

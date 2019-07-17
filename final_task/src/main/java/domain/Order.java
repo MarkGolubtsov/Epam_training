@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
-public class Order extends Entity {
+public class Order extends Entity implements ContainUser{
 
 
     private  TypePay type_pay;

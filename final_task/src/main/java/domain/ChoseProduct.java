@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-public class ChoseProduct {
+public class ChoseProduct implements ContainOrder {
 
    private Order order;
 

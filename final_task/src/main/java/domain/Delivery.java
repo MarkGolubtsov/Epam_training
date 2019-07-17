@@ -3,7 +3,7 @@ package domain;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Delivery {
+public class Delivery implements ContainUser,ContainOrder {
 
    private Order order;
 

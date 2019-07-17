@@ -76,7 +76,8 @@ public class OrderDaoImpl extends BaseMysql<Order> implements OrderDao {
         statement.setInt(1,entity.getUser().getId());
         statement.setString(2, entity.getType_pay().toString());
         statement.setDate(3, entity.getDate());
-        statement.setBigDecimal(4,entity.getTotal_price());
+        statement.setString(4, entity.getDelivery().toString());
+        statement.setBigDecimal(5,entity.getTotal_price());
     }
 
     @Override
