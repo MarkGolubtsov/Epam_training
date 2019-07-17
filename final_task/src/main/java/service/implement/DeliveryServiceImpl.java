@@ -2,15 +2,18 @@ package service.implement;
 
 import dao.DaoFactory;
 import dao.DeliveryDao;
+import dao.UserDao;
 import domain.ContainUser;
 import domain.Delivery;
+import domain.User;
 import exception.DBException;
 import service.DeliveryService;
+import service.fill.FillOrder;
 import service.fill.FillUser;
 
 import java.util.List;
 
-public class DeliveryServiceImpl extends ServiceImpl implements DeliveryService, FillUser {
+public class DeliveryServiceImpl extends ServiceImpl implements DeliveryService, FillUser, FillOrder {
 
     public DeliveryServiceImpl(DaoFactory daoFactory) {
         super(daoFactory);
@@ -59,9 +62,13 @@ public class DeliveryServiceImpl extends ServiceImpl implements DeliveryService,
         return  result;
     }
     private void fillList(List<Delivery> list) throws DBException {
+        UserDao userDao =daoFactory.createDao(UserDao.class);
         for (Delivery d:
              list ) {
+            User courier =d.getCourier();
+            d.setUser(userDao.readById(courier.getId()));
             fillUser(d,daoFactory);
+            fillOrder(d,daoFactory);
         }
 
     }
