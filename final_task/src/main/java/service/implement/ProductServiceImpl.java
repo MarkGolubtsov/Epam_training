@@ -9,9 +9,6 @@ import service.ProductService;
 import java.util.List;
 
 public class ProductServiceImpl extends ServiceImpl implements ProductService {
-    public ProductServiceImpl(DaoFactory daoFactory) {
-        super(daoFactory);
-    }
 
     @Override
     public void delete(Product product) throws DBException {

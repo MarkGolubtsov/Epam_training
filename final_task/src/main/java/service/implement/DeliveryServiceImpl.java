@@ -15,10 +15,6 @@ import java.util.List;
 
 public class DeliveryServiceImpl extends ServiceImpl implements DeliveryService, FillUser, FillOrder {
 
-    public DeliveryServiceImpl(DaoFactory daoFactory) {
-        super(daoFactory);
-    }
-
     @Override
     public void save(Delivery delivery) throws DBException {
         DeliveryDao deliveryDao = daoFactory.createDao(DeliveryDao.class);

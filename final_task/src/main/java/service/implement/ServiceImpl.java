@@ -5,7 +5,8 @@ import dao.DaoFactory;
  abstract class ServiceImpl {
 
     protected DaoFactory daoFactory;
-    ServiceImpl(DaoFactory daoFactory) {
+
+    public void SetDaoFactory(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
-}
+ }

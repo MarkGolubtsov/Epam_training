@@ -12,9 +12,6 @@ import java.util.Optional;
 
 public class UserServiceImpl extends ServiceImpl implements UserService {
 
-   public UserServiceImpl(DaoFactory daoFactory) {
-        super(daoFactory);
-    }
     @Override
     public boolean registration(User user) throws DBException {
         Optional<User> result = Optional.of(signIn(user.getName(),user.getPassword()));

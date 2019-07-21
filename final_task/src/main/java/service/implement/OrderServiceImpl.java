@@ -12,9 +12,6 @@ import service.fill.FillUser;
 import java.util.List;
 
 public class OrderServiceImpl extends ServiceImpl implements OrderService, FillUser {
-    public  OrderServiceImpl(DaoFactory daoFactory) {
-        super(daoFactory);
-    }
 
     @Override
     public void save(Order order) throws DBException {

@@ -13,9 +13,6 @@ import service.fill.FillOrder;
 import java.util.List;
 
 public class ChoseProductServiceImpl extends ServiceImpl implements ChoseProductService, FillOrder {
-    public  ChoseProductServiceImpl(DaoFactory daoFactory) {
-        super(daoFactory);
-    }
 
     @Override
     public void save(ChoseProduct choseProduct) throws DBException {

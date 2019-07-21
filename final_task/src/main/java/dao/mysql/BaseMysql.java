@@ -82,6 +82,7 @@ public abstract  class BaseMysql<T> {
             try {
                 resultSet.close();
             } catch (SQLException | NullPointerException e) {
+                //TODO
             }
             try {
                 statement.close();
@@ -156,8 +157,12 @@ public abstract  class BaseMysql<T> {
         ResultSet resultSet = null;
         try {
             statement = connection.prepareStatement(sql);
-            for (int i = 1; i <=value.length ; i++) {
-                statement.setInt(i, value[i]-1);
+            if (value.length<1) {
+                statement.setInt(1, value[0]);
+            } else {
+                for (int i = 1; i <=value.length ; i++) {
+                    statement.setInt(i, value[i-1]);
+                }
             }
             resultSet = statement.executeQuery();
             return fillList(resultSet);

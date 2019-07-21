@@ -12,10 +12,6 @@ import service.fill.FillUser;
 import java.util.List;
 
 public class AddressServiceImpl extends ServiceImpl implements AddressService, FillUser {
-   public AddressServiceImpl(DaoFactory daoFactory) {
-        super(daoFactory);
-    }
-
     @Override
     public void save(Address address) throws DBException {
         AddressDao addressDao = daoFactory.createDao(AddressDao.class);
@@ -40,6 +36,7 @@ public class AddressServiceImpl extends ServiceImpl implements AddressService, F
     public List<Address> readByHouse(int house) throws DBException {
         AddressDao addressDao = daoFactory.createDao(AddressDao.class);
         List<Address> result =  addressDao.readByHouse(house);
+        fillListEntity(result);
         return result;
     }
 
