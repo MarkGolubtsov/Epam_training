@@ -14,8 +14,8 @@ public class UserServiceImpl extends ServiceImpl implements UserService {
 
     @Override
     public boolean registration(User user) throws DBException {
-        Optional<User> result = Optional.of(signIn(user.getName(),user.getPassword()));
-        if (result.isEmpty())
+        User result =signIn(user.getName(),user.getPassword());
+        if (result==null)
         {
             UserDao userDao = daoFactory.createDao(UserDao.class);
             userDao.create(user);
@@ -23,6 +23,7 @@ public class UserServiceImpl extends ServiceImpl implements UserService {
         } else {
         return  false;
         }
+
     }
 
     @Override

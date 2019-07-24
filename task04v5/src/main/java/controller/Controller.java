@@ -30,7 +30,6 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
         List<Flower> listSax = null;
         List<Flower> listStax = null;
         List<Flower> listDom = null;
@@ -52,8 +51,6 @@ public class Controller extends HttpServlet {
             req.setAttribute("listStax", listStax);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("result.jsp");
             requestDispatcher.forward(req, resp);
-
-
     }
 
 }
