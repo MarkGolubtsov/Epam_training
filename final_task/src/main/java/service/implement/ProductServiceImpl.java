@@ -35,6 +35,12 @@ public class ProductServiceImpl extends ServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> read() throws DBException {
+        ProductDao productDao = daoFactory.createDao(ProductDao.class);
+        return productDao.read();
+    }
+
+    @Override
     public List<domain.Product> findAll() throws DBException {
         ProductDao productDao = daoFactory.createDao(ProductDao.class);
         return productDao.read();

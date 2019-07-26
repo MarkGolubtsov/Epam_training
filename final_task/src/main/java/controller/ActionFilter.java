@@ -1,8 +1,7 @@
 package controller;
-import action.Action;
-import action.LoginAction;
-import action.MainAction;
+import action.*;
 import action.Registration;
+import action.product.ActionProductList;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -18,6 +17,11 @@ public class ActionFilter implements Filter {
         actions.put("/login", LoginAction.class);
         actions.put("/registration", Registration.class);
         actions.put("/main", MainAction.class);
+        actions.put("/logout", LogOutAction.class);
+
+
+
+        actions.put("/product/list", ActionProductList.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

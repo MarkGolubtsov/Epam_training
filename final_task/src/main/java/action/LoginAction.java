@@ -19,8 +19,9 @@ public class LoginAction extends Action {
     static {
         navbar.put(RoleUser.USER, new ArrayList<>(Arrays.asList(
                 new NavbarItem("/main.html", "Главная"),
-                new NavbarItem("/search/product/form.html", "поиск книг"),
-                new NavbarItem("/search/order/form.html", "поиск читателей")
+                new NavbarItem("/search/delivery/list.html", "Доставки"),
+                new NavbarItem("/search/delivery/form.html", "Создать доставку"),
+                new NavbarItem("/search/order/list.html", "Заказы")
         )));
         navbar.put(RoleUser.COURIER, new ArrayList<>(Arrays.asList(
                 new NavbarItem("/deliverys/list.html", "читатели")
@@ -46,8 +47,9 @@ public class LoginAction extends Action {
                 HttpSession session = request.getSession();
                 session.setAttribute("authorizedUser", user);
                 session.setAttribute("menu",navbar.get(user.getRoleUser()));
+                return new Forward("/main.html");
             }
-            return new Forward("/main.jsp");
+            return  new Forward("/registration.html");
         }
         return null;
     }

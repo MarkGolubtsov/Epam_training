@@ -68,6 +68,17 @@ public class MainServlet extends HttpServlet {
     }
     private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Action action = (Action)request.getAttribute("action");
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> attributes = (Map<String, Object>)session.getAttribute("redirectedData");
+            if(attributes != null) {
+                for(String key : attributes.keySet()) {
+                    request.setAttribute(key, attributes.get(key));
+                }
+                session.removeAttribute("redirectedData");
+            }
+        }
         ServiceFactoryImpl.INSTANCE.setDaoFactory(DaoFactoryImpl.INSTANСE);
         action.setFactory(ServiceFactoryImpl.INSTANCE);
         System.out.println(action.getName());
@@ -77,12 +88,26 @@ public class MainServlet extends HttpServlet {
         } catch (DBException e) {
             e.printStackTrace();
         }
-        String jspPage=null;
-        if (forward!=null) {
-            jspPage = forward.getForward();
-        } else  jspPage = action.getName() + ".jsp";
-        jspPage = "/WEB-INF/jsp" + jspPage;
-        getServletContext().getRequestDispatcher(jspPage).forward(request, response);
+        if(session != null && forward != null && !forward.getAttributes().isEmpty()) {
+            session.setAttribute("redirectedData", forward.getAttributes());
+        }
+        String requestedUri = request.getRequestURI();
+        if(forward != null && forward.isRedirect()) {
+            String redirectedUri = request.getContextPath() + forward.getForward();
+            logger.debug(String.format("Request for URI \"%s\" id redirected to URI \"%s\"", requestedUri, redirectedUri));
+            response.sendRedirect(redirectedUri);
+        } else {
+            String jspPage;
+            if(forward != null) {
+                jspPage = forward.getForward();
+            } else {
+                jspPage = action.getName() + ".jsp";
+            }
+            jspPage = "/WEB-INF/jsp" + jspPage;
+            logger.debug(String.format("Request for URI \"%s\" is forwarded to JSP \"%s\"", requestedUri, jspPage));
+            getServletContext().getRequestDispatcher(jspPage).forward(request, response);
+        }
+
     }
 
 }

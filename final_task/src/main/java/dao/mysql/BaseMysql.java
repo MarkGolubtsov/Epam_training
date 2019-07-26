@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract  class BaseMysql<T> {
     protected Connection connection;
-
+ //TODO    connection.close()
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
@@ -112,10 +112,8 @@ public abstract  class BaseMysql<T> {
             throw new DBException(e);
         } finally {
             try {
-                resultSet.close();
-            } catch(SQLException | NullPointerException e) {}
-            try {
                 statement.close();
+                resultSet.close();
             } catch(SQLException | NullPointerException e) {}
         }
     }
@@ -171,11 +169,8 @@ public abstract  class BaseMysql<T> {
             throw new DBException(e);
         } finally {
             try {
-                resultSet.close();
-            } catch (SQLException | NullPointerException e) {
-            }
-            try {
                 statement.close();
+                resultSet.close();
             } catch (SQLException | NullPointerException e) {
             }
         }
