@@ -3,8 +3,6 @@
 
 <%@tag language="java" pageEncoding="UTF-8"%>
 <%@attribute name="title" required="true" rtexprvalue="true" type="java.lang.String"%>
-<%@attribute name="message" required="false" rtexprvalue="true" type="java.lang.String"%>
-<%@attribute name="validator" required="false" rtexprvalue="true" type="java.lang.String"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>

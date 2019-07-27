@@ -19,4 +19,6 @@ $(document).ready(function(){
                 $(this).toggle((this).getAttribute("typeProduct").toLowerCase().indexOf(value) > -1)
         });
     });
+
+
 });

@@ -1,10 +1,12 @@
 package service.implement;
 
+import controller.MainServlet;
 import dao.*;
 import domain.ChoseProduct;
 import domain.Order;
 import domain.User;
 import exception.DBException;
+import org.apache.log4j.Logger;
 import service.ChoseProductService;
 import service.fill.FillOrder;
 import service.fill.FillUser;
@@ -12,7 +14,7 @@ import service.fill.FillUser;
 import java.util.List;
 
 public class ChoseProductServiceImpl extends ServiceImpl implements ChoseProductService, FillUser {
-
+    private static Logger logger = Logger.getLogger(ChoseProduct.class);
     @Override
     public void save(ChoseProduct choseProduct) throws DBException {
         ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
@@ -37,10 +39,11 @@ public class ChoseProductServiceImpl extends ServiceImpl implements ChoseProduct
     public List<ChoseProduct> findByUserId(int user_id) throws DBException {
         ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
         List<ChoseProduct> result = choseProductDao.readByUserId(user_id);
+        logger.debug("count product"+result.size());
         for (ChoseProduct p:
              result) {
             fillProduct(p);
-           fillUser(p,daoFactory);
+            fillUser(p,daoFactory);
         }
         return result;
     }
@@ -71,6 +74,7 @@ public class ChoseProductServiceImpl extends ServiceImpl implements ChoseProduct
     }
     private  void  fillProduct(ChoseProduct choseProduct) throws DBException {
         ProductDao productDao = daoFactory.createDao(ProductDao.class);
+        logger.debug("Find Product"+choseProduct.getProduct().getId());
         int product_id =choseProduct.getProduct().getId();
         choseProduct.setProduct(productDao.readById(product_id));
     }

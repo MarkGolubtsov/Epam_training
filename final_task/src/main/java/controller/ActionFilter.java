@@ -1,6 +1,8 @@
 package controller;
 import action.*;
 import action.Registration;
+import action.chose_product.ActionCreateChoseProduct;
+import action.chose_product.ActionUserBasket;
 import action.product.ActionProductList;
 import org.apache.log4j.Logger;
 
@@ -19,9 +21,10 @@ public class ActionFilter implements Filter {
         actions.put("/main", MainAction.class);
         actions.put("/logout", LogOutAction.class);
 
-
-
         actions.put("/product/list", ActionProductList.class);
+
+        actions.put("/chose_product/add", ActionCreateChoseProduct.class);
+        actions.put("/chose_product/list", ActionUserBasket.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -45,7 +48,6 @@ public class ActionFilter implements Filter {
             }
             Class<? extends Action> actionClass = actions.get(actionName);
             try {
-                System.out.println(actionName);
                 Action action = actionClass.newInstance();
                 action.setName(actionName);
                 httpRequest.setAttribute("action", action);

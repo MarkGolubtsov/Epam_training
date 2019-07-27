@@ -18,12 +18,12 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
     private static  final String DELETE = "DELETE FROM `chose_product` where `user_id`=? AND `product_id`=?";
 
     private static final String DELETE_BY_PRODUCT = "DELETE FROM `chose_product` where  `product_id`=?";
-    private static final String CREATE = "INSERT INTO `chose_product` (`user_id`,`product_id`,`count`) VALUSES(?,?,?)";
+    private static final String CREATE = "INSERT INTO `chose_product` (`user_id`,`product_id`,`count`) VALUES (?,?,?)";
 
     private static final  String READ_ALL = "SELECT `user_id`,`product_id`,`count` FROM `chose_product`";
 
     private static final String READ_BY_PRODUCT_ID="SELECT `user_id`,`product_id`,`count` FROM `chose_product` WHERE `product_id`=?";
-    private static final String READ_BY_USER_ID="SELECT `ouser_id`,`product_id`,`count` FROM `chose_product` WHERE `product_id`=?";
+    private static final String READ_BY_USER_ID="SELECT `user_id`,`product_id`,`count` FROM `chose_product` WHERE `user_id`=?";
     @Override
     ChoseProduct fillFieldsObject(ResultSet resultSet) throws SQLException {
         ChoseProduct obj= new ChoseProduct();
@@ -49,7 +49,6 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
 
     @Override
     void setParam(ChoseProduct obj, ResultSet resultSet) throws SQLException {
-        obj= new ChoseProduct();
         obj.setCount(resultSet.getInt("count"));
         User user = new User();
         user.setId(resultSet.getInt("user_id"));

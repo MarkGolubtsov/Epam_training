@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <u:html title="Products"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -56,7 +55,7 @@
 
     <div id="Container" class="col s5">
         <c:forEach items="${listProduct}" var="item">
-                <form action="/choseproduct/add.html" method="post"  typeProduct=${item.type} nameProduct="${item.name}" costProduct="${item.cost}" class="card ">
+                <div   typeProduct=${item.type} nameProduct="${item.name}" costProduct="${item.cost}" class="card ">
                     <div class="card-image">
                         <c:if test="${ empty item.img_path}">
                             <img src="/img/img2.jpg" alt="Image"/>
@@ -66,8 +65,23 @@
                         </c:if>
                         <span  class="card-title">${item.name}</span>
                         <c:if test="${not empty authorizedUser}">
-                            <INPUT type="hidden" name="bookIdentity" value="${item.id}">
-                             <button  type="submit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></button>
+<%--                            <form action="/chose_product/add.html" method="post">--%>
+<%--                                <INPUT type="hidden" name="productId" value="${item.id}">--%>
+<%--                                <button  type="submit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></button>--%>
+<%--                            </form>--%>
+                            <button id="butAdd${item.id}" dataProduct="${item.id}" type="submit" class="btn-floating halfway-fab red"><i class="material-icons">add</i></button>
+                            <script>
+                                $("#butAdd${item.id}").on("click",function() {
+                                    alert("add Product");
+                                    $.ajax({
+                                        type:"POST",
+                                        url : '/addInBasket',
+                                        data : {
+                                            idProduct :(this).getAttribute("dataProduct")
+                                        }
+                                    });
+                                });
+                            </script>
                         </c:if>
                     </div>
                     <div class="card-content">
@@ -81,40 +95,11 @@
                             <p  style="float: right;">${item.type}</p>
                         </div>
                     </div>
-                </form>
+                </div>
         </c:forEach>
     </div>
 
 </div>
-
-<%--<div class="row">--%>
-<%--    <div class="col s4"></div>--%>
-<%--        <div class="col s1">--%>
-<%--                <p>--%>
-<%--                    <label >--%>
-<%--                        <input id="NameSearch" type="checkbox"  class="filled-in"  value="Name"/>--%>
-<%--                        <span>Name</span>--%>
-<%--                    </label>--%>
-<%--                </p>--%>
-<%--        </div>--%>
-<%--    <div class="col s1">--%>
-<%--        <p>--%>
-<%--            <label >--%>
-<%--                <input id="typeSearch" type="checkbox"  class="filled-in"  value="Type"/>--%>
-<%--                <span>Type</span>--%>
-<%--            </label>--%>
-<%--        </p>--%>
-<%--    </div>--%>
-<%--        <div class="col s1">--%>
-<%--                <p>--%>
-<%--                    <label >--%>
-<%--                        <input id="costSearch" type="checkbox"  class="filled-in"  value="Cost"/>--%>
-<%--                        <span>Cost</span>--%>
-<%--                    </label>--%>
-<%--                </p>--%>
-<%--        </div>--%>
-<%--</div>--%>
-
 <script>
     <%@include file="/WEB-INF/js/listProduct.js"%>
 </script>

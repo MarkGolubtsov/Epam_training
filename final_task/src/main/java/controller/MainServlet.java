@@ -81,7 +81,6 @@ public class MainServlet extends HttpServlet {
         }
         ServiceFactoryImpl.INSTANCE.setDaoFactory(DaoFactoryImpl.INSTANСE);
         action.setFactory(ServiceFactoryImpl.INSTANCE);
-        System.out.println(action.getName());
         Action.Forward forward = null;
         try {
            forward=action.exec(request,response);

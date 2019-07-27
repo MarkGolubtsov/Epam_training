@@ -12,8 +12,14 @@
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
-
-
+    <servlet>
+        <servlet-name>ServletAjax</servlet-name>
+        <servlet-class>controller.ServletAjax</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAjax</servlet-name>
+        <url-pattern>/addInBasket</url-pattern>
+    </servlet-mapping>
     <filter>
         <filter-name>ActionFiler</filter-name>
         <filter-class>controller.ActionFilter</filter-class>
@@ -22,13 +28,14 @@
         <filter-name>ActionFiler</filter-name>
         <url-pattern>*.html</url-pattern>
     </filter-mapping>
-<!--    <filter>-->
-<!--        <filter-name>SecurityFilter</filter-name>-->
-<!--        <filter-class>controller.SecurityFilter</filter-class>-->
-<!--    </filter>-->
 
-<!--    <filter-mapping>-->
-<!--        <filter-name>SecurityFilter</filter-name>-->
-<!--        <url-pattern>*.html</url-pattern>-->
-<!--    </filter-mapping>-->
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>controller.SecurityFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
 </web-app>

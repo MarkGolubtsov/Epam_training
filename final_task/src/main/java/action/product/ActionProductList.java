@@ -14,11 +14,7 @@ public class ActionProductList extends Action {
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException {
         ProductService service = null;
-        try {
-            service = factory.getService(ProductService.class);
-        } catch (DBException e) {
-            e.printStackTrace();
-        }
+        service = factory.getService(ProductService.class);
         request.setAttribute("listProduct",service.read());
         return null;
     }
