@@ -12,103 +12,51 @@
 <u:html title="Products"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
-<div class="section"></div>
-<div class="section"></div>
-<div class="section"></div>
 <div class="row">
     <form class="col s12">
         <div class="row">
             <div class="col s4"></div>
             <div class="input-field col s4">
-                <i class="material-icons prefix">mode_edit</i>
-                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                <label for="icon_prefix2">Search</label>
-            </div>
-            <div>
-            <input type="text" id="1"/>
+                <i class="material-icons prefix">search</i>
+                <input  autocomplete="off" class="Serch" id="icon_prefix" type="text" class="validate">
+                <label for="icon_prefix">Seach</label>
             </div>
         </div>
     </form>
 </div>
 
 <div class="row">
-    <div class="col s4"></div>
-        <div class="col s1">
-                <p>
-                    <label >
-                        <input id="NameSearch" type="checkbox"  class="filled-in"  value="Name"/>
-                        <span>Name</span>
-                    </label>
-                </p>
+    <div class="col s1"></div>
+    <div class="col s3">
+        <div class="row">
+            <p>
+                <label>
+                    <input id="NameSearch" type="checkbox"  class="filled-in"  value="Name"/>
+                    <span>Name</span>
+                </label>
+            </p>
         </div>
-        <div class="col s1">
-                <p>
-                    <label >
-                        <input id="costSearch" type="checkbox"  class="filled-in"  value="Cost"/>
-                        <span>Cost</span>
-                    </label>
-                </p>
+        <div class="row">
+            <p>
+                <label >
+                    <input id="typeSearch" type="checkbox"  class="filled-in"  value="Type"/>
+                    <span>Type</span>
+                </label>
+            </p>
         </div>
-        <div class="col s1">
-            <button id="searchButton" class="btn waves-effect waves-light indigo" type="submit" name="action">Search
-                <i class="material-icons right">send</i>
-            </button>
+        <div class="row">
+            <p>
+                <label >
+                    <input id="costSearch" type="checkbox"  class="filled-in"  value="Cost"/>
+                    <span>Cost</span>
+                </label>
+            </p>
         </div>
-    <script>
-        $(document).ready(function(){
-            $('.filled-in').click(function() {
-                $('.filled-in').not(this).prop('checked', false);
-            });
+    </div>
 
-            $("#searchButton").click(function(){
-                var nameSearch =$("#NameSearch").is(':checked');
-                var costSearch =$("#costSearch").is(':checked');
-                if (nameSearch || costSearch) {
-                    var search=$("input").val();
-                    var all = [];
-                    if (nameSearch)
-                    $(".card-title").each(function () {
-                        all.push($(this).text())
-                    });
-
-                    if(costSearch) {
-                        $(".costProduct").each(function () {
-                            all.push($(this).text());
-                        });
-                    }
-                    var nothideCard = [];
-                    var i=0;
-                    alert(search);
-                    all.forEach(function (element) {
-                        var collator = new Intl.Collator();
-                        if (collator.compare(search,element)==0) {
-                            nothideCard.push(i);
-                        }
-                        i++;
-                    })
-
-                    var j = 0;
-
-                    $(".card").each(function () {
-                        if (nothideCard.indexOf(j) != -1)
-                        {
-                            $(this).hide();
-                        }
-                        j++;
-                    })
-                }
-                });
-        });
-
-    </script>
-</div>
-<div class="row">
-    <c:forEach items="${listProduct}" var="item">
-        <div class="col s12">
-            <div class="col s4"></div>
-        <div class="col s4 ">
-                <div class="card ">
+    <div id="Container" class="col s5">
+        <c:forEach items="${listProduct}" var="item">
+                <form action="/choseproduct/add.html" method="post"  typeProduct=${item.type} nameProduct="${item.name}" costProduct="${item.cost}" class="card ">
                     <div class="card-image">
                         <c:if test="${ empty item.img_path}">
                             <img src="/img/img2.jpg" alt="Image"/>
@@ -116,24 +64,57 @@
                         <c:if test="${ not  empty item.img_path}">
                             <img src="/img/${item.img_path}" alt="Image"/>
                         </c:if>
-                        <span class="card-title">${item.name}</span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        <span  class="card-title">${item.name}</span>
+                        <c:if test="${not empty authorizedUser}">
+                            <INPUT type="hidden" name="bookIdentity" value="${item.id}">
+                             <button  type="submit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></button>
+                        </c:if>
                     </div>
-                    <div></div>
                     <div class="card-content">
-
                         <div style="overflow: hidden;">
                             <p style="float: left;">Cost:</p>
-                            <p class="costProduct" style="float: right;">${item.cost}</p>
+                                <%--                            class--%>
+                            <p i style="float: right;">${item.cost}</p>
                         </div>
                         <div style="overflow: hidden;">
                             <p style="float: left;">Type:</p>
-                            <p  class="TypeProduct"style="float: right;">${item.type}</p>
+                            <p  style="float: right;">${item.type}</p>
                         </div>
                     </div>
-                </div>
-        </div>
-        <div class="col s4"></div>
-        </div>
-    </c:forEach>
+                </form>
+        </c:forEach>
+    </div>
+
 </div>
+
+<%--<div class="row">--%>
+<%--    <div class="col s4"></div>--%>
+<%--        <div class="col s1">--%>
+<%--                <p>--%>
+<%--                    <label >--%>
+<%--                        <input id="NameSearch" type="checkbox"  class="filled-in"  value="Name"/>--%>
+<%--                        <span>Name</span>--%>
+<%--                    </label>--%>
+<%--                </p>--%>
+<%--        </div>--%>
+<%--    <div class="col s1">--%>
+<%--        <p>--%>
+<%--            <label >--%>
+<%--                <input id="typeSearch" type="checkbox"  class="filled-in"  value="Type"/>--%>
+<%--                <span>Type</span>--%>
+<%--            </label>--%>
+<%--        </p>--%>
+<%--    </div>--%>
+<%--        <div class="col s1">--%>
+<%--                <p>--%>
+<%--                    <label >--%>
+<%--                        <input id="costSearch" type="checkbox"  class="filled-in"  value="Cost"/>--%>
+<%--                        <span>Cost</span>--%>
+<%--                    </label>--%>
+<%--                </p>--%>
+<%--        </div>--%>
+<%--</div>--%>
+
+<script>
+    <%@include file="/WEB-INF/js/listProduct.js"%>
+</script>

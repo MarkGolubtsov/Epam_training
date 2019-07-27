@@ -20,7 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </HEAD>
-<BODY>
+<BODY class="grey lighten-3">
 <u:navbar/>
 <DIV id="page">
     <jsp:doBody/>

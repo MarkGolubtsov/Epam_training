@@ -2,9 +2,9 @@ package domain;
 
 import java.util.List;
 
-public class ChoseProduct implements ContainOrder {
+public class ChoseProduct implements ContainUser {
 
-   private Order order;
+   private User user;
 
    private Product product;
 
@@ -26,11 +26,11 @@ public class ChoseProduct implements ContainOrder {
       this.count = count;
    }
 
-   public Order getOrder() {
-      return order;
+   public User getUser() {
+      return user;
    }
 
-   public void setOrder(Order order) {
-      this.order = order;
+   public void setUser(User user) {
+      this.user = user;
    }
 }

@@ -4,6 +4,7 @@ import dao.ChoseProductDao;
 import domain.ChoseProduct;
 import domain.Order;
 import domain.Product;
+import domain.User;
 import exception.DBException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,16 +14,16 @@ import java.util.List;
 
 public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements ChoseProductDao {
 
-    private static final String UPDATE ="UPDATE `chose_product` SET `order_id`=? ,`product_id` = ?, `count`=? WHERE `order_id`=? AND `product_id` =?";
-    private static  final String DELETE = "DELETE FROM `chose_product` where `order_id`=? AND `product_id`=?";
+    private static final String UPDATE ="UPDATE `chose_product` SET `user_id`=? ,`product_id` = ?, `count`=? WHERE `user_id`=? AND `product_id` =?";
+    private static  final String DELETE = "DELETE FROM `chose_product` where `user_id`=? AND `product_id`=?";
 
     private static final String DELETE_BY_PRODUCT = "DELETE FROM `chose_product` where  `product_id`=?";
-    private static final String CREATE = "INSERT INTO `chose_product` (`order_id`,`product_id`,`count`) VALUSES(?,?,?)";
+    private static final String CREATE = "INSERT INTO `chose_product` (`user_id`,`product_id`,`count`) VALUSES(?,?,?)";
 
-    private static final  String READ_ALL = "SELECT `order_id`,`product_id`,`count` FROM `chose_product`";
+    private static final  String READ_ALL = "SELECT `user_id`,`product_id`,`count` FROM `chose_product`";
 
-    private static final String READ_BY_PRODUCT_ID="SELECT `order_id`,`product_id`,`count` FROM `chose_product` WHERE `product_id`=?";
-    private static final String READ_BY_ORDER_ID="SELECT `order_id`,`product_id`,`count` FROM `chose_product` WHERE `product_id`=?";
+    private static final String READ_BY_PRODUCT_ID="SELECT `user_id`,`product_id`,`count` FROM `chose_product` WHERE `product_id`=?";
+    private static final String READ_BY_USER_ID="SELECT `ouser_id`,`product_id`,`count` FROM `chose_product` WHERE `product_id`=?";
     @Override
     ChoseProduct fillFieldsObject(ResultSet resultSet) throws SQLException {
         ChoseProduct obj= new ChoseProduct();
@@ -32,7 +33,7 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
 
     @Override
     void setFieldStatement(PreparedStatement statement, ChoseProduct entity) throws SQLException {
-        statement.setInt(1,entity.getOrder().getId());
+        statement.setInt(1,entity.getUser().getId());
         statement.setInt(2, entity.getProduct().getId());
         statement.setInt(3, entity.getCount());
     }
@@ -50,9 +51,9 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
     void setParam(ChoseProduct obj, ResultSet resultSet) throws SQLException {
         obj= new ChoseProduct();
         obj.setCount(resultSet.getInt("count"));
-        Order order = new Order();
-        order.setId(resultSet.getInt("order_id"));
-        obj.setOrder(order);
+        User user = new User();
+        user.setId(resultSet.getInt("user_id"));
+        obj.setUser(user);
         Product product = new Product();
         product.setId(resultSet.getInt("product_id"));
         obj.setProduct(product);
@@ -60,13 +61,13 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
 
     @Override
     void setPrimary(PreparedStatement statement, ChoseProduct entity) throws SQLException {
-        statement.setInt(4,entity.getOrder().getId());
+        statement.setInt(4,entity.getUser().getId());
         statement.setInt(5,entity.getProduct().getId());
     }
 
     @Override
-    public List<ChoseProduct> readByOrderId(int order_id) throws DBException {
-        return readByInt(connection,READ_BY_ORDER_ID,new int[]{order_id});
+    public List<ChoseProduct> readByUserId(int user_id) throws DBException {
+        return readByInt(connection,READ_BY_USER_ID,new int[]{user_id});
     }
 
     @Override
@@ -82,7 +83,7 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
 
     @Override
     public void delete(ChoseProduct entity) throws DBException {
-        deleteByInt(DELETE,new int[] {entity.getOrder().getId(),entity.getProduct().getId()},connection);
+        deleteByInt(DELETE,new int[] {entity.getUser().getId(),entity.getProduct().getId()},connection);
     }
 
     @Override

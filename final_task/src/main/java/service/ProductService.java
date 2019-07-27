@@ -10,6 +10,6 @@ public interface ProductService extends Service<Product> {
     List<Product>  readByType(String type) throws DBException;
     List<Product>  readByName(String name) throws DBException;
     List<String>  readAllTypes() throws DBException;
-
+    Product readById(int id) throws DBException;
     List<Product> read() throws DBException;
 }

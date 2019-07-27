@@ -23,10 +23,10 @@ CREATE TABLE `order`
 
 CREATE TABLE `chose_product`
 (
-  `order_id` int  ,
+  `user_id` int not null ,
   `product_id` int not null ,
   `count` int,
-  PRIMARY KEY (`order_id`,`product_id`)
+  PRIMARY KEY (`user_id`,`product_id`)
 );
 
 CREATE TABLE `product`
@@ -58,7 +58,7 @@ ALTER TABLE `order` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
     ON UPDATE CASCADE
     ON DELETE RESTRICT;
 
-ALTER TABLE `chose_product` ADD FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
+ALTER TABLE `chose_product` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
     ON UPDATE CASCADE
     ON DELETE RESTRICT;
 

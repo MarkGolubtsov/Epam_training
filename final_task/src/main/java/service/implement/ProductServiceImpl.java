@@ -35,6 +35,12 @@ public class ProductServiceImpl extends ServiceImpl implements ProductService {
     }
 
     @Override
+    public Product readById(int id) throws DBException {
+        ProductDao productDao = daoFactory.createDao(ProductDao.class);
+        return productDao.readById(id);
+    }
+
+    @Override
     public List<Product> read() throws DBException {
         ProductDao productDao = daoFactory.createDao(ProductDao.class);
         return productDao.read();

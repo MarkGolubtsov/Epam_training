@@ -1,35 +1,46 @@
 package service.implement;
 
-import dao.ChoseProductDao;
-import dao.DaoFactory;
-import dao.OrderDao;
-import dao.ProductDao;
+import dao.*;
 import domain.ChoseProduct;
 import domain.Order;
+import domain.User;
 import exception.DBException;
 import service.ChoseProductService;
 import service.fill.FillOrder;
+import service.fill.FillUser;
 
 import java.util.List;
 
-public class ChoseProductServiceImpl extends ServiceImpl implements ChoseProductService, FillOrder {
+public class ChoseProductServiceImpl extends ServiceImpl implements ChoseProductService, FillUser {
 
     @Override
     public void save(ChoseProduct choseProduct) throws DBException {
         ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
         choseProductDao.create(choseProduct);
     }
+//TODo
+//    @Override
+//    public List<ChoseProduct> findByOrderId(int order_id) throws DBException {
+//        ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
+//        OrderDao orderDao = daoFactory.createDao(OrderDao.class);
+//        Order order = orderDao.readById(order_id);
+//        List<ChoseProduct> result = choseProductDao.read();
+//        for (ChoseProduct p:
+//             result) {
+//            fillProduct(p);
+//            p.setOrder(order);
+//        }
+//        return result;
+//    }
 
     @Override
-    public List<ChoseProduct> findByOrderId(int order_id) throws DBException {
+    public List<ChoseProduct> findByUserId(int user_id) throws DBException {
         ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
-        OrderDao orderDao = daoFactory.createDao(OrderDao.class);
-        Order order = orderDao.readById(order_id);
-        List<ChoseProduct> result = choseProductDao.read();
+        List<ChoseProduct> result = choseProductDao.readByUserId(user_id);
         for (ChoseProduct p:
              result) {
             fillProduct(p);
-            p.setOrder(order);
+           fillUser(p,daoFactory);
         }
         return result;
     }
@@ -48,7 +59,7 @@ public class ChoseProductServiceImpl extends ServiceImpl implements ChoseProduct
         for (ChoseProduct choseProduct:
                 result) {
             fillProduct(choseProduct);
-            fillOrder(choseProduct,daoFactory);
+            fillUser(choseProduct,daoFactory);
         }
         return result;
     }
