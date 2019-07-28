@@ -36,6 +36,7 @@ public abstract  class BaseMysql<T> {
     } finally {
         try {
             statement.close();
+            connection.close();
         } catch(SQLException | NullPointerException e) {throw new DBException();}
     }
 }
@@ -57,6 +58,7 @@ public abstract  class BaseMysql<T> {
             throw new DBException(e);
         } finally {
             try {
+                connection.close();
                 statement.close();
             } catch(SQLException | NullPointerException e) {throw new DBException(e);}
         }
@@ -81,10 +83,7 @@ public abstract  class BaseMysql<T> {
         } finally {
             try {
                 resultSet.close();
-            } catch (SQLException | NullPointerException e) {
-                //TODO
-            }
-            try {
+                connection.close();
                 statement.close();
             } catch (SQLException | NullPointerException e) {
                 throw new DBException();
@@ -112,6 +111,7 @@ public abstract  class BaseMysql<T> {
             throw new DBException(e);
         } finally {
             try {
+                connection.close();
                 statement.close();
                 resultSet.close();
             } catch(SQLException | NullPointerException e) {}
@@ -137,6 +137,7 @@ public abstract  class BaseMysql<T> {
         } finally {
             try {
                 statement.close();
+                connection.close();
             } catch(SQLException | NullPointerException e) {throw new DBException(e);}
         }
 
@@ -169,6 +170,7 @@ public abstract  class BaseMysql<T> {
             throw new DBException(e);
         } finally {
             try {
+                connection.close();
                 statement.close();
                 resultSet.close();
             } catch (SQLException | NullPointerException e) {

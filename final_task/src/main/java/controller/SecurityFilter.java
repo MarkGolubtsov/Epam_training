@@ -1,5 +1,6 @@
 package controller;
 import action.Action;
+import action.ActionWithForward;
 import domain.User;
 import org.apache.log4j.Logger;
 
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Set;
 
 public class SecurityFilter implements Filter {
     private static Logger logger = Logger.getLogger(SecurityFilter.class);
@@ -20,10 +20,9 @@ public class SecurityFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         if(request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
-            logger.debug("Filtre Securiry");
             HttpServletRequest httpRequest = (HttpServletRequest) request;
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            Action action = (Action) httpRequest.getAttribute("action");
+                Action action = (Action) httpRequest.getAttribute("action");
 //            Set<Role> allowRoles = action.getAllowRoles();
             HttpSession session = httpRequest.getSession(false);
             User user = null;
@@ -36,7 +35,7 @@ public class SecurityFilter implements Filter {
                     session.removeAttribute("SecurityFilterMessage");
                 }
             }
-            chain.doFilter(request,response);
+            chain.doFilter(httpRequest,httpResponse);
         }
     }
 

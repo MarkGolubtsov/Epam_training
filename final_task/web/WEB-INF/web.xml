@@ -10,23 +10,23 @@
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>/shop/*</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>ServletAjax</servlet-name>
-        <servlet-class>controller.ServletAjax</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletAjax</servlet-name>
-        <url-pattern>/addInBasket</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>ServletAjax</servlet-name>-->
+<!--        <servlet-class>controller.ajax.ServletAjax</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>ServletAjax</servlet-name>-->
+<!--        <url-pattern>/addInCart</url-pattern>-->
+<!--    </servlet-mapping>-->
     <filter>
         <filter-name>ActionFiler</filter-name>
         <filter-class>controller.ActionFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>ActionFiler</filter-name>
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>/shop/*</url-pattern>
     </filter-mapping>
 
     <filter>
@@ -36,6 +36,6 @@
 
     <filter-mapping>
         <filter-name>SecurityFilter</filter-name>
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>/shop/*</url-pattern>
     </filter-mapping>
 </web-app>

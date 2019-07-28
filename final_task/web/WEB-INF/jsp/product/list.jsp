@@ -9,7 +9,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 <u:html title="Products"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <div class="row">
     <form class="col s12">
@@ -52,7 +51,6 @@
             </p>
         </div>
     </div>
-
     <div id="Container" class="col s5">
         <c:forEach items="${listProduct}" var="item">
                 <div   typeProduct=${item.type} nameProduct="${item.name}" costProduct="${item.cost}" class="card ">
@@ -69,16 +67,16 @@
 <%--                                <INPUT type="hidden" name="productId" value="${item.id}">--%>
 <%--                                <button  type="submit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></button>--%>
 <%--                            </form>--%>
-                            <button id="butAdd${item.id}" dataProduct="${item.id}" type="submit" class="btn-floating halfway-fab red"><i class="material-icons">add</i></button>
+                            <button id="butAdd${item.id}" dataProduct="${item.id}" type="submit" class="btn-floating halfway-fab waves-effect waves-green  red"><i class="material-icons">add</i></button>
                             <script>
                                 $("#butAdd${item.id}").on("click",function() {
-                                    alert("add Product");
                                     $.ajax({
                                         type:"POST",
-                                        url : '/addInBasket',
+                                        url : '/shop/addInCart',
                                         data : {
                                             idProduct :(this).getAttribute("dataProduct")
-                                        }
+                                        },
+                                        // error: error()
                                     });
                                 });
                             </script>

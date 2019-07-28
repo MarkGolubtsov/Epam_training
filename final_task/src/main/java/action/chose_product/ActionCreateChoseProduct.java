@@ -1,19 +1,12 @@
 package action.chose_product;
 
-import action.Action;
-import domain.ChoseProduct;
-import domain.Order;
-import domain.Product;
-import domain.User;
+import action.ActionWithForward;
 import exception.DBException;
-import service.ChoseProductService;
-import service.ProductService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
-public class ActionCreateChoseProduct extends Action {
+public class ActionCreateChoseProduct extends ActionWithForward {
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException {
            Forward forward = new Forward("/product/list.html");

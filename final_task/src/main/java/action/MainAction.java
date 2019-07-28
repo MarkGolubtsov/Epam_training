@@ -4,9 +4,8 @@ import exception.DBException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
-public class MainAction extends Action {
+public class MainAction extends ActionWithForward {
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException {
         return null;

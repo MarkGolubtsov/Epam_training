@@ -12,7 +12,7 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="left hide-on-med-and-down indigo ">
                 <c:if test="${not empty authorizedUser}">
-                    <li ><a href="/logout.html"><i class="material-icons"> exit_to_app</i></a></li>
+                    <li ><a href="/shop/logout"><i class="material-icons"> exit_to_app</i></a></li>
                 </c:if>
                 <c:forEach items="${menu}" var="item">
                     <c:url value="${item.url}" var="itemUrl"/>
@@ -27,10 +27,10 @@
 
                 </c:forEach>
                 <c:if test="${empty authorizedUser}">
-                    <li><a href="/login.html">Login</a></li>
+                    <li><a href="/shop/login">Login</a></li>
                 </c:if>
-                <li><a href="/product/list.html">Product</a></li>
-                <li><a href="/main.html">Main</a></li>
+                <li><a href="/shop/product/list">Product</a></li>
+                <li><a href="/shop/main">Main</a></li>
             </ul>
         </div>
     </nav>
@@ -40,14 +40,14 @@
         <li class="m1 l2"><A href="${itemUrl}">${item.name}</A></li>
     </c:forEach>
     <c:if test="${not empty authorizedUser}">
-        <li class="m1 l2"><a href="/logout.html">Выход</a></li>
+        <li class="m1 l2"><a href="/shop/logout">Выход</a></li>
     </c:if>
 
     <c:if test="${empty authorizedUser}">
-        <li><a href="/login.html">Login</a></li>
+        <li><a href="/shop/login">Login</a></li>
     </c:if>
-    <li><a href="/product/list.html">Продукты</a></li>
-    <li><a href="/main.html">Главная</a></li>
+    <li><a href="/shop/product/list">Продукты</a></li>
+    <li><a href="/shop/main">Главная</a></li>
 </ul>
 
 <%--    </c:if>--%>

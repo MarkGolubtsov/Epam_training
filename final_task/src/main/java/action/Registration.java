@@ -8,7 +8,7 @@ import service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Registration extends Action {
+public class Registration extends ActionWithForward {
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException {
         String login =  request.getParameter("name");
@@ -16,7 +16,7 @@ public class Registration extends Action {
         String role =request.getParameter("role");
         String telephone = request.getParameter("tel");
         if (login!=null && password!=null && role!=null && telephone!=null) {
-            Forward forward = new Forward("login.html");
+            Forward forward = new Forward("login/shop");
             UserService service = null;
             try {
                 service = factory.getService(UserService.class);

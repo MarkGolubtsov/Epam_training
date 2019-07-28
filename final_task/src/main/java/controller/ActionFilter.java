@@ -2,7 +2,8 @@ package controller;
 import action.*;
 import action.Registration;
 import action.chose_product.ActionCreateChoseProduct;
-import action.chose_product.ActionUserBasket;
+import action.chose_product.ActionAjaxAddProduct;
+import action.chose_product.UserCartAction;
 import action.product.ActionProductList;
 import org.apache.log4j.Logger;
 
@@ -23,8 +24,10 @@ public class ActionFilter implements Filter {
 
         actions.put("/product/list", ActionProductList.class);
 
-        actions.put("/chose_product/add", ActionCreateChoseProduct.class);
-        actions.put("/chose_product/list", ActionUserBasket.class);
+        actions.put("/chose_product/list",UserCartAction.class);
+
+
+        actions.put("/addInCart", ActionAjaxAddProduct.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -38,8 +41,8 @@ public class ActionFilter implements Filter {
             String contextPath = httpRequest.getContextPath();
             String uri = httpRequest.getRequestURI();
             logger.debug(String.format("Starting of processing of request for URI \"%s\"", uri));
-            int beginAction = contextPath.length();
-            int endAction = uri.lastIndexOf('.');
+            int beginAction = contextPath.length()+5;
+            int endAction = uri.length();
             String actionName;
             if(endAction >= 0) {
                 actionName = uri.substring(beginAction, endAction);
@@ -47,10 +50,19 @@ public class ActionFilter implements Filter {
                 actionName = uri.substring(beginAction);
             }
             Class<? extends Action> actionClass = actions.get(actionName);
+            logger.debug("---------"+actionClass.getName());
+            if (actionName.equals("/addInCart")) {
+                System.out.println("1");
+            }
             try {
-                Action action = actionClass.newInstance();
-                action.setName(actionName);
-                httpRequest.setAttribute("action", action);
+                Action actionFinal= actionClass.newInstance();
+
+                System.out.println("Forward?"+(actionFinal instanceof ActionWithForward));
+                System.out.println("Ajax?"+(actionFinal instanceof ActionAjax));
+                actionFinal.setName(actionName);
+                logger.debug("Action name="+actionName);
+                httpRequest.setAttribute("action", actionFinal);
+                logger.debug("SetAttribute");
                 chain.doFilter(request, response);
             } catch (InstantiationException | IllegalAccessException | NullPointerException e) {
                logger.error("It is impossible to create action handler object", e);

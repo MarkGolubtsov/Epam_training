@@ -15,9 +15,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 </head>
 <div class="section"></div>
-<form method="post" action="/login.html">
+<form method="post" action="/shop/login">
     <center>
-
         <h5 class="indigo-text">Registration</h5>
         <div class="section"></div>
         <div class="container">
@@ -81,7 +80,7 @@
                 </form>
             </div>
         </div>
-        <a href="/login.html">Login</a>
+        <a href="/shop/login">Login</a>
     </center>
     <div class="section"></div>
     <div class="section"></div>

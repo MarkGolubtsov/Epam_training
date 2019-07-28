@@ -1,6 +1,5 @@
 package action;
 
-import controller.MainServlet;
 import domain.RoleUser;
 import domain.User;
 import exception.DBException;
@@ -16,21 +15,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class LoginAction extends Action {
+public class LoginAction extends ActionWithForward {
     private static Logger logger = Logger.getLogger(LoginAction.class);
     private static Map<RoleUser, List<NavbarItem>> navbar = new ConcurrentHashMap<>();
     static {
         navbar.put(RoleUser.USER, new ArrayList<>(Arrays.asList(
-                new NavbarItem("/chose_product/list.html","Basket"),
-                new NavbarItem("/search/delivery/list.html", "Delivery"),
-                new NavbarItem("/search/delivery/form.html", "Create delivery"),
-                new NavbarItem("/search/order/list.html", "Order")
+                new NavbarItem("/shop/chose_product/list","Basket"),
+                new NavbarItem("/shop/search/delivery/list", "Delivery"),
+                new NavbarItem("/shop/search/delivery/form", "Create delivery"),
+                new NavbarItem("/shop/search/order/list", "Order")
         )));
         navbar.put(RoleUser.COURIER, new ArrayList<>(Arrays.asList(
-                new NavbarItem("/deliverys/list.html", "читатели")
+                new NavbarItem("/shop/deliverys/list", "читатели")
         )));
         navbar.put(RoleUser.ADMIN, new ArrayList<>(Arrays.asList(
-                new NavbarItem("/author/list.html", "авторы")
+                new NavbarItem("/shop/author/list", "авторы")
         )));
     }
     @Override
@@ -53,9 +52,9 @@ public class LoginAction extends Action {
                 HttpSession session = request.getSession();
                 session.setAttribute("authorizedUser", user);
                 session.setAttribute("menu",navbar.get(user.getRoleUser()));
-                return new Forward("/main.html");
+                return new Forward("/shop/main");
             }
-            return  new Forward("/registration.html");
+            return  new Forward("/shop/registration");
         }
         return null;
     }

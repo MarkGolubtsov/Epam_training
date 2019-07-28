@@ -5,6 +5,7 @@ $(document).ready(function(){
     });
 
 
+
     $("#icon_prefix").on("keyup", function() {
         let value = $(this).val().toLowerCase();
         $("#Container .card ").filter(function() {
@@ -15,8 +16,8 @@ $(document).ready(function(){
             $(this).toggle((this).getAttribute("costProduct").toLowerCase().indexOf(value) > -1)
             if (nameSearch)
                 $(this).toggle((this).getAttribute("nameProduct").toLowerCase().indexOf(value) > -1)
-            if (typeSearch)
-                $(this).toggle((this).getAttribute("typeProduct").toLowerCase().indexOf(value) > -1)
+                if (typeSearch)
+               $(this).toggle((this).getAttribute("typeProduct").toLowerCase().indexOf(value) > -1)
         });
     });
 

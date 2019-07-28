@@ -24,6 +24,8 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
 
     private static final String READ_BY_PRODUCT_ID="SELECT `user_id`,`product_id`,`count` FROM `chose_product` WHERE `product_id`=?";
     private static final String READ_BY_USER_ID="SELECT `user_id`,`product_id`,`count` FROM `chose_product` WHERE `user_id`=?";
+    private static final String READ_BY_USER_PRODUCT="SELECT `user_id`,`product_id`,`count` FROM `chose_product` WHERE `user_id`=? AND  `product_id`=?" ;
+
     @Override
     ChoseProduct fillFieldsObject(ResultSet resultSet) throws SQLException {
         ChoseProduct obj= new ChoseProduct();
@@ -98,5 +100,10 @@ public class ChoseProductDaoImpl extends BaseMysql<ChoseProduct> implements Chos
     @Override
     public void deleteByProductId(int product_id) throws DBException {
     deleteByInt(DELETE_BY_PRODUCT, new int[]{product_id}, connection);
+    }
+
+    @Override
+    public List<ChoseProduct> readByUserIdAndProductId(int user_id, int product_id) throws DBException {
+        return readByInt(connection,READ_BY_USER_PRODUCT,new int[]{user_id,product_id});
     }
 }

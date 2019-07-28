@@ -64,12 +64,25 @@
                         <img src="/img/${item.product.img_path}" alt="Image"/>
                     </c:if>
                     <span  class="card-title">${item.product.name}</span>
-<%--                    <c:if test="${not empty authorizedUser}">--%>
-<%--                        <form action="/choseproduct/add.html" method="post">--%>
-<%--                            <INPUT type="hidden" name="productId" value="${item.id}">--%>
-<%--                            <button  type="submit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></button>--%>
-<%--                        </form>--%>
-<%--                    </c:if>--%>
+                    <c:if test="${not empty authorizedUser}">
+                        <button id="butAdd${item.product.id}" dataProduct="${item.product.id}" type="submit" class="btn-floating halfway-fab waves-effect waves-green  red"><i class="material-icons">add</i></button>
+                        <script>
+                            $("#butAdd${item.product.id}").on("click",function() {
+                                $.ajax({
+                                    type:"POST",
+                                    url : '/shop/addInCart',
+                                    data : {
+                                        idProduct :(this).getAttribute("dataProduct")
+                                    },
+                                    success:function (response) {
+                                        console.log(response);
+                                        $("#count${item.product.id}").text(response);
+                                    }
+                                    // error: error()
+                                });
+                            });
+                        </script>
+                    </c:if>
                 </div>
                 <div class="card-content">
                     <div style="overflow: hidden;">
@@ -83,7 +96,7 @@
                     </div>
                     <div style="overflow: hidden;">
                         <p style="float: left;">Count:</p>
-                        <p  style="float: right;">${item.count}</p>
+                        <p id="count${item.product.id}" style="float: right;">${item.count}</p>
                     </div>
                 </div>
             </div>

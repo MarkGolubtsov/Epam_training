@@ -49,6 +49,15 @@ public class ChoseProductServiceImpl extends ServiceImpl implements ChoseProduct
     }
 
     @Override
+    public ChoseProduct findByUserIdAndProductId(int user_id, int product_id) throws DBException {
+        ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
+        ChoseProduct result = choseProductDao.readByUserIdAndProductId(user_id,product_id).get(0);
+        fillProduct(result);
+        fillUser(result,daoFactory);
+        return result;
+    }
+
+    @Override
     public void delete(ChoseProduct choseProduct) throws DBException {
         ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
         choseProductDao.delete(choseProduct);

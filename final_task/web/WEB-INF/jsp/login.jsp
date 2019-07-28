@@ -53,7 +53,7 @@
 <%--     </style>--%>
  </head>
  <div class="section"></div>
- <form method="post" action="/login.html">
+ <form method="post" action="/shop/login">
      <center>
          <h5 class="indigo-text">Please, login into your account</h5>
          <div class="section"></div>
@@ -88,7 +88,7 @@
                  </form>
              </div>
          </div>
-         <a href="registration.html">Create account</a>
+         <a href="/shop/registration">Create account</a>
      </center>
      <div class="section"></div>
      <div class="section"></div>

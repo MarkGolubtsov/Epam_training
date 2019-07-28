@@ -1,7 +1,6 @@
 package action.chose_product;
 
-import action.Action;
-import controller.ActionFilter;
+import action.ActionWithForward;
 import domain.ChoseProduct;
 import domain.User;
 import exception.DBException;
@@ -12,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class ActionUserBasket extends Action {
-    private static Logger logger = Logger.getLogger(ActionUserBasket.class);
+public class UserCartAction extends ActionWithForward {
+    private static Logger logger = Logger.getLogger( UserCartAction.class);
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException {
         User user = getAuthorizedUser();

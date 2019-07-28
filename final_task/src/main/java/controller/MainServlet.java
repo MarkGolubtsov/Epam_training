@@ -1,19 +1,16 @@
 package controller;
 
 import action.Action;
-import action.LoginAction;
+import action.ActionAjax;
+import action.ActionWithForward;
 import dao.mysql.DaoFactoryImpl;
 import dao.pool.ConnectionPool;
-import domain.RoleUser;
-import domain.User;
 import exception.DBException;
 
 import org.apache.log4j.*;
 import service.ServiceFactory;
-import service.UserService;
 import service.implement.ServiceFactoryImpl;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Map;
 
 @MultipartConfig
@@ -67,7 +62,8 @@ public class MainServlet extends HttpServlet {
         process(request,response);
     }
     private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Action action = (Action)request.getAttribute("action");
+        logger.debug("+++++");
+        Action action1 = (Action) request.getAttribute("action");
         HttpSession session = request.getSession(false);
         if(session != null) {
             @SuppressWarnings("unchecked")
@@ -80,33 +76,54 @@ public class MainServlet extends HttpServlet {
             }
         }
         ServiceFactoryImpl.INSTANCE.setDaoFactory(DaoFactoryImpl.INSTANСE);
-        action.setFactory(ServiceFactoryImpl.INSTANCE);
-        Action.Forward forward = null;
+        action1.setFactory(ServiceFactoryImpl.INSTANCE);
+        if(action1 instanceof ActionWithForward) {
+            ActionWithForwardDo(action1, request, response, session);
+            return;
+        }
+            if(action1 instanceof ActionAjax){
+                ActionAjax actionAjax = (ActionAjax)action1;
+                try {
+                    System.out.println("Action name"+actionAjax.getName());
+                    actionAjax.exec(request,response);
+                    return;
+                } catch (DBException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+
+    }
+    private void ActionWithForwardDo(Action action1,HttpServletRequest request, HttpServletResponse response,HttpSession session) throws IOException, ServletException {
+        ActionWithForward action = (ActionWithForward)action1;
+        ActionWithForward.Forward forward = null;
         try {
-           forward=action.exec(request,response);
+            forward = action.exec(request, response);
         } catch (DBException e) {
             e.printStackTrace();
         }
-        if(session != null && forward != null && !forward.getAttributes().isEmpty()) {
+        if (session != null && forward != null && !forward.getAttributes().isEmpty()) {
             session.setAttribute("redirectedData", forward.getAttributes());
         }
         String requestedUri = request.getRequestURI();
-        if(forward != null && forward.isRedirect()) {
+        if (forward != null && forward.isRedirect()) {
             String redirectedUri = request.getContextPath() + forward.getForward();
             logger.debug(String.format("Request for URI \"%s\" id redirected to URI \"%s\"", requestedUri, redirectedUri));
             response.sendRedirect(redirectedUri);
         } else {
             String jspPage;
-            if(forward != null) {
+            if (forward != null) {
                 jspPage = forward.getForward();
             } else {
                 jspPage = action.getName() + ".jsp";
             }
+            String buf =jspPage;
             jspPage = "/WEB-INF/jsp" + jspPage;
             logger.debug(String.format("Request for URI \"%s\" is forwarded to JSP \"%s\"", requestedUri, jspPage));
             getServletContext().getRequestDispatcher(jspPage).forward(request, response);
         }
-
     }
 
 }
