@@ -8,8 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
-<u:html title="Products"/>
-
+<u:html title="Products">
 <div class="row">
     <form class="col s12">
         <div class="row">
@@ -51,7 +50,7 @@
             </p>
         </div>
     </div>
-    <div id="Container" class="col s5">
+    <div id="Container" class="col s4">
         <c:forEach items="${listProduct}" var="item">
                 <div   typeProduct=${item.type} nameProduct="${item.name}" costProduct="${item.cost}" class="card ">
                     <div class="card-image">
@@ -63,23 +62,7 @@
                         </c:if>
                         <span  class="card-title">${item.name}</span>
                         <c:if test="${not empty authorizedUser}">
-<%--                            <form action="/chose_product/add.html" method="post">--%>
-<%--                                <INPUT type="hidden" name="productId" value="${item.id}">--%>
-<%--                                <button  type="submit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></button>--%>
-<%--                            </form>--%>
-                            <button id="butAdd${item.id}" dataProduct="${item.id}" type="submit" class="btn-floating halfway-fab waves-effect waves-green  red"><i class="material-icons">add</i></button>
-                            <script>
-                                $("#butAdd${item.id}").on("click",function() {
-                                    $.ajax({
-                                        type:"POST",
-                                        url : '/shop/addInCart',
-                                        data : {
-                                            idProduct :(this).getAttribute("dataProduct")
-                                        },
-                                        // error: error()
-                                    });
-                                });
-                            </script>
+                            <button onclick="addEventOnButtonAdd(${item.id})" id="butAdd${item.id}" dataProduct="${item.id}" type="submit" class="btn-floating halfway-fab waves-effect waves-green  red"><i class="material-icons">add</i></button>
                         </c:if>
                     </div>
                     <div class="card-content">
@@ -101,3 +84,4 @@
 <script>
     <%@include file="/WEB-INF/js/listProduct.js"%>
 </script>
+</u:html>

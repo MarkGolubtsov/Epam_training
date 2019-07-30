@@ -1,10 +1,11 @@
 package controller;
 import action.*;
 import action.Registration;
-import action.chose_product.ActionCreateChoseProduct;
-import action.chose_product.ActionAjaxAddProduct;
+import action.chose_product.AddProductActionAjax;
+import action.chose_product.GetCountCartAjaxAction;
+import action.chose_product.RemoveProductActionAjax;
 import action.chose_product.UserCartAction;
-import action.product.ActionProductList;
+import action.product.ProductListAction;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -22,12 +23,13 @@ public class ActionFilter implements Filter {
         actions.put("/main", MainAction.class);
         actions.put("/logout", LogOutAction.class);
 
-        actions.put("/product/list", ActionProductList.class);
+        actions.put("/product/list", ProductListAction.class);
 
         actions.put("/chose_product/list",UserCartAction.class);
 
-
-        actions.put("/addInCart", ActionAjaxAddProduct.class);
+        actions.put("/getCountProductInCart", GetCountCartAjaxAction.class);
+        actions.put("/addInCart", AddProductActionAjax.class);
+        actions.put("/removeOutCart", RemoveProductActionAjax.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

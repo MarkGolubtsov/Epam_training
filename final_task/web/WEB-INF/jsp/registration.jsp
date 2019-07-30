@@ -10,10 +10,6 @@
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <u:html title="registration"></u:html>
-<head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-</head>
 <div class="section"></div>
 <form method="post" action="/shop/login">
     <center>

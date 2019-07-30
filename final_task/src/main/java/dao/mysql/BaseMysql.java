@@ -15,6 +15,17 @@ public abstract  class BaseMysql<T> {
         this.connection = connection;
     }
 
+    private  PreparedStatement  fillstatmentMassive(Connection connection,int[] value,String sql) throws SQLException {
+       PreparedStatement statement = connection.prepareStatement(sql);
+        if (value.length<1) {
+            statement.setInt(1, value[0]);
+        } else {
+            for (int i = 1; i <=value.length ; i++) {
+                statement.setInt(i, value[i-1]);
+            }
+        }
+        return statement;
+    }
     /**
      *
      * @param sql request sql with ?
@@ -25,11 +36,7 @@ public abstract  class BaseMysql<T> {
     void deleteByInt(String sql,int[] value,  Connection connection) throws DBException {
     PreparedStatement statement = null;
     try {
-        statement = connection.prepareStatement(sql);
-
-        for (int i = 1; i <=value.length ; i++) {
-            statement.setInt(i, value[i]-1);
-        }
+        statement=fillstatmentMassive(connection, value, sql);
         statement.executeUpdate();
     } catch(SQLException e) {
         throw new DBException(e);
@@ -155,14 +162,7 @@ public abstract  class BaseMysql<T> {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            statement = connection.prepareStatement(sql);
-            if (value.length<1) {
-                statement.setInt(1, value[0]);
-            } else {
-                for (int i = 1; i <=value.length ; i++) {
-                    statement.setInt(i, value[i-1]);
-                }
-            }
+            statement=fillstatmentMassive(connection, value, sql);
             resultSet = statement.executeQuery();
             return fillList(resultSet);
 

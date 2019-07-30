@@ -10,6 +10,6 @@ public class LogOutAction extends ActionWithForward {
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException {
       //  logger.info(String.format("user \"%s\" is logged out", user.getLogin()));
         request.getSession(false).invalidate();
-        return new Forward("/login/shop");
+        return new Forward("/shop/login");
     }
 }

@@ -7,7 +7,7 @@ import service.ProductService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ActionProductList extends ActionWithForward {
+public class ProductListAction extends ActionWithForward {
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException {
         ProductService service = null;

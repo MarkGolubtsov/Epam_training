@@ -9,5 +9,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<u:html title="main"></u:html>
-<h1>Главная</h1>
+<u:html title="main">
+    <h1>Главная</h1>
+
+
+</u:html>

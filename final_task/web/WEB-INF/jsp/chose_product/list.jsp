@@ -9,53 +9,13 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<u:html title="Basket"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<u:html title="Basket">
 <div class="row">
-    <form class="col s12">
-        <div class="row">
-            <div class="col s4"></div>
-            <div class="input-field col s4">
-                <i class="material-icons prefix">search</i>
-                <input  autocomplete="off" class="Serch" id="icon_prefix" type="text" class="validate">
-                <label for="icon_prefix">Seach</label>
-            </div>
-        </div>
-    </form>
-</div>
-
-<div class="row">
-    <div class="col s1"></div>
-    <div class="col s3">
-        <div class="row">
-            <p>
-                <label>
-                    <input id="NameSearch" type="checkbox"  class="filled-in"  value="Name"/>
-                    <span>Name</span>
-                </label>
-            </p>
-        </div>
-        <div class="row">
-            <p>
-                <label >
-                    <input id="typeSearch" type="checkbox"  class="filled-in"  value="Type"/>
-                    <span>Type</span>
-                </label>
-            </p>
-        </div>
-        <div class="row">
-            <p>
-                <label >
-                    <input id="costSearch" type="checkbox"  class="filled-in"  value="Cost"/>
-                    <span>Cost</span>
-                </label>
-            </p>
-        </div>
-    </div>
-    <div id="Container" class="col s5">
+    <div class="col s1 "></div>
+    <div id="Container" class="col s3">
         <c:forEach items="${listChoseProduct}" var="item">
-            <div   typeProduct=${item.product.type} nameProduct="${item.product.name}" costProduct="${item.product.cost}" class="card ">
+            <div id="card${item.product.id}" class="section">
+            <div typeProduct=${item.product.type} nameProduct="${item.product.name}" costProduct="${item.product.cost}" class="card">
                 <div class="card-image">
                     <c:if test="${ empty item.product.img_path}">
                         <img src="/img/img2.jpg" alt="Image"/>
@@ -65,26 +25,17 @@
                     </c:if>
                     <span  class="card-title">${item.product.name}</span>
                     <c:if test="${not empty authorizedUser}">
-                        <button id="butAdd${item.product.id}" dataProduct="${item.product.id}" type="submit" class="btn-floating halfway-fab waves-effect waves-green  red"><i class="material-icons">add</i></button>
-                        <script>
-                            $("#butAdd${item.product.id}").on("click",function() {
-                                $.ajax({
-                                    type:"POST",
-                                    url : '/shop/addInCart',
-                                    data : {
-                                        idProduct :(this).getAttribute("dataProduct")
-                                    },
-                                    success:function (response) {
-                                        console.log(response);
-                                        $("#count${item.product.id}").text(response);
-                                    }
-                                    // error: error()
-                                });
-                            });
-                        </script>
+                        <button onclick="addEventOnButtonAddInCart(${item.product.id})" id="butAdd${item.product.id}" class="btn-floating halfway-fab waves-effect waves-green  red"><i class="material-icons">exposure_plus_1</i></button>
                     </c:if>
                 </div>
                 <div class="card-content">
+                    <c:if test="${not empty authorizedUser}">
+                        <div>
+                            <button onclick="addEventOnButtonRemoveInCart(${item.product.id})" id="butRemove${item.product.id}"  type="submit" class="btn-floating halfway-fab waves-effect waves-green blue"><i class="material-icons">exposure_neg_1</i></button>
+                        </div>
+                        <script>
+                        </script>
+                    </c:if>
                     <div style="overflow: hidden;">
                         <p style="float: left;">Cost:</p>
                             <%--                            class--%>
@@ -100,6 +51,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </c:forEach>
     </div>
 
@@ -107,3 +59,4 @@
 <script>
     <%@include file="/WEB-INF/js/listProduct.js"%>
 </script>
+</u:html>
