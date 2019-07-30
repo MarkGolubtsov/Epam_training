@@ -13,8 +13,8 @@ import java.util.concurrent.locks.ReentrantLock;
 import exception.DBException;
 import org.apache.log4j.Logger;
 
-final public class ConnectionPool {
-
+public  enum  ConnectionPool {
+    INSTANCE;
     private static Logger logger = Logger.getLogger(ConnectionPool.class);
     private Lock lock = new ReentrantLock();
     private String url;
@@ -26,7 +26,7 @@ final public class ConnectionPool {
     private BlockingQueue<PooledConnection> freeConnections = new LinkedBlockingQueue<>();
     private Set<PooledConnection> usedConnections = new ConcurrentSkipListSet<>();
 
-    private ConnectionPool() {}
+//    private ConnectionPool() {}
 
     public Connection getConnection() throws DBException {
         lock.lock();
@@ -97,11 +97,11 @@ final public class ConnectionPool {
         lock.unlock();
     }
 
-    private static ConnectionPool instance = new ConnectionPool();
-
-    public static ConnectionPool getInstance() {
-        return instance;
-    }
+//    private static ConnectionPool instance = new ConnectionPool();
+//
+//    public static ConnectionPool getInstance() {
+//        return instance;
+//    }
 
     private PooledConnection createConnection() throws SQLException {
         return new PooledConnection(DriverManager.getConnection(url, user, password));
@@ -120,9 +120,12 @@ final public class ConnectionPool {
         lock.unlock();
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        destroy();
+    public Lock getLock() {
+        return lock;
     }
+//    @Override
+//    protected void finalize() throws Throwable {
+//        destroy();
+//    }
 
 }

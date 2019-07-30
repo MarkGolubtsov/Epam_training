@@ -20,13 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 @MultipartConfig
 @WebServlet
 public class MainServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(MainServlet.class);
 
-
+    private Lock locker;
     public static final String LOG_FILE_NAME = "log.txt";
     public static final Level LOG_LEVEL = Level.ALL;
     public static final String LOG_MESSAGE_FORMAT = "%n%d%n%p\t%C.%M:%L%n%m%n";
@@ -46,7 +48,8 @@ public class MainServlet extends HttpServlet {
             root.addAppender(new FileAppender(layout, LOG_FILE_NAME, true));
             root.addAppender(new ConsoleAppender(layout));
             root.setLevel(LOG_LEVEL);
-            ConnectionPool.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE, DB_POOL_CHECK_CONNECTION_TIMEOUT);
+            ConnectionPool.INSTANCE.init(DB_DRIVER_CLASS, DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE, DB_POOL_CHECK_CONNECTION_TIMEOUT);
+            locker=ConnectionPool.INSTANCE.getLock();
         } catch (DBException | IOException e) {
             e.printStackTrace();
         }
