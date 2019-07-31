@@ -11,23 +11,24 @@
             <ul id="nav-wrapper" class="left hide-on-med-and-down indigo ">
                 <c:if test="${not empty authorizedUser}">
                     <li ><a href="/shop/logout"><i class="material-icons"> exit_to_app</i></a></li>
-                </c:if>
-                <c:forEach items="${menu}" var="item">
-                    <c:url value="${item.url}" var="itemUrl"/>
+                    <c:forEach items="${menu}" var="item">
+                        <c:url value="${item.url}" var="itemUrl"/>
 
-                    <c:if test="${item.name=='Cart'}">
-                        <li><a href="${itemUrl}"><i class="material-icons left">shopping_cart</i>
-                            ${item.name}
-                            <span   onload="updateCart()" id="itemCount" class="new  badge red"></span>
+                        <c:if test="${item.name=='Cart'}">
+                            <li><a href="${itemUrl}"><i class="material-icons left">shopping_cart</i>
+                                    ${item.name}
+                                <span   onload="updateCart()" id="itemCount" class="new  badge red"></span>
                             </a>
-                        </li>
-                    </c:if>
+                            </li>
+                        </c:if>
 
-                    <c:if test="${not (item.name=='Cart')}">
-                        <li><A href="${itemUrl}">${item.name}</A></li>
-                    </c:if>
+                        <c:if test="${not (item.name=='Cart')}">
+                            <li><A href="${itemUrl}">${item.name}</A></li>
+                        </c:if>
 
-                </c:forEach>
+                    </c:forEach>
+                </c:if>
+
                 <c:if test="${empty authorizedUser}">
                     <li><a href="/shop/login">Login</a></li>
                 </c:if>
@@ -41,23 +42,24 @@
 <ul class="sidenav" id="mobile-demo">
     <c:if test="${not empty authorizedUser}">
         <li ><a href="/shop/logout"><i class="material-icons"> exit_to_app</i></a></li>
+        <c:forEach items="${menu}" var="item">
+            <c:url value="${item.url}" var="itemUrl"/>
+
+            <c:if test="${item.name=='Cart'}">
+                <li><a href="${itemUrl}"><i class="material-icons left">shopping_cart</i>
+                        ${item.name}
+                    <span  id="itemCountMobile" class="new  badge red" ></span>
+                </a>
+                </li>
+            </c:if>
+
+            <c:if test="${not (item.name=='Cart')}">
+                <li><A href="${itemUrl}">${item.name}</A></li>
+            </c:if>
+
+        </c:forEach>
     </c:if>
-    <c:forEach items="${menu}" var="item">
-        <c:url value="${item.url}" var="itemUrl"/>
 
-        <c:if test="${item.name=='Cart'}">
-            <li><a href="${itemUrl}"><i class="material-icons left">shopping_cart</i>
-                    ${item.name}
-                <span  id="itemCountMobile" class="new  badge red" ></span>
-            </a>
-            </li>
-        </c:if>
-
-        <c:if test="${not (item.name=='Cart')}">
-            <li><A href="${itemUrl}">${item.name}</A></li>
-        </c:if>
-
-    </c:forEach>
     <c:if test="${empty authorizedUser}">
         <li><a href="/shop/login">Login</a></li>
     </c:if>

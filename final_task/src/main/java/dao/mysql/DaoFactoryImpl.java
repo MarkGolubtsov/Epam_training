@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public enum DaoFactoryImpl implements DaoFactory {
     INSTANСE;
-    private static Map<Class<? extends Dao<?>>, Class<? extends BaseMysql>> classes = new ConcurrentHashMap<>();
+    private static Map<Class<? extends Dao>, Class<? extends Base>> classes = new ConcurrentHashMap<>();
     static {
         classes.put(AddressDao.class, AddressDaoImpl.class);
         classes.put(ChoseProductDao.class, ChoseProductDaoImpl.class);
@@ -18,17 +18,18 @@ public enum DaoFactoryImpl implements DaoFactory {
         classes.put(OrderDao.class, OrderDaoImpl.class);
         classes.put(ProductDao.class, ProductDaoImpl.class);
         classes.put(UserDao.class, UserDaoImpl.class);
+        classes.put(CartDao.class, CartDaoImpl.class);
     }
 
 
 
 
-    public <Type extends Dao<?>> Type createDao(Class<Type> key) throws DBException {
-        Class<? extends BaseMysql> value = classes.get(key);
+    public <Type extends Dao> Type createDao(Class<Type> key) throws DBException {
+        Class<? extends Base> value = classes.get(key);
         if(value != null) {
             try {
-                BaseMysql dao = value.newInstance();
-                Connection connection = ConnectionPool.getInstance().getConnection();
+                Base dao = value.newInstance();
+                Connection connection = ConnectionPool.INSTANCE.getConnection();
                 dao.setConnection(connection);
                 return (Type)dao;
             } catch(InstantiationException | IllegalAccessException e) {

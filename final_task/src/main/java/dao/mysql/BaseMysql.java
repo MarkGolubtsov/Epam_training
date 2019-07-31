@@ -1,20 +1,14 @@
 package dao.mysql;
 
+import action.chose_product.UserCartAction;
 import exception.DBException;
+import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
-public abstract  class BaseMysql<T> {
-    protected Connection connection;
- //TODO    connection.close()
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
+public abstract  class BaseMysql<T>  extends Base{
+    private static Logger logger = Logger.getLogger( Base.class);
     private  PreparedStatement  fillstatmentMassive(Connection connection,int[] value,String sql) throws SQLException {
        PreparedStatement statement = connection.prepareStatement(sql);
         if (value.length<1) {
@@ -39,12 +33,15 @@ public abstract  class BaseMysql<T> {
         statement=fillstatmentMassive(connection, value, sql);
         statement.executeUpdate();
     } catch(SQLException e) {
+        logger.error(e);
         throw new DBException(e);
     } finally {
         try {
-            statement.close();
             connection.close();
-        } catch(SQLException | NullPointerException e) {throw new DBException();}
+            statement.close();
+        } catch(SQLException | NullPointerException e) {
+            logger.error(e);
+        throw new DBException();}
     }
 }
 
@@ -55,19 +52,30 @@ public abstract  class BaseMysql<T> {
      * @param entity the object that contains  data for the INSERT request
      * @throws DBException
      */
-    void defultCreate(String sql, Connection connection, T entity) throws DBException {
+    Integer defultCreate(String sql, Connection connection, T entity) throws DBException {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(sql);
+
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             setFieldStatement(statement,entity);
             statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if(resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                logger.error("There is no autoincremented index after trying to add record into table ");
+                throw new DBException();
+            }
         } catch(SQLException e) {
+            logger.error(e);
             throw new DBException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
-            } catch(SQLException | NullPointerException e) {throw new DBException(e);}
+            } catch(SQLException | NullPointerException e) {
+                logger.error(e);
+                throw new DBException(e);}
         }
     }
 
@@ -89,10 +97,11 @@ public abstract  class BaseMysql<T> {
             throw new DBException(e);
         } finally {
             try {
-                resultSet.close();
                 connection.close();
+                resultSet.close();
                 statement.close();
             } catch (SQLException | NullPointerException e) {
+                logger.error(e);
                 throw new DBException();
             }
         }
@@ -121,7 +130,11 @@ public abstract  class BaseMysql<T> {
                 connection.close();
                 statement.close();
                 resultSet.close();
-            } catch(SQLException | NullPointerException e) {}
+            } catch(SQLException | NullPointerException e) {
+
+                logger.error(e);
+                throw new DBException(e);
+            }
         }
     }
 
@@ -140,12 +153,15 @@ public abstract  class BaseMysql<T> {
             setPrimary(statement,entity);
             statement.executeUpdate();
         } catch(SQLException e) {
+            logger.error(e);
             throw new DBException(e);
         } finally {
             try {
-                statement.close();
                 connection.close();
-            } catch(SQLException | NullPointerException e) {throw new DBException(e);}
+                statement.close();
+            } catch(SQLException | NullPointerException e) {
+                logger.error(e);
+                throw new DBException(e);}
         }
 
     }
@@ -167,6 +183,7 @@ public abstract  class BaseMysql<T> {
             return fillList(resultSet);
 
         } catch (SQLException e) {
+            logger.error(e);
             throw new DBException(e);
         } finally {
             try {
@@ -174,6 +191,8 @@ public abstract  class BaseMysql<T> {
                 statement.close();
                 resultSet.close();
             } catch (SQLException | NullPointerException e) {
+                logger.error(e);
+                throw new DBException(e);
             }
         }
 

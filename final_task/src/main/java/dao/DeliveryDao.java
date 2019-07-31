@@ -5,7 +5,7 @@ import exception.DBException;
 
 import java.util.List;
 
-public interface DeliveryDao extends Dao<Delivery> {
+public interface DeliveryDao extends DaoEntity<Delivery> {
     List<Delivery> readByOrderId(int order_id) throws DBException;
 
     List<Delivery>  readByCourierId(int courier_id) throws DBException;

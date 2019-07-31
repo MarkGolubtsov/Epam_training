@@ -33,8 +33,8 @@ public class AddressDaoImpl extends BaseMysql<Address> implements AddressDao {
 
 
     @Override
-    public void create(Address entity) throws DBException {
-        defultCreate(CREATE,connection,entity);
+    public Integer create(Address entity) throws DBException {
+       return defultCreate(CREATE,connection,entity);
     }
 
     @Override

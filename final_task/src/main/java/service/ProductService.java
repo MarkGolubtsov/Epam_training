@@ -5,7 +5,7 @@ import exception.DBException;
 
 import java.util.List;
 
-public interface ProductService extends Service<Product> {
+public interface ProductService extends ServiceEntity<Product> {
     void delete(Product product) throws DBException;
     List<Product>  readByType(String type) throws DBException;
     List<Product>  readByName(String name) throws DBException;

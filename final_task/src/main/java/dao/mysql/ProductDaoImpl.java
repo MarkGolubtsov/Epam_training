@@ -45,6 +45,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
             }
             try {
                 statement.close();
+                connection.close();
             } catch (SQLException | NullPointerException e) {
             }
         }
@@ -66,8 +67,8 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
     }
 
     @Override
-    public void create(Product entity) throws DBException {
-        defultCreate(CREATE,connection,entity);
+    public Integer create(Product entity) throws DBException {
+        return defultCreate(CREATE,connection,entity);
     }
 
     @Override

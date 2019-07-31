@@ -16,7 +16,7 @@ public class Registration extends ActionWithForward {
         String role =request.getParameter("role");
         String telephone = request.getParameter("tel");
         if (login!=null && password!=null && role!=null && telephone!=null) {
-            Forward forward = new Forward("login/shop");
+            Forward forward = new Forward("/shoplogin");
             UserService service = null;
             try {
                 service = factory.getService(UserService.class);

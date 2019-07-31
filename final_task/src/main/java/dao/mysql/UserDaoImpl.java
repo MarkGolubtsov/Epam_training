@@ -41,6 +41,7 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
             throw new DBException(e);
         } finally {
             try {
+                connection.close();
                 resultSet.close();
             } catch (SQLException | NullPointerException e) {
             }
@@ -71,8 +72,8 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
     }
 
     @Override
-    public void create(User entity) throws DBException {
-        defultCreate(CREATE,connection,entity);
+    public Integer create(User entity) throws DBException {
+        return  defultCreate(CREATE,connection,entity);
     }
 
     @Override

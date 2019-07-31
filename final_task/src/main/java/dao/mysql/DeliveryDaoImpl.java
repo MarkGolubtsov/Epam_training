@@ -51,8 +51,8 @@ public final  class DeliveryDaoImpl extends BaseMysql<Delivery> implements Deliv
     }
 
     @Override
-    public void create(Delivery entity) throws DBException {
-    defultCreate(CREATE,connection,entity);
+    public Integer create(Delivery entity) throws DBException {
+    return  defultCreate(CREATE,connection,entity);
     }
 
     @Override

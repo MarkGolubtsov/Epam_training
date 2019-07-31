@@ -5,6 +5,7 @@ import domain.ChoseProduct;
 import domain.Product;
 import domain.User;
 import exception.DBException;
+import service.CartService;
 import service.ChoseProductService;
 import service.ProductService;
 import service.ServiceFactory;
@@ -25,14 +26,14 @@ public abstract class ProductAjaxAction extends ActionAjax {
             ChoseProduct choseProduct = new ChoseProduct();
             ProductService productService = serviceFactory.getService(ProductService.class);
             Product product = productService.readById(id_prod);
-            ChoseProductService choseProductService = serviceFactory.getService(ChoseProductService.class);
-            List<ChoseProduct> choseProductsAll = choseProductService.findByUserId(user.getId());
+            CartService cartService = serviceFactory.getService(CartService.class);
 
+            List<ChoseProduct> choseProductsAll = cartService.getUserCart(user.getId());
             choseProduct.setProduct(product);
-            choseProduct.setUser(user);
-            logic(response, choseProductService, choseProductsAll, choseProduct);
+            ChoseProductService choseProductService= factory.getService(ChoseProductService.class);
+            logic(req,response,cartService,user.getId(),choseProductService,choseProductsAll, choseProduct);
         }
     }
 
-    abstract void  logic( HttpServletResponse response,ChoseProductService choseProductService,List<ChoseProduct>choseProductsAll,ChoseProduct choseProduct) throws IOException, DBException;
+    abstract void  logic(HttpServletRequest request, HttpServletResponse response,CartService cartService,int user_id,ChoseProductService choseProductService,List<ChoseProduct>choseProductsAll,ChoseProduct choseProduct) throws IOException, DBException;
 }

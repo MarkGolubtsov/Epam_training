@@ -4,6 +4,7 @@ import action.ActionAjax;
 import domain.ChoseProduct;
 import exception.DBException;
 import org.apache.log4j.Logger;
+import service.CartService;
 import service.ChoseProductService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,10 @@ public class RemoveProductActionAjax extends ProductAjaxAction {
     private static Logger logger = Logger.getLogger(AddProductActionAjax.class);
 
     @Override
-    void logic(HttpServletResponse resp, ChoseProductService choseProductService, List<ChoseProduct> choseProductsAll, ChoseProduct choseProduct) throws IOException, DBException {
+    void logic(HttpServletRequest request,HttpServletResponse resp, CartService cartService, int user_id, ChoseProductService choseProductService, List<ChoseProduct>choseProductsAll, ChoseProduct choseProduct) throws IOException, DBException {
+        String id_chose = request.getParameter("idChoseProduct").trim();
+        int id = Integer.valueOf(id_chose);
+        choseProduct.setId(id);
         int count=-1;
         for (ChoseProduct c :
                 choseProductsAll) {
@@ -32,8 +36,8 @@ public class RemoveProductActionAjax extends ProductAjaxAction {
                 }
             }
         }
-        logger.debug("Count Product="+count+"Product id"+choseProduct.getProduct().getId()+"User="+choseProduct.getUser().getId());
         if (count==0) {
+            cartService.deleteFromUserCart(user_id,choseProduct);
             choseProductService.delete(choseProduct);
         }
         resp.setContentType("text/plain");

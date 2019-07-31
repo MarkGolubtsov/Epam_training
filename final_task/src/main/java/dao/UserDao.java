@@ -6,7 +6,7 @@ import exception.DBException;
 
 import java.util.List;
 
-public interface UserDao extends Dao<User> {
+public interface UserDao extends DaoEntity<User> {
 
     List<User> readByName (String name) throws DBException;
 

@@ -3,14 +3,15 @@ let ID_CART_NAVBAR="#itemCount";
 let ID_CART_MOBILE_NAVBAR="#itemCountMobile";
 let ID_CARD_BEGIN="#card";
 let ID_COUNT_RECORD_BEGIN="#count";
-function addEventOnButtonRemoveInCart(idProduct) {
+function addEventOnButtonRemoveInCart(idProduct, idChoseProduct) {
     let idRecordCountProduct=ID_COUNT_RECORD_BEGIN+idProduct;
     let idCard=ID_CARD_BEGIN+idProduct;
         $.ajax({
             type:"POST",
             url : '/shop/removeOutCart',
             data : {
-                idProduct :idProduct
+                idProduct :idProduct,
+                idChoseProduct: idChoseProduct
             },
             success:function (response) {
                 let  countProductInCart = $(ID_CART_NAVBAR).text();

@@ -7,7 +7,7 @@ import exception.DBException;
 
 import java.util.List;
 
-public interface OrderService extends Service<Order> {
+public interface OrderService extends ServiceEntity<Order> {
 
     void save(Order order) throws DBException;
     void deleteByUserId(int user_id) throws DBException;

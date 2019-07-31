@@ -6,6 +6,7 @@ import domain.Product;
 import domain.User;
 import exception.DBException;
 import org.apache.log4j.Logger;
+import service.CartService;
 import service.ChoseProductService;
 import service.ProductService;
 import service.ServiceFactory;
@@ -20,7 +21,7 @@ public class AddProductActionAjax extends ProductAjaxAction{
 
 
     @Override
-    void logic( HttpServletResponse resp,ChoseProductService choseProductService,List<ChoseProduct>choseProductsAll,ChoseProduct choseProduct) throws IOException {
+    void logic(HttpServletRequest request, HttpServletResponse resp,CartService cartService,int user_id,ChoseProductService choseProductService,List<ChoseProduct>choseProductsAll,ChoseProduct choseProduct) throws IOException {
         int count=1;
         boolean flagInc = false;
         for (ChoseProduct c :
@@ -39,7 +40,10 @@ public class AddProductActionAjax extends ProductAjaxAction{
         if (!flagInc) {
             choseProduct.setCount(1);
             try {
-                choseProductService.save(choseProduct);
+               Integer integer= choseProductService.save(choseProduct);
+                choseProduct.setId(integer);
+                cartService.addInUserCart(user_id,choseProduct);
+
             } catch (DBException e) {
                 return;
             }

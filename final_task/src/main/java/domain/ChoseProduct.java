@@ -2,9 +2,7 @@ package domain;
 
 import java.util.List;
 
-public class ChoseProduct implements ContainUser {
-
-   private User user;
+public class ChoseProduct  extends Entity {
 
    private Product product;
 
@@ -24,13 +22,5 @@ public class ChoseProduct implements ContainUser {
 
    public void setCount(int count) {
       this.count = count;
-   }
-
-   public User getUser() {
-      return user;
-   }
-
-   public void setUser(User user) {
-      this.user = user;
    }
 }

@@ -4,6 +4,7 @@ import action.ActionAjax;
 import domain.ChoseProduct;
 import domain.User;
 import exception.DBException;
+import service.CartService;
 import service.ChoseProductService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +17,9 @@ public class GetCountCartAjaxAction extends ActionAjax {
     public void exec(HttpServletRequest request, HttpServletResponse response) throws IOException, DBException {
         User user = getAuthorizedUser();
         if ( user!=null) {
-            ChoseProductService choseProductService = factory.getService(ChoseProductService.class);
+            CartService cartService = factory.getService(CartService.class);
             int count = 0;
-            List<ChoseProduct> choseProducs = choseProductService.findByUserId(user.getId());
+            List<ChoseProduct> choseProducs = cartService.getUserCart(user.getId());
             for (ChoseProduct c :
                     choseProducs) {
                 count = count + c.getCount();

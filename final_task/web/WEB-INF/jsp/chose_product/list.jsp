@@ -31,7 +31,7 @@
                 <div class="card-content">
                     <c:if test="${not empty authorizedUser}">
                         <div>
-                            <button onclick="addEventOnButtonRemoveInCart(${item.product.id})" id="butRemove${item.product.id}"  type="submit" class="btn-floating halfway-fab waves-effect waves-green blue"><i class="material-icons">exposure_neg_1</i></button>
+                            <button onclick="addEventOnButtonRemoveInCart(${item.product.id},${item.id})" id="butRemove${item.product.id}"  type="submit" class="btn-floating halfway-fab waves-effect waves-green blue"><i class="material-icons">exposure_neg_1</i></button>
                         </div>
                         <script>
                         </script>

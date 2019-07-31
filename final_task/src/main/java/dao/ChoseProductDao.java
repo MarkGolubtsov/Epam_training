@@ -5,11 +5,9 @@ import exception.DBException;
 
 import java.util.List;
 
-public interface ChoseProductDao extends Dao<ChoseProduct> {
+public interface ChoseProductDao extends DaoEntity<ChoseProduct> {
 
-    List<ChoseProduct> readByUserId(int user_id) throws DBException;
     List<ChoseProduct> readByProductId(int product_id) throws DBException;
     void deleteByProductId(int product_id ) throws DBException;
-
-    List<ChoseProduct> readByUserIdAndProductId(int user_id, int product_id) throws DBException;
+    ChoseProduct readById(int id)throws DBException;
 }

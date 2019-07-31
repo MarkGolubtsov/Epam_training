@@ -52,8 +52,8 @@ public class OrderDaoImpl extends BaseMysql<Order> implements OrderDao {
     }
 
     @Override
-    public void create(Order entity) throws DBException {
-       defultCreate(CREATE,connection,entity);
+    public Integer create(Order entity) throws DBException {
+      return defultCreate(CREATE,connection,entity);
     }
 
     @Override

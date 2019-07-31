@@ -5,7 +5,7 @@ import exception.DBException;
 
 import java.util.List;
 
-public interface DeliveryService extends Service<Delivery> {
+public interface DeliveryService extends ServiceEntity<Delivery> {
     void save(Delivery delivery) throws DBException;
     void update(Delivery delivery) throws DBException;
     void delete(Delivery delivery) throws DBException;

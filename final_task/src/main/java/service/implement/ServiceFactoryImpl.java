@@ -18,6 +18,7 @@ public enum  ServiceFactoryImpl implements ServiceFactory {
         SERVICES.put(DeliveryService.class, DeliveryServiceImpl.class);
         SERVICES.put(OrderService.class, OrderServiceImpl.class);
         SERVICES.put(ProductService.class,ProductServiceImpl.class);
+        SERVICES.put(CartService.class,CartServiceImpl.class);
     }
     private  DaoFactory daoFactory ;
     public void setDaoFactory(DaoFactory daoFactory) {

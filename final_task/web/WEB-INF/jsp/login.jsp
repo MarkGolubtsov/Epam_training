@@ -26,7 +26,7 @@
                          <div class='row'>
                              <div class='input-field col s12'>
                                  <input class='validate' type='text' name='name' id='email' />
-                                 <label for='email'>Enter your email</label>
+                                 <label for='email'>Enter your name</label>
                              </div>
                          </div>
 
