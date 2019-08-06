@@ -9,6 +9,7 @@ import java.util.List;
 
 public abstract  class BaseMysql<T>  extends Base{
     private static Logger logger = Logger.getLogger( Base.class);
+
     private  PreparedStatement  fillstatmentMassive(Connection connection,int[] value,String sql) throws SQLException {
        PreparedStatement statement = connection.prepareStatement(sql);
         if (value.length<1) {

@@ -50,7 +50,9 @@
             </p>
         </div>
     </div>
-    <div id="Container" class="col s4">
+
+
+    <div id="Container" class="col s3">
         <c:forEach items="${listProduct}" var="item">
                 <div   typeProduct=${item.type} nameProduct="${item.name}" costProduct="${item.cost}" class="card ">
                     <div class="card-image">
@@ -62,7 +64,7 @@
                         </c:if>
                         <span  class="card-title">${item.name}</span>
                         <c:if test="${not empty authorizedUser}">
-                            <button onclick="addEventOnButtonAdd(${item.id})" id="butAdd${item.id}" dataProduct="${item.id}" type="submit" class="btn-floating halfway-fab waves-effect waves-green  red"><i class="material-icons">add</i></button>
+                            <button onclick="addEventOnButtonAdd(${item.id})" id="butAdd${item.id}" dataProduct="${item.id}" type="submit" class="btn-floating halfway-fab waves-effect waves-green  red"><i class="material-icons">add_shopping_cart</i></button>
                         </c:if>
                     </div>
                     <div class="card-content">

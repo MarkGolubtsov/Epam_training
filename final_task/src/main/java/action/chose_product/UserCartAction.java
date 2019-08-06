@@ -22,6 +22,7 @@ public class UserCartAction extends ActionWithForward {
         List<ChoseProduct> choseProductList =cartService.getUserCart(user.getId());
         logger.debug("Size basket"+choseProductList.size());
         request.setAttribute("listChoseProduct",choseProductList);
+        request.setAttribute("userId",user.getId());
         return null;
     }
 }

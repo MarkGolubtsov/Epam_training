@@ -58,9 +58,9 @@ public class DeliveryServiceImpl extends ServiceImpl implements DeliveryService,
         return  result;
     }
     private void fillList(List<Delivery> list) throws DBException {
-        UserDao userDao =daoFactory.createDao(UserDao.class);
         for (Delivery d:
              list ) {
+            UserDao userDao =daoFactory.createDao(UserDao.class);
             User courier =d.getCourier();
             d.setUser(userDao.readById(courier.getId()));
             fillUser(d,daoFactory);

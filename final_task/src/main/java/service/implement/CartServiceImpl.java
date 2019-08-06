@@ -15,10 +15,10 @@ public class CartServiceImpl extends ServiceImpl implements CartService{
     @Override
     public List<ChoseProduct> getUserCart(int user_id) throws DBException {
         CartDao cartDao = daoFactory.createDao(CartDao.class);
-        ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
         List<ChoseProduct> choseProducts= cartDao.getUserCart(user_id);
         for (ChoseProduct c:
              choseProducts) {
+            ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
             ChoseProduct choseProduct =choseProductDao.readById(c.getId());
             fill(c,choseProduct);
             fillProduct(c);
@@ -29,7 +29,6 @@ public class CartServiceImpl extends ServiceImpl implements CartService{
     @Override
     public void addInUserCart(int user_id, ChoseProduct choseProduct) throws DBException {
         CartDao cartDao = daoFactory.createDao(CartDao.class);
-        ChoseProductDao choseProductDao= daoFactory.createDao(ChoseProductDao.class);
         cartDao.addToCart(user_id,choseProduct);
     }
 

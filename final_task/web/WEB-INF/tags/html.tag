@@ -19,7 +19,9 @@
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></script>
-
+    <script>
+        <%@include file="/WEB-INF/js/cart.js"%>
+    </script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </HEAD>

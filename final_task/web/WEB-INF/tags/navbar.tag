@@ -1,16 +1,17 @@
 <%@tag language="java" pageEncoding="UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script>
-    <%@include file="/WEB-INF/js/cart.js"%>
-</script>
 <%--    <c:if test="${not empty authorizedUser}">--%>
+<c:url value="/shop/logout" var="logOut"/>
+<c:url value="/shop/login" var="login"/>
+<c:url value="/shop/product/list" var="listProduct"/>
+<c:url value="/shop/main" var="main"/>
     <nav class="indigo">
             <a href="#" class="brand-logo right  ">Shop</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-wrapper" class="left hide-on-med-and-down indigo ">
                 <c:if test="${not empty authorizedUser}">
-                    <li ><a href="/shop/logout"><i class="material-icons"> exit_to_app</i></a></li>
+                    <li ><a href="${logOut}"><i class="material-icons"> exit_to_app</i></a></li>
                     <c:forEach items="${menu}" var="item">
                         <c:url value="${item.url}" var="itemUrl"/>
 
@@ -30,10 +31,10 @@
                 </c:if>
 
                 <c:if test="${empty authorizedUser}">
-                    <li><a href="/shop/login">Login</a></li>
+                    <li><a href="${login}">Login</a></li>
                 </c:if>
-                <li><a href="/shop/product/list">Product</a></li>
-                <li><a href="/shop/main">Main</a></li>
+                <li><a href="${listProduct}">Product</a></li>
+                <li><a href="${main}">Main</a></li>
             </ul>
         </div>
     </nav>
@@ -41,7 +42,7 @@
 
 <ul class="sidenav" id="mobile-demo">
     <c:if test="${not empty authorizedUser}">
-        <li ><a href="/shop/logout"><i class="material-icons"> exit_to_app</i></a></li>
+        <li ><a href="${logOut}"><i class="material-icons"> exit_to_app</i></a></li>
         <c:forEach items="${menu}" var="item">
             <c:url value="${item.url}" var="itemUrl"/>
 
@@ -61,10 +62,10 @@
     </c:if>
 
     <c:if test="${empty authorizedUser}">
-        <li><a href="/shop/login">Login</a></li>
+        <li><a href="${login}">Login</a></li>
     </c:if>
-    <li><a href="/shop/product/list">Product</a></li>
-    <li><a href="/shop/main">Main</a></li>
+    <li><a href="${listProduct}">Product</a></li>
+    <li><a href="${main}">Main</a></li>
 </ul>
 
 

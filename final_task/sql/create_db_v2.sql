@@ -23,10 +23,18 @@ CREATE TABLE `order`
 
 CREATE TABLE `chose_product`
 (
+    `id` int auto_increment,
   `user_id` int not null ,
   `product_id` int not null ,
   `count` int,
-  PRIMARY KEY (`user_id`,`product_id`)
+  PRIMARY KEY (`id`)
+);
+
+create TABLE `product_ordered`
+(
+    `order_id` int not null ,
+    `chose_product_id` int not null ,
+    primary key (`order_id`,`chose_product_id`)
 );
 
 CREATE TABLE `product`
@@ -58,10 +66,6 @@ ALTER TABLE `order` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
     ON UPDATE CASCADE
     ON DELETE RESTRICT;
 
-ALTER TABLE `chose_product` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-    ON UPDATE CASCADE
-    ON DELETE RESTRICT;
-
 ALTER TABLE `delivery` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
     ON UPDATE CASCADE
     ON DELETE RESTRICT;
@@ -82,3 +86,15 @@ ALTER TABLE `chose_product` ADD FOREIGN KEY (`product_id`) REFERENCES `product` 
     ON UPDATE CASCADE
     ON DELETE RESTRICT;
 
+ALTER TABLE `chose_product` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT;
+
+
+ALTER TABLE product_ordered ADD FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT ;
+
+ALTER TABLE product_ordered ADD FOREIGN KEY (`chose_product_id`) REFERENCES `chose_product` (`id`)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT ;

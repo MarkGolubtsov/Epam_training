@@ -15,21 +15,6 @@ public class ChoseProductServiceImpl extends ServiceImpl implements ChoseProduct
         ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
         return  choseProductDao.create(choseProduct);
     }
-//TODo
-//    @Override
-//    public List<ChoseProduct> findByOrderId(int order_id) throws DBException {
-//        ChoseProductDao choseProductDao = daoFactory.createDao(ChoseProductDao.class);
-//        OrderDao orderDao = daoFactory.createDao(OrderDao.class);
-//        Order order = orderDao.readById(order_id);
-//        List<ChoseProduct> result = choseProductDao.read();
-//        for (ChoseProduct p:
-//             result) {
-//            fillProduct(p);
-//            p.setOrder(order);
-//        }
-//        return result;
-//    }
-
 
 
     @Override
