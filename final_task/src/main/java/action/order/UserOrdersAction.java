@@ -1,6 +1,6 @@
 package action.order;
 
-import action.ActionWithForward;
+import action.role.forward.UserActionForward;
 import domain.Order;
 import domain.User;
 import exception.DBException;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class UserOrdersAction  extends ActionWithForward {
+public class UserOrdersAction  extends UserActionForward {
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException {
         User user = getAuthorizedUser();

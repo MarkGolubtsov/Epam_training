@@ -1,6 +1,6 @@
 
 
-let ATTRIBUTE_DATA_ORDER_ID="data-orderId"
+let ATTRIBUTE_DATA_ORDER_ID="data-orderId";
 let ATTRIBUTE_DATA_DELIVERY="data-delivery";
 let ATTRIBUTE_DATA_TYPE_PAY="data-type-pay";
 let ATTRIBUTE_DATA_TOTAL_PRICE="data-total_price";

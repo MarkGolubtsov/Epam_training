@@ -5,16 +5,13 @@ import exception.DBException;
 import org.apache.log4j.Logger;
 import service.CartService;
 import service.ChoseProductService;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class AddProductActionAjax extends ProductAjaxAction{
+public class AddProductActionAjax extends ProductAjaxAction {
     private static Logger logger = Logger.getLogger(AddProductActionAjax.class);
-
-
     @Override
     void logic(HttpServletRequest request, HttpServletResponse resp,CartService cartService,int user_id,ChoseProductService choseProductService,List<ChoseProduct>choseProductsAll,ChoseProduct choseProduct) throws IOException {
         int count=1;

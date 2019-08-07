@@ -1,6 +1,6 @@
 package action.cart;
 
-import action.ActionAjax;
+import action.role.ajax.UserActionAjax;
 import domain.ChoseProduct;
 import domain.User;
 import exception.DBException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class GetCountCartAjaxAction extends ActionAjax {
+public class GetCountCartAjaxAction extends UserActionAjax {
     @Override
     public void exec(HttpServletRequest request, HttpServletResponse response) throws IOException, DBException {
         User user = getAuthorizedUser();

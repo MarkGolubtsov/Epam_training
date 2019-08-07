@@ -155,7 +155,6 @@ function positionInOrder(chose_product_id) {
     let i=0;
     order.chose_product.forEach(function (element) {
         if (element==chose_product_id){
-            result=true;
             result=i;
         }
         i=i+1;

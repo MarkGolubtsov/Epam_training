@@ -1,6 +1,6 @@
 package action.cart;
 
-import action.ActionAjax;
+import action.role.ajax.UserActionAjax;
 import domain.ChoseProduct;
 import domain.Product;
 import domain.User;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public abstract class ProductAjaxAction extends ActionAjax {
+public abstract class ProductAjaxAction extends UserActionAjax {
     @Override
     public void exec(HttpServletRequest req, HttpServletResponse response) throws IOException, DBException {
         ServiceFactory serviceFactory =factory;

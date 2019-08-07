@@ -2,7 +2,7 @@ package controller;
 import action.*;
 import action.Registration;
 import action.cart.*;
-import action.order.UserOrdersAction;
+import action.order.*;
 import action.product.ProductListAction;
 import org.apache.log4j.Logger;
 
@@ -55,9 +55,6 @@ public class ActionFilter implements Filter {
             }
             Class<? extends Action> actionClass = actions.get(actionName);
             logger.debug("---------"+actionClass.getName());
-            if (actionName.equals("/addInCart")) {
-                System.out.println("1");
-            }
             try {
                 Action actionFinal= actionClass.newInstance();
 

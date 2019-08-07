@@ -1,7 +1,6 @@
 package action.cart;
 
-import action.ActionAjax;
-import dao.OrderedProductDao;
+import action.role.ajax.UserActionAjax;
 import deserializer_json.OrderDataDeserializer;
 import deserializer_json.OrderDataDeserializerJsonImpl;
 import domain.*;
@@ -16,11 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class CreateOrderActionAjax extends ActionAjax {
+public class CreateOrderActionAjax extends UserActionAjax {
     @Override
     public void exec(HttpServletRequest request, HttpServletResponse response) throws IOException, DBException {
         String json =request.getParameter("order");
