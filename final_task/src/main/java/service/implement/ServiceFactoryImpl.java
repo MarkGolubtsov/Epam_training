@@ -1,6 +1,8 @@
 package service.implement;
 
 import dao.DaoFactory;
+import dao.OrderedProductDao;
+import dao.mysql.OrderedProductDaoImpl;
 import exception.DBException;
 import service.*;
 
@@ -19,6 +21,7 @@ public enum  ServiceFactoryImpl implements ServiceFactory {
         SERVICES.put(OrderService.class, OrderServiceImpl.class);
         SERVICES.put(ProductService.class,ProductServiceImpl.class);
         SERVICES.put(CartService.class,CartServiceImpl.class);
+        SERVICES.put(OrderedProductService.class, OrderedProductServiceImpl.class);
     }
     private  DaoFactory daoFactory ;
     public void setDaoFactory(DaoFactory daoFactory) {

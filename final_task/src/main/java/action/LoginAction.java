@@ -23,7 +23,7 @@ public class LoginAction extends ActionWithForward {
                 new NavbarItem("/shop/chose_product/list","Cart"),
                 new NavbarItem("/shop/search/delivery/list", "Delivery"),
                 new NavbarItem("/shop/search/delivery/form", "Create delivery"),
-                new NavbarItem("/shop/search/order/list", "Order")
+                new NavbarItem("/shop/order/list", "Orders")
         )));
         navbar.put(RoleUser.COURIER, new ArrayList<>(Arrays.asList(
                 new NavbarItem("/shop/deliverys/list", "Delivery")

@@ -14,9 +14,9 @@ import java.util.List;
 public class OrderServiceImpl extends ServiceImpl implements OrderService, FillUser {
 
     @Override
-    public void save(Order order) throws DBException {
+    public int save(Order order) throws DBException {
         OrderDao  orderDao = daoFactory.createDao(OrderDao.class);
-        orderDao.create(order);
+        return orderDao.create(order);
     }
 
     @Override

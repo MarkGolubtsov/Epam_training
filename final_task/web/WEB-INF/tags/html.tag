@@ -7,8 +7,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 
-<HTML>
-<HEAD>
+<html>
+<head>
     <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <TITLE>Shop - ${title}</TITLE>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -24,10 +24,10 @@
     </script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</HEAD>
-<BODY class="grey lighten-2">
+</head>
+<body class="grey lighten-2">
 <u:navbar/>
-<DIV id="page">
+<div id="page">
     <jsp:doBody/>
-</DIV>
-</BODY>
+</div>
+</body>

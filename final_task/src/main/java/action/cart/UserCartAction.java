@@ -1,4 +1,4 @@
-package action.chose_product;
+package action.cart;
 
 import action.ActionWithForward;
 import domain.ChoseProduct;
@@ -6,7 +6,6 @@ import domain.User;
 import exception.DBException;
 import org.apache.log4j.Logger;
 import service.CartService;
-import service.ChoseProductService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

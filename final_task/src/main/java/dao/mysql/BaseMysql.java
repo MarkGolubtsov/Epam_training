@@ -1,6 +1,5 @@
 package dao.mysql;
 
-import action.chose_product.UserCartAction;
 import exception.DBException;
 import org.apache.log4j.Logger;
 
@@ -63,10 +62,7 @@ public abstract  class BaseMysql<T>  extends Base{
             ResultSet resultSet = statement.getGeneratedKeys();
             if(resultSet.next()) {
                 return resultSet.getInt(1);
-            } else {
-                logger.error("There is no autoincremented index after trying to add record into table ");
-                throw new DBException();
-            }
+            } else return -1;
         } catch(SQLException e) {
             logger.error(e);
             throw new DBException(e);

@@ -15,7 +15,6 @@
         <c:forEach items="${listChoseProduct}" var="item">
             <div choseProductId="${item.id}"  countProduct="${item.count}" typeProduct=${item.product.type} nameProduct="${item.product.name}" costProduct="${item.product.cost}" id="card${item.product.id}" class="section">
             <div  class="card">
-
                 <div class="card-image">
                     <c:if test="${ empty item.product.img_path}">
                         <img src="/img/img2.jpg" alt="Image"/>
@@ -102,7 +101,7 @@
                     <br />
                     <center>
                         <div class='row'>
-                            <a onclick="setUser(${userId})" class="waves-effect waves-light btn-smal"><i class="material-icons" >add_circle</i>Create Order</a>
+                            <a onclick="createOrder(${userId})" class="waves-effect waves-light btn-smal"><i class="material-icons" >add_circle</i>Create Order</a>
                         </div>
                     </center>
                 </form>

@@ -15,7 +15,7 @@ let ATTRIBUTE_ID_CHOSEPRODUCT_IN_CARD="choseProductId";
 
 let ID_CHECKBOX_PICKUP="#type_delivery_pickup";
 let ID_CHECKBOX_COURIER="#type_delivery_courier";
-let ID_CHECKBOX_CASH="#type_delivery_cash";
+let ID_CHECKBOX_CASH="#type_pay_cash";
 let ID_CHECKBOX_CASHLESS="#type_pay_cashless";
 let order = {
     user_id: null,
@@ -44,12 +44,13 @@ function addEventOnButtonRemoveInCart(idProduct, idChoseProduct) {
                 $(idRecordCountProduct).text(response);
 
                 let element=$(idChoseBox);
-                if (positionInOrder(idChoseProduct)!=-1) {
+               // if (positionInOrder(idChoseProduct)!=-1) {
+                if (positionInOrder(idChoseProduct)>=0) {
                     let chose_product_id=element.attr(ATTRIBUTE_ID_CHOSEPRODUCT_IN_CARD);
                     let cost=element.attr(ATTRIBUTE_COST);
                     order.final_cost=order.final_cost-cost;
                     $(ID_ORDER_COST).text(order.final_cost);
-                    if (response==0) {
+                    if (Number(response)===0) {
                         let position= positionInOrder(chose_product_id);
                         console.log("position"+position);
                         order.chose_product.splice(position,1);
@@ -57,7 +58,7 @@ function addEventOnButtonRemoveInCart(idProduct, idChoseProduct) {
 
                 }
 
-                if (response==0){
+                if (Number(response)===0){
                     $(idCard).remove();
                 }
 
@@ -79,7 +80,8 @@ function addEventOnButtonAddInCart(idProduct,idChoseProduct){
                 $(ID_CART_NAVBAR).text(countProductInCart);
                 $(idCountProduct).text(response);
                 let element=$(idChoseBox);
-                if (positionInOrder(idChoseProduct)!=-1)
+                if (positionInOrder(idChoseProduct)>=0)
+                //if (positionInOrder(idChoseProduct)!=-1)
                 {
                     console.log("in add");
                     let cost=element.attr(ATTRIBUTE_COST);
@@ -114,6 +116,7 @@ function updateMobileCart() {
         url : '/shop/getCountProductInCart',
         success:function (response) {
             $(ID_CART_MOBILE_NAVBAR).text(response);
+            $($)
         }
     });
 }
@@ -127,8 +130,25 @@ function updateCart() {
     });
 }
 
-function setUser(id) {
+function createOrder(id) {
     order.user_id=id;
+    if (order.chose_product.length!==0){
+        $.ajax({
+            type:"POST",
+            url : '/shop/createOrder',
+            data: {order:JSON.stringify(order)},
+            success : function () {
+                console.log("remove");
+                order.chose_product.forEach(function (element) {
+                    $("div[choseProductId*="+element+"]").remove();
+                });
+               order.chose_product=[];
+               order.final_cost=0.0;
+               $(ID_ORDER_COST).text(order.final_cost);
+               updateCart();
+            }
+        })
+    }
 }
 function positionInOrder(chose_product_id) {
     let result=-1;

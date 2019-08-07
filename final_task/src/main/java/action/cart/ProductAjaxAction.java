@@ -1,4 +1,4 @@
-package action.chose_product;
+package action.cart;
 
 import action.ActionAjax;
 import domain.ChoseProduct;

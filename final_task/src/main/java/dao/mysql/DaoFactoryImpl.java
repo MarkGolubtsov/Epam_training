@@ -19,6 +19,7 @@ public enum DaoFactoryImpl implements DaoFactory {
         classes.put(ProductDao.class, ProductDaoImpl.class);
         classes.put(UserDao.class, UserDaoImpl.class);
         classes.put(CartDao.class, CartDaoImpl.class);
+        classes.put(OrderedProductDao.class, OrderedProductDaoImpl.class);
     }
 
 
