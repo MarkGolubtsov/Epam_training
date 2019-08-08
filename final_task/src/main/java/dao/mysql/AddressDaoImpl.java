@@ -13,13 +13,18 @@ import java.util.List;
 
 public class AddressDaoImpl extends BaseMysql<Address> implements AddressDao {
     private static final String READ_BY_STREET="SELECT `user_id`, `street`, `house` FROM `address` WHERE `street` LIKE ?`";
-    private static final String UPDATE="UPDATE `address` SET  `user_id`=?, `street`=?, `house`=? WHERE `id` = ?";
-    private static final String READ_ALL = "SELECT `user_id` ,`street`,`house`From `address`ORDER BY `date_ord`";
 
-    private static final String READ_BY_HOUSE="SELECT `user_id`, `street`, `house` FROM `address` WHERE `house`=?`";
+    private static final String UPDATE="UPDATE `address` SET  `user_id`=?, `street`=?, `house`=? WHERE `user_id` = ?";
+
+    private static final String READ_ALL = "SELECT `user_id` ,`street`,`house` From `address`";
+
+    private static final String READ_BY_HOUSE="SELECT `user_id`, `street`, `house` FROM `address` WHERE `house`=?";
 
     private static final String CREATE = "INSERT INTO `address` (`user_id`,`street`,`house`) VALUES (?,?,?)";
+
     private static final String DELETE= "DELETE FROM `address` WHERE `user_id`=?";
+
+    private static final String READ_BY_USER="SELECT `user_id`, `street`, `house` FROM `address` WHERE `user_id`=?";
 
     @Override
     public List<Address> readByStreet(String street) throws DBException {
@@ -29,6 +34,11 @@ public class AddressDaoImpl extends BaseMysql<Address> implements AddressDao {
     @Override
     public List<Address> readByHouse(int house) throws DBException {
         return readByInt(connection,READ_BY_HOUSE,new int[]{house});
+    }
+
+    @Override
+    public Address readByUserId(int user_id) throws DBException {
+        return readByInt(connection,READ_BY_USER,new int[]{user_id}).get(0);
     }
 
 
@@ -82,6 +92,7 @@ public class AddressDaoImpl extends BaseMysql<Address> implements AddressDao {
         user.setId(resultSet.getInt("user_id"));
         address.setUser(user);
         address.setHouse(resultSet.getInt("house"));
+        address.setStreet(resultSet.getString("street"));
     }
 
     @Override

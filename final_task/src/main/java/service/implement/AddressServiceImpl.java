@@ -13,6 +13,12 @@ import java.util.List;
 
 public class AddressServiceImpl extends ServiceImpl implements AddressService, FillUser {
     @Override
+    public Address readByUserId(int user_id) throws DBException {
+        AddressDao addressDao = daoFactory.createDao(AddressDao.class);
+        return addressDao.readByUserId(user_id);
+    }
+
+    @Override
     public void save(Address address) throws DBException {
         AddressDao addressDao = daoFactory.createDao(AddressDao.class);
         addressDao.create(address);

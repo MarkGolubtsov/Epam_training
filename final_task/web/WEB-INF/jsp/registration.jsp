@@ -27,7 +27,7 @@
                     <div class='row'>
                         <div class='input-field col s12'>
                             <input class='validate   ' type='text' name='name' id='email' />
-                            <label  for='email'>Enter your email</label>
+                            <label  for='email'>Enter your name</label>
                         </div>
                     </div>
 
@@ -42,6 +42,19 @@
                         <div class='input-field col s12'>
                             <input class='validate' type='text' name='tel' id='tel' />
                             <label for='tel'>Telephone</label>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <input class='validate' type='text' name='street' id='street' />
+                            <label for='street'>Street</label>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <input class='validate' type='text' name='house' id='house' pattern="[0-9]+"/>
+                            <label for='house'>House</label>
                         </div>
                     </div>
 

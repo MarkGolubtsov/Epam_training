@@ -4,6 +4,8 @@ import action.Registration;
 import action.cart.*;
 import action.order.*;
 import action.product.ProductListAction;
+import action.user.GetInfoUser;
+import action.user.SaveUserInfo;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -32,6 +34,9 @@ public class ActionFilter implements Filter {
 
         actions.put("/createOrder", CreateOrderActionAjax.class);
         actions.put("/order/list", UserOrdersAction.class);
+
+        actions.put("/user/edit", GetInfoUser.class);
+        actions.put("/userSaveInfo", SaveUserInfo.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -54,7 +59,6 @@ public class ActionFilter implements Filter {
                 actionName = uri.substring(beginAction);
             }
             Class<? extends Action> actionClass = actions.get(actionName);
-            logger.debug("---------"+actionClass.getName());
             try {
                 Action actionFinal= actionClass.newInstance();
 

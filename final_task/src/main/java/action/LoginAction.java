@@ -20,18 +20,18 @@ public class LoginAction extends ActionWithForward {
     private static Map<RoleUser, List<NavbarItem>> navbar = new ConcurrentHashMap<>();
     static {
         navbar.put(RoleUser.USER, new ArrayList<>(Arrays.asList(
-                new NavbarItem("/shop/chose_product/list","Cart"),
-                new NavbarItem("/shop/search/delivery/list", "Delivery"),
-                new NavbarItem("/shop/search/delivery/form", "Create delivery"),
-                new NavbarItem("/shop/order/list", "Orders")
+                new NavbarItem("/shop/chose_product/list","Cart",null),
+                new NavbarItem("/shop/search/delivery/list", "Delivery",null),
+                new NavbarItem("/shop/order/list", "Orders",null),
+                new NavbarItem("/shop/user/edit","Profile","person")
         )));
 
         navbar.put(RoleUser.COURIER, new ArrayList<>(Arrays.asList(
-                new NavbarItem("/shop/deliverys/list", "Delivery")
+                new NavbarItem("/shop/deliverys/list", "Delivery",null)
         )));
         navbar.put(RoleUser.ADMIN, new ArrayList<>(Arrays.asList(
-                new NavbarItem("/shop/role/list", "Users"),
-                new NavbarItem("/shop/courier/list", "Courier")
+                new NavbarItem("/shop/role/list", "Users",null),
+                new NavbarItem("/shop/courier/list", "Courier",null)
         )));
     }
     @Override

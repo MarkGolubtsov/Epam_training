@@ -116,7 +116,6 @@ function updateMobileCart() {
         url : '/shop/getCountProductInCart',
         success:function (response) {
             $(ID_CART_MOBILE_NAVBAR).text(response);
-            $($)
         }
     });
 }

@@ -13,15 +13,16 @@ import java.util.Optional;
 public class UserServiceImpl extends ServiceImpl implements UserService {
 
     @Override
-    public boolean registration(User user) throws DBException {
+    public int registration(User user) throws DBException {
         User result =signIn(user.getName(),user.getPassword());
         if (result==null)
         {
+            int final_res =-1;
             UserDao userDao = daoFactory.createDao(UserDao.class);
-            userDao.create(user);
-            return true;
+            final_res=userDao.create(user);
+            return final_res;
         } else {
-        return  false;
+        return  -1;
         }
 
     }
@@ -55,7 +56,7 @@ public class UserServiceImpl extends ServiceImpl implements UserService {
     @Override
     public List<User> readByTelephone(String telephone) throws DBException {
         UserDao userDao = daoFactory.createDao(UserDao.class);
-        return readByTelephone(telephone);
+        return userDao.readByTelephone(telephone);
     }
 
     @Override

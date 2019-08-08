@@ -24,7 +24,11 @@
                         </c:if>
 
                         <c:if test="${not (item.name=='Cart')}">
-                            <li><A href="${itemUrl}">${item.name}</A></li>
+                            <li><a href="${itemUrl}">${item.name}
+                                <c:if test="${not empty item.icon}">
+                                    <i class="material-icons left">${item.icon}</i>
+                                </c:if>
+                            </a></li>
                         </c:if>
 
                     </c:forEach>
@@ -49,7 +53,7 @@
             <c:if test="${item.name=='Cart'}">
                 <li><a href="${itemUrl}"><i class="material-icons left">shopping_cart</i>
                         ${item.name}
-                    <span  id="itemCountMobile" class="new  badge red" ></span>
+                    <span onload="updateMobileCart()"  class="new badge" data-badge-caption="items" id="itemCountMobile"  ></span>
                 </a>
                 </li>
             </c:if>

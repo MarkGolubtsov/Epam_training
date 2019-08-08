@@ -12,15 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl extends BaseMysql<User> implements UserDao {
-    private  static final String CREATE="INSERT INTO `role` (`id`,`name`, `password`, `role`,`telephone_number`,`img`) VALUES (null, ?,?,?, ?, ?)";
-    private static final String READ_BY_TELEPHONE="SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `role` WHERE `telephone_number` LIKE ?";
-    private static final String READ_BY_NAME= "SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `role` WHERE `name` LIKE ?";
-    private static final String READ_BY_ID ="SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `role` WHERE `id` = ?";
+    private  static final String CREATE="INSERT INTO `user` (`id`,`name`, `password`, `role`,`telephone_number`,`img`) VALUES (null, ?,?,?, ?, ?)";
+    private static final String READ_BY_TELEPHONE="SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `user` WHERE `telephone_number` LIKE ?";
+    private static final String READ_BY_NAME= "SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `user` WHERE `name` LIKE ?";
+    private static final String READ_BY_ID ="SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `user` WHERE `id` = ?";
     private static final String READ_BY_NAME_AND_PASSWORD="SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `user` WHERE `name` = ? AND `password` = ?";
-    private static final String READ_BY_ROLE="SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `role` WHERE `role` = ?";
-    private static final String DELETE_BY_ID ="DELETE FROM `role` WHERE `id` = ?";
-    private static final String READ_ALL="SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `role` ORDER BY `name`";
-    private static final String UPDATE="UPDATE `role` SET  `name`=?, `password`=?, `role`=?, `telephone_number`=?,`img`=? WHERE `id` = ?";
+    private static final String READ_BY_ROLE="SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `user` WHERE `role` = ?";
+    private static final String DELETE_BY_ID ="DELETE FROM `user` WHERE `id` = ?";
+    private static final String READ_ALL="SELECT `id`, `name`, `password`, `role`, `telephone_number`,`img` FROM `user` ORDER BY `name`";
+    private static final String UPDATE="UPDATE `user` SET  `name`=?, `password`=?, `role`=?, `telephone_number`=?,`img`=? WHERE `id` = ?";
     @Override
     public User read(String name, String password) throws DBException {
         String sql=READ_BY_NAME_AND_PASSWORD;
