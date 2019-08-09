@@ -25,14 +25,14 @@
 
                          <div class='row'>
                              <div class='input-field col s12'>
-                                 <input class='validate' type='text' name='name' id='email' />
+                                 <input required pattern="[a-zA-Z]" class='validate' type='text' name='name' id='email' />
                                  <label for='email'>Enter your name</label>
                              </div>
                          </div>
 
                          <div class='row'>
                              <div class='input-field col s12'>
-                                 <input class='validate' type='password' name='password' id='password' />
+                                 <input  required class='validate' type='password' name='password' id='password' />
                                  <label for='password'>Enter your password</label>
                              </div>
                          </div>

@@ -37,6 +37,7 @@ public class ActionFilter implements Filter {
 
         actions.put("/user/edit", GetInfoUser.class);
         actions.put("/userSaveInfo", SaveUserInfo.class);
+        actions.put("/getOrderProduct", GetOrderProduct.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -61,7 +62,6 @@ public class ActionFilter implements Filter {
             Class<? extends Action> actionClass = actions.get(actionName);
             try {
                 Action actionFinal= actionClass.newInstance();
-
                 System.out.println("Forward?"+(actionFinal instanceof ActionWithForward));
                 System.out.println("Ajax?"+(actionFinal instanceof ActionAjax));
                 actionFinal.setName(actionName);

@@ -6,7 +6,6 @@ let ID_HOUSE_INPUT="#house";
 let ID_RESULT="#result";
 $(document).ready(function(){
     $(ID_SAVE_BUTTON).click(function () {
-        alert("Dap")
         let name =$(ID_NAME_INPUT).val();
         let tel =$(ID_TELEPHONE_INPUT).val();
         let house =$(ID_HOUSE_INPUT).val();

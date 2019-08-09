@@ -38,7 +38,11 @@ public class AddressDaoImpl extends BaseMysql<Address> implements AddressDao {
 
     @Override
     public Address readByUserId(int user_id) throws DBException {
-        return readByInt(connection,READ_BY_USER,new int[]{user_id}).get(0);
+        List<Address> list =readByInt(connection,READ_BY_USER,new int[]{user_id});
+        if (list!=null) {
+            return list.get(0);
+        }
+        return null;
     }
 
 

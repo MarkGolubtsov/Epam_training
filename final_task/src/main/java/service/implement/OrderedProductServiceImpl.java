@@ -35,7 +35,7 @@ public class OrderedProductServiceImpl extends ServiceImpl implements OrderedPro
             fill(c,choseProduct);
             fillProduct(c);
         }
-        return null;
+        return choseProducts;
     }
 
     @Override
