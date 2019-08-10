@@ -23,6 +23,7 @@ public class GetInfoUser extends AuthorizeActionForward {
             request.setAttribute("telephone",telephone);
             request.setAttribute("street",address.getStreet());
             request.setAttribute("house",address.getHouse());
+            request.setAttribute("img",user.getImg());
         }
         return null;
     }

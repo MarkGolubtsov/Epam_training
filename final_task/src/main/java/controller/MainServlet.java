@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -40,7 +42,6 @@ public class MainServlet extends HttpServlet {
     public static final int DB_POOL_START_SIZE = 10;
     public static final int DB_POOL_MAX_SIZE = 1000;
     public static final int DB_POOL_CHECK_CONNECTION_TIMEOUT =0;
-
     public void init() {
         try {
             Logger root = Logger.getRootLogger();

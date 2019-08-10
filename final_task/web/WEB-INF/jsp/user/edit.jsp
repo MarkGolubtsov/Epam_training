@@ -9,42 +9,58 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="${language}" scope="session"/>
+<fmt:setBundle basename="lang" var="value"/>
 <u:html title="Products">
     <div id="Profile">
         <div class="row">
             <div class="row center-align">
-                <img class="responsive-img circle " width="600" src="/img/img2.jpg" alt="">
+                <c:if test="${empty img}">
+                    <img class="responsive-img circle " width="600" src="/img/img2.jpg" alt="">
+                </c:if>
+            </div>
+        </div>
+
+        <div class="row" >
+            <div class="col 6s">
+                <form  action="/shop/updateUserImg" method="post" enctype="multipart/form-data">
+                    <input  type="file" name="file" />
+                    <button class="btn waves-effect waves-light"  type="submit" >
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field  col s4 offset-s4">
                 <input required id="name" type="text" value="${name}">
-                <label for="name">Name</label>
+                <label for="name"><fmt:message key="Name" bundle="${value}"/></label>
             </div>
         </div>
         <div class="row">
             <div class="input-field  col s4 offset-s4">
                 <input  required id="tel" type="text" value="${telephone}">
-                <label for="tel">Telephone</label>
+                <label for="tel"><fmt:message key="Telephone" bundle="${value}"/></label>
             </div>
         </div>
                 <div class="row">
                     <div class="input-field  col s4 offset-s4">
                         <input  required id="street" type="text" value="${street}">
-                        <label for="street">Street</label>
+                        <label for="street"><fmt:message key="Street" bundle="${value}"/></label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field  col s4 offset-s4">
                         <input class='validate'  pattern="[0-9]+" required id="house" type="text" value="${house}">
-                        <label for="house">House</label>
+                        <label for="house"><fmt:message key="House" bundle="${value}"/></label>
                     </div>
                 </div>
 
         <div class="row">
             <div class="col s12 center-align">
-                <a id ="SaveButton" class=" btn waves-effect waves-green indigo">Save</a>
+                <a id ="SaveButton" class=" btn waves-effect waves-green indigo"><fmt:message key="Save" bundle="${value}"/></a>
                 <label for="SaveButton" id="result"></label>
             </div>
         </div>

@@ -9,8 +9,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="${language}" scope="session"/>
+<fmt:setBundle basename="lang" var="value"/>
 <u:html title="main">
-    <h1>Главная</h1>
-
-
+    <h1><fmt:message key="Main" bundle="${value}"/></h1>
 </u:html>
+

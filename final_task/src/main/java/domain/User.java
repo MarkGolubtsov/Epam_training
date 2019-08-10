@@ -9,13 +9,13 @@ public class User extends Entity {
     private String name;
     private String password;
     private String telephone;
-    private Blob img;
+    private  String img;
     private RoleUser roleUser;
-    public Blob getImg() {
+    public  String getImg() {
         return img;
     }
 
-    public void setImg(Blob img) {
+    public void setImg( String img) {
         this.img = img;
     }
 

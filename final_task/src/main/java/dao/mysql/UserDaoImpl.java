@@ -104,7 +104,7 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
         user.setPassword(resultSet.getString("password"));
         user.setRoleUser(RoleUser.valueOf(resultSet.getString("role")));
         user.setTelephone(resultSet.getString("telephone_number"));
-        user.setImg(resultSet.getBlob("img"));
+        user.setImg(resultSet.getString("img"));
     }
 
     public List<User> fillList(ResultSet resultSet) throws SQLException {
@@ -123,7 +123,7 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
         statement.setString(2, entity.getPassword());
         statement.setString(3, entity.getRoleUser().toString());
         statement.setString(4,entity.getTelephone());
-        statement.setBlob(5, entity.getImg());
+        statement.setString(5, entity.getImg());
     }
 
     @Override

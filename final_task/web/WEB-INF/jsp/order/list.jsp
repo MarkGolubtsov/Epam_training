@@ -9,6 +9,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="${language}" scope="session"/>
+<fmt:setBundle basename="lang" var="value"/>
+
 <u:html title="Orders">
     <div style="padding: 100px 100px 0px 100px" class="row">
         <ul class="collection with-header">
@@ -35,8 +39,6 @@
     <div id="info_abount_order">
 
     </div>
-
-
     <script>
         <%@include file="/WEB-INF/js/orders.js"%>
     </script>

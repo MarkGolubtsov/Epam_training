@@ -5,15 +5,17 @@ import domain.User;
 import exception.DBException;
 import service.ServiceFactory;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public abstract class ActionWithForward extends Action {
-    abstract public ActionWithForward.Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException;
+    abstract public ActionWithForward.Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException, ServletException, IOException;
 
     public static class Forward {
         private String forward;

@@ -22,7 +22,7 @@
                         <c:if test="${ not  empty item.product.img_path}">
                             <img src="/img/${item.product.img_path}" alt="Image"/>
                         </c:if>
-                        <span  class="card-title">${item.product.name}</span>
+                        <span id="card-title${item.id}" class="card-title">${item.product.name}</span>
                         <c:if test="${not empty authorizedUser}">
                             <button onclick="addEventOnButtonAddInCart(${item.product.id},${item.id})" id="butAdd${item.product.id}" class="btn-floating halfway-fab waves-effect waves-green  red"><i class="material-icons">exposure_plus_1</i></button>
                         </c:if>

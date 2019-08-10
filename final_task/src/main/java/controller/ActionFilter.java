@@ -2,10 +2,14 @@ package controller;
 import action.*;
 import action.Registration;
 import action.cart.*;
+import action.lang.GetLang;
+import action.lang.SetEngLang;
+import action.lang.SetRusLang;
 import action.order.*;
 import action.product.ProductListAction;
 import action.user.GetInfoUser;
 import action.user.SaveUserInfo;
+import action.user.UpdateUserImg;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -38,6 +42,11 @@ public class ActionFilter implements Filter {
         actions.put("/user/edit", GetInfoUser.class);
         actions.put("/userSaveInfo", SaveUserInfo.class);
         actions.put("/getOrderProduct", GetOrderProduct.class);
+
+        actions.put("/updateUserImg", UpdateUserImg.class);
+        actions.put("/SetRusLang", SetRusLang.class);
+        actions.put("/SetEngLang", SetEngLang.class);
+        actions.put("/GetLang", GetLang.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -61,7 +70,7 @@ public class ActionFilter implements Filter {
             }
             Class<? extends Action> actionClass = actions.get(actionName);
             try {
-                Action actionFinal= actionClass.newInstance();
+                 Action actionFinal= actionClass.newInstance();
                 System.out.println("Forward?"+(actionFinal instanceof ActionWithForward));
                 System.out.println("Ajax?"+(actionFinal instanceof ActionAjax));
                 actionFinal.setName(actionName);
