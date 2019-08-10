@@ -63,14 +63,13 @@
 
                     <br />
 
-                    <p class="align left">
+                    <p class="align center">
                         <label>
                             <input  type="checkbox" class="filled-in  indigo"  name="role" value="USER"/>
                             <span><fmt:message key="USER" bundle="${value}"/></span>
                         </label>
                     </p>
-                    <br/>
-                    <p class="align left">
+                    <p class="align center">
                         <label>
                             <input type="checkbox" class="filled-in"  name="role" value="COURIER"/>
                             <span><fmt:message key="COURIER" bundle="${value}"/></span>
@@ -86,7 +85,7 @@
             </div>
         </div>
 
-        <a href="/shop/login">Login</a>
+        <a href="/shop/login"><fmt:message key="Login" bundle="${value}"/></a>
     </center>
     <div class="section"></div>
     <div class="section"></div>

@@ -11,7 +11,8 @@
 <fmt:setLocale value="${language}" scope="session"/>
 <fmt:setBundle basename="lang" var="value"/>
     <nav class="indigo">
-            <a href="#" class="brand-logo right  "><fmt:message key="logo" bundle="${value}"/></a>
+            <a href="#" class="brand-logo right ">
+                <fmt:message key="logo" bundle="${value}"/></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-wrapper" class="left hide-on-med-and-down indigo ">
                 <c:if test="${not empty authorizedUser}">
@@ -41,10 +42,17 @@
                 </c:if>
                 <li><a href="${listProduct}"><fmt:message key="Product" bundle="${value}"/></a></li>
                 <li><a href="${main}"> <fmt:message key="Main" bundle="${value}"/></a></li>
-                <li><a class="RUS"> <fmt:message key="RUS" bundle="${value}"/></a></li>
-                <li><a class="ENG"> <fmt:message key="ENG" bundle="${value}"/></a></li>
-                <li><a class="ZH"> <fmt:message key="ZH" bundle="${value}"/></a></li>
+<%--                <li ><a class="align:center"><img style="align:center" class="RUS" src="/img/Russia.png"></a></li>--%>
+<%--                <li ><a><img style="align:center" class="ENG" src="/img/England.png"></a></li>--%>
+<%--                <li ><a><img  style="align:center" class="ZH" src="/img/China.png"></a></li>--%>
+<%--                <li><a class="RUS"> <fmt:message key="RUS" bundle="${value}"/></a></li>--%>
+<%--                <li><a class="ENG"> <fmt:message key="ENG" bundle="${value}"/></a></li>--%>
+<%--                <li><a class="ZH"> <fmt:message key="ZH" bundle="${value}"/></a></li>--%>
+
             </ul>
+        <img  class="RUS" src="/img/Russia.png">
+        <img  class="ENG" src="/img/England.png">
+        <img   class="ZH" src="/img/China.png">
         </div>
     </nav>
 

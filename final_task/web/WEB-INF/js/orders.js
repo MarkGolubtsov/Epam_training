@@ -26,7 +26,7 @@ function addModal() {
            "<div style='padding: 0px 40px 0px 40px' id=\"listOrder"+id+"\">\n" +
            "</div>\n" +
            "<div class=\"modal-footer\">\n" +
-           "    <a class=\"modal-close waves-effect waves-green btn-flat\">Close</a>\n" +
+           "    <a class='modal-close waves-effect waves-green btn-flat'><i class='Close'>Close</i></a>\n" +
            "    </div>\n" +
            "    </div>");
        translateDate(delivery,'#delivery'+id);
@@ -39,6 +39,7 @@ function addModal() {
     translateDate('Name','.Name');
     translateDate('Amount of goods','.Count');
     translateDate('Cost of goods','.ItemCost');
+    translateDate('To close','.Close')
     $('.modal').modal();
 }
 function getOrderProduct(order_id) {
