@@ -79,7 +79,10 @@
                         </div>
                         <div style="overflow: hidden;">
                             <p style="float: left;"><fmt:message key="Type" bundle="${value}"/>:</p>
-                            <p  style="float: right;">${item.type}</p>
+                            <p id="type${item.id}" style="float: right;">${item.type}</p>
+                            <script>
+                                translateDate('${item.type}','#type${item.id}');
+                            </script>
                         </div>
                     </div>
                 </div>

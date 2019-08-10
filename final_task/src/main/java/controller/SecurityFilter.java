@@ -37,6 +37,9 @@ public class SecurityFilter implements Filter {
                     httpRequest.setAttribute("message", errorMessage);
                     session.removeAttribute("SecurityFilterMessage");
                 }
+            } else {
+                session = httpRequest.getSession(true);
+                session.setAttribute("language" , "en");
             }
             Set<RoleUser> allowRoles = action.getAllowRoles();
             boolean canExecute = (allowRoles.size() == 0);

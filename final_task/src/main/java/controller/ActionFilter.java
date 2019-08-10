@@ -3,6 +3,7 @@ import action.*;
 import action.Registration;
 import action.cart.*;
 import action.lang.GetLang;
+import action.lang.SetZHLang;
 import action.lang.SetEngLang;
 import action.lang.SetRusLang;
 import action.order.*;
@@ -46,6 +47,8 @@ public class ActionFilter implements Filter {
         actions.put("/updateUserImg", UpdateUserImg.class);
         actions.put("/SetRusLang", SetRusLang.class);
         actions.put("/SetEngLang", SetEngLang.class);
+        actions.put("/SetZHLang", SetZHLang.class);
+
         actions.put("/GetLang", GetLang.class);
     }
     @Override

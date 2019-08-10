@@ -7,7 +7,7 @@ function  translate(text,lang,id) {
         }
         })
 }
-function translateDate(name,id) {
+function translateDate(text,id) {
     $.ajax({
         url:"/shop/GetLang",
         type: "POST",
@@ -17,7 +17,7 @@ function translateDate(name,id) {
                 var userLang = navigator.language || navigator.userLanguage;
                 res=userLang;
             }
-            translate(name,res,id);
+            translate(text,res,id);
         }
     })
 

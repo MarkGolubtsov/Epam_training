@@ -13,24 +13,27 @@
 <fmt:setLocale value="${language}" scope="session"/>
 <fmt:setBundle basename="lang" var="value"/>
 
+
+<script >
+    <%@include file="/WEB-INF/js/translate.js"%>
+</script>
 <u:html title="Orders">
     <div style="padding: 100px 100px 0px 100px" class="row">
         <ul class="collection with-header">
-            <li class="collection-header"><h4>You Active Order</h4></li>
+            <li class="collection-header"><h4><fmt:message key="Your_active_orders" bundle="${value}"/></h4></li>
             <c:if test="${not empty listOrder}">
             <c:forEach items="${listOrder}" var="item">
             <li class="collection-item">
-                <div><h5>Date:${item.date} <a data-delivery="${item.delivery}" data-total_price="${item.total_price}"data-type-pay="${item.type_pay}" data-orderId="${item.id}" href="#modal${item.id}" class="secondary-content modal-trigger">
+                <div><h5><fmt:message key="Date" bundle="${value}"/>:${item.date} <a data-delivery="${item.delivery}" data-total_price="${item.total_price}"data-type-pay="${item.type_pay}" data-orderId="${item.id}" href="#modal${item.id}" class="secondary-content modal-trigger">
                     <i class="material-icons">info</i></a>
                 </h5>
-
                 </div>
             </li>
             </c:forEach>
             </c:if>
             <c:if test="${empty listOrder}">
             <li class="collection-item">
-                <div>You don't have any active orders.</div>
+                <div><fmt:message key="Dont_have_any_orders" bundle="${value}"/></div>
             </li>
             </c:if>
 

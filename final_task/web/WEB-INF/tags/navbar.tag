@@ -43,6 +43,7 @@
                 <li><a href="${main}"> <fmt:message key="Main" bundle="${value}"/></a></li>
                 <li><a class="RUS"> <fmt:message key="RUS" bundle="${value}"/></a></li>
                 <li><a class="ENG"> <fmt:message key="ENG" bundle="${value}"/></a></li>
+                <li><a class="ZH"> <fmt:message key="ZH" bundle="${value}"/></a></li>
             </ul>
         </div>
     </nav>
@@ -78,6 +79,7 @@
     <li><a href="${main}"> <fmt:message key="Main" bundle="${value}"/></a></li>
     <li><a class="RUS"> <fmt:message key="RUS" bundle="${value}"/></a></li>
     <li><a class="ENG"> <fmt:message key="ENG" bundle="${value}"/></a></li>
+    <li><a class="ZH"> <fmt:message key="ZH" bundle="${value}"/></a></li>
 
 </ul>
 

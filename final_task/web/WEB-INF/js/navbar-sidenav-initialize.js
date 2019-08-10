@@ -22,4 +22,13 @@ $(document).ready(function(){
             }
         })
     })
+    $(".ZH").on("click",function () {
+        $.ajax({
+            url:'/shop/SetZHLang',
+            type:"POST",
+            success: function () {
+                location.reload(true);
+            }
+        })
+    })
 });
