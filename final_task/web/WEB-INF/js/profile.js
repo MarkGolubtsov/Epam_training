@@ -21,11 +21,15 @@ $(document).ready(function(){
                     street:street,
                 },
                 success: function () {
-                    $(ID_RESULT).text("DONE");
+                  //  $(ID_RESULT).text("DONE");
+                    translateDate('Successfully',ID_RESULT);
+                    $(ID_RESULT).css('color','green');
                 }
             })
         } else {
-            $(ID_RESULT).text("No");
+           // $(ID_RESULT).text("No");
+            translateDate('Check your data',ID_RESULT)
+            $(ID_RESULT).css('color','red');
         }
 
     })

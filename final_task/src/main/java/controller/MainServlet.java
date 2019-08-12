@@ -92,9 +92,9 @@ public class MainServlet extends HttpServlet {
                     actionAjax.exec(request,response);
                     return;
                 } catch (DBException e) {
-                    e.printStackTrace();
+                    logger.error(e.getMessage());
+                    request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error/error.jsp").forward(request, response);
                 }
-
             }
 
 
@@ -104,9 +104,15 @@ public class MainServlet extends HttpServlet {
         ActionWithForward action = (ActionWithForward)action1;
         ActionWithForward.Forward forward = null;
         try {
-            forward = action.exec(request, response);
+            try {
+                forward = action.exec(request, response);
+            } catch (URISyntaxException e) {
+               logger.error(e.getMessage());
+            }
         } catch (DBException e) {
-            e.printStackTrace();
+           logger.error(e.getMessage());
+            request.setAttribute("error", "Ошибка обработки данных");
+            request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error/error.jsp").forward(request, response);
         }
         if (session != null && forward != null && !forward.getAttributes().isEmpty()) {
             session.setAttribute("redirectedData", forward.getAttributes());
@@ -116,6 +122,7 @@ public class MainServlet extends HttpServlet {
             String redirectedUri = request.getContextPath() + forward.getForward();
             logger.debug(String.format("Request for URI \"%s\" id redirected to URI \"%s\"", requestedUri, redirectedUri));
             response.sendRedirect(redirectedUri);
+
         } else {
             String jspPage;
             if (forward != null) {

@@ -15,25 +15,6 @@
 <u:html title="Products">
     <div id="Profile">
         <div class="row">
-            <div class="row center-align">
-                <c:if test="${empty img}">
-                    <img class="responsive-img circle " width="600" src="/img/img2.jpg" alt="">
-                </c:if>
-            </div>
-        </div>
-
-        <div class="row" >
-            <div class="col 6s">
-                <form  action="/shop/updateUserImg" method="post" enctype="multipart/form-data">
-                    <input  type="file" name="file" />
-                    <button class="btn waves-effect waves-light"  type="submit" >
-                        <i class="material-icons right">send</i>
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="input-field  col s4 offset-s4">
                 <input required id="name" type="text" value="${name}">
                 <label for="name"><fmt:message key="Name" bundle="${value}"/></label>
@@ -67,5 +48,6 @@
     </div>
 <script>
     <%@include file="/WEB-INF/js/profile.js"%>
+    <%@include file="/WEB-INF/js/translate.js"%>
     </script>
 </u:html>

@@ -10,7 +10,6 @@ import action.order.*;
 import action.product.ProductListAction;
 import action.user.GetInfoUser;
 import action.user.SaveUserInfo;
-import action.user.UpdateUserImg;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -44,7 +43,6 @@ public class ActionFilter implements Filter {
         actions.put("/userSaveInfo", SaveUserInfo.class);
         actions.put("/getOrderProduct", GetOrderProduct.class);
 
-        actions.put("/updateUserImg", UpdateUserImg.class);
         actions.put("/SetRusLang", SetRusLang.class);
         actions.put("/SetEngLang", SetEngLang.class);
         actions.put("/SetZHLang", SetZHLang.class);
@@ -83,11 +81,14 @@ public class ActionFilter implements Filter {
                 chain.doFilter(request, response);
             } catch (InstantiationException | IllegalAccessException | NullPointerException e) {
                logger.error("It is impossible to create action handler object", e);
+                httpRequest.setAttribute("error", String.format("Запрошенный адрес %s не может быть обработан сервером", uri));
+                request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error/error.jsp").forward(request, response);
 //                httpRequest.setAttribute("error", String.format("Запрошенный адрес %s не может быть обработан сервером", uri));
 //                httpRequest.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
             }
         } else {
            logger.error("It is impossible to use HTTP filter");
+            request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error/error.jsp").forward(request, response);
 //            request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
         }
     }

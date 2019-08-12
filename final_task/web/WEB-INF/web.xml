@@ -38,4 +38,18 @@
         <filter-name>SecurityFilter</filter-name>
         <url-pattern>/shop/*</url-pattern>
     </filter-mapping>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>..\img
+        </param-value>
+    </context-param>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jsp/error/error.jsp</location>
+    </error-page>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/resources/*</url-pattern>
+    </servlet-mapping>
 </web-app>
