@@ -14,7 +14,7 @@ import java.util.List;
 
 public final  class DeliveryDaoImpl extends BaseMysql<Delivery> implements DeliveryDao {
 
-    private  static  final String CREATE = "INSERT INTO `delivery`(`order_id`,`courier_id`, `user_id`,`cost`) VALUES(?,?,?,?,?)";
+    private  static  final String CREATE = "INSERT INTO `delivery`(`order_id`,`courier_id`, `user_id`,`cost`) VALUES(?,?,?,?)";
     private static final  String UPDATE ="UPDATE `delivery` SET `order_id` = ?,`courier_id`=?,`user_id`=? , `cost`=? WHERE `order_id`=? AND `courier_id`=?";
 
     private static final String DELETE_BY_PRIMARY_KEYS="DELETE FROM `delivery` WHERE `order_id`=? AND `courier_id`=?";

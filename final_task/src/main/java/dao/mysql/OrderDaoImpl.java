@@ -20,7 +20,7 @@ public class OrderDaoImpl extends BaseMysql<Order> implements OrderDao {
     private static final String  READ_ALL="SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` ";
     private static final String READ_BY_DELIVERY_TYPE="SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` WHERE `delivery_type`=? ";
 
-    private static final String READ_BY_ID="SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` WHERE `id`=?` ";
+    private static final String READ_BY_ID="SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` WHERE `id`=? ";
     private static final String READ_BY_USER_ID = "SELECT `id`, `user_id`, `type_pay`, `date_ord`,`delivery_type`,`total_price` FROM `order` WHERE `user_id`=? ";
     private static final String DELETE_BY_USER_ID="DELETE FROM `order` WHERE `user_id` = ?";
 

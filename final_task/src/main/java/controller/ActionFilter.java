@@ -1,6 +1,9 @@
 package controller;
 import action.*;
 import action.Registration;
+import action.admin.CreateDelivery;
+import action.admin.GetAddressUser;
+import action.admin.GetDataForCreateDelivery;
 import action.admin.order.CheckAvailabilityOrder;
 import action.admin.order.DeleteOrder;
 import action.admin.GetAllUsers;
@@ -42,7 +45,6 @@ public class ActionFilter implements Filter {
         actions.put("/addInCart", AddProductActionAjax.class);
         actions.put("/removeOutCart", RemoveProductActionAjax.class);
 
-
         actions.put("/createOrder", CreateOrderActionAjax.class);
         actions.put("/order/list", UserOrdersAction.class);
 
@@ -63,6 +65,9 @@ public class ActionFilter implements Filter {
         actions.put("/GetUserOrders", GetUserOrders.class);
         actions.put("/DeleteOrder", DeleteOrder.class);
         actions.put("/CheckAvailabilityOrder", CheckAvailabilityOrder.class);
+        actions.put("/delivery/create", GetDataForCreateDelivery.class);
+        actions.put("/GetAddressOrders", GetAddressUser.class);
+        actions.put("/CreateDelivery",  CreateDelivery.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -98,13 +103,10 @@ public class ActionFilter implements Filter {
                logger.error("It is impossible to create action handler object", e);
                 httpRequest.setAttribute("error", String.format("Requested address "+uri+" cannot be processed by server"));
                 request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error/error.jsp").forward(request, response);
-//                httpRequest.setAttribute("error", String.format("Запрошенный адрес %s не может быть обработан сервером", uri));
-//                httpRequest.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
             }
         } else {
            logger.error("It is impossible to use HTTP filter");
             request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error/error.jsp").forward(request, response);
-//            request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
         }
     }
 

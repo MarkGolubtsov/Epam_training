@@ -10,13 +10,15 @@ $(document).ready(function(){
             let nameSearch =$("#NameSearch").is(':checked');
             let costSearch =$("#costSearch").is(':checked');
             let typeSearch =$("#typeSearch").is(':checked');
-            if (costSearch)
-            $(this).toggle((this).getAttribute("costProduct").toLowerCase().indexOf(value) > -1)
-            if (nameSearch)
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-
-                if (typeSearch)
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            if (costSearch) $(this).toggle((this).getAttribute("costProduct").toLowerCase().indexOf(value) > -1)
+            if (nameSearch) $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            if (typeSearch) $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
 })
+// $(document).ready(function(){
+//     $('input.autocomplete').autocomplete({
+//         data: {
+//         },
+//     });
+// });

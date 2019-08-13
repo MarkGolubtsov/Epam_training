@@ -15,7 +15,7 @@ function addModal() {
        $(ID_CONTAINER_FOR_INFO).append("\n" +
            "<div id=\"modal"+id+"\" class=\"modal\">\n" +
                 "<div style='padding: 0px 40px 0px 40px' class=\"modal-content\">\n" +
-                    "<div  style='overflow: hidden;'>\n" +
+                    "<div  id='infoOrder"+id+"'  style='overflow: hidden;'>\n" +
                         "<p class='constDelivery' style='float: left;margin:  5% 0% 0% 0%'>Delivery:</p>\n" +
                         "<p id='delivery"+id+"' style='float: left;margin:  5% 0% 0% 0%'>"+delivery+"</p>\n" +
                         "<p class='constTotal' style='float: left; margin: 5% 0% 0% 7%;';>Total:</p>\n" +
@@ -53,7 +53,7 @@ function getOrderProduct(order_id) {
         success:function (response) {
             let id =LIST_DATA+order_id;
             let list=$(id);
-            list.append( "<table><thead><tr><th class='Name'>Name</th><th class='Count'>Count</th><th class='ItemCost'>Item Cost</th></tr></thead><tbody id='tbody"+order_id+"'></tbody> </table>");
+            list.append( "<table class='centered'><thead><tr><th class='Name'>Name</th><th class='Count'>Count</th><th class='ItemCost'>Item Cost</th></tr></thead><tbody id='tbody"+order_id+"'></tbody> </table>");
             let id_tbody="#tbody"+order_id;
             let tbody=$(id_tbody);
            response.forEach(function (element) {
