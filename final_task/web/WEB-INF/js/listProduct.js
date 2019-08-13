@@ -11,8 +11,8 @@ $(document).ready(function(){
             let costSearch =$("#costSearch").is(':checked');
             let typeSearch =$("#typeSearch").is(':checked');
             if (costSearch) $(this).toggle((this).getAttribute("costProduct").toLowerCase().indexOf(value) > -1)
-            if (nameSearch) $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            if (typeSearch) $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            if (nameSearch) $(this).toggle($($(this).find("span[id*='card-title']")).text().toLowerCase().indexOf(value) > -1)
+            if (typeSearch) $(this).toggle($($(this).find("p[id*='type']")).text().toLowerCase().indexOf(value) > -1)
         });
     });
 })

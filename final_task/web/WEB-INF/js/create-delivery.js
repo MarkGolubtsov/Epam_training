@@ -103,6 +103,8 @@ function createDelivery() {
                 },
                 success:function () {
                     $(ID_TR+order_id).remove();
+                   $(DELIVERY_USER_ID).text("");
+                    $(DELIVERY_ORDER_ID).text("");
                 }
             })
     }

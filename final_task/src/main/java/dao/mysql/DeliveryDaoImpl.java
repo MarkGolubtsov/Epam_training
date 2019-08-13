@@ -27,7 +27,7 @@ public final  class DeliveryDaoImpl extends BaseMysql<Delivery> implements Deliv
 
     private static final String READ_BY_ORDER_ID ="SELECT `order_id`,`courier_id`, `user_id`,`cost` FROM `delivery` WHERE `order_id`=? ORDER BY `cost`";
 
-    private static final String READ_BY_COURIER_ID ="SELECT `order_id`,`courier_id`, `user_id`,`cost` FROM `delivery` WHERE `order_id`=? ORDER BY `cost`";
+    private static final String READ_BY_COURIER_ID ="SELECT `order_id`,`courier_id`, `user_id`,`cost` FROM `delivery` WHERE `courier_id`=? ORDER BY `cost`";
 
 
     @Override

@@ -1,14 +1,8 @@
-let CONTAINER_ABOUT_USER="#dataUser";
-let TRIGGER_USER_INFO_ID="#userInfo";
+
 let CLASS_USERROLE_INFO='.UserRole';
 let Id_CHANGE_ROLE='#changeRole';
 let ID_TABLE_ORDERS='#TableOrders';
-function  showInfo(user_id) {
-    alert(user_id);
-    $(CONTAINER_ABOUT_USER).empty();
-    $(CONTAINER_ABOUT_USER).append("<div class='col s12'><div id='userInfo'>Personal data</div></div>");
-    translateDate($(TRIGGER_USER_INFO_ID).text(),TRIGGER_USER_INFO_ID)
-}
+let ID_TABLE_DELIVERIES='#TableDeliveries'
 
 
 function makeAdmin(user_id) {
@@ -106,5 +100,52 @@ function checkAvailabilityOrders(user_id) {
             }
         }
     })
+}
 
+function checkAvailabilityDeliveries(courier_id) {
+    $.ajax({
+        type:"POST",
+        url:"/shop/CheckAvailabilityDeliveries",
+        data:{
+            courier_id:courier_id
+        },
+        success:function (response) {
+            if (response=='no'){
+                $(ID_TABLE_DELIVERIES+courier_id).remove();
+            }
+        }
+    })
+}
+
+function getDelivery(courier_id) {
+    $.ajax({
+        type:"POST",
+        url:"/shop/GetDeliveryCourier",
+        data: {
+            courier_id:courier_id
+        },
+        success:function (response) {
+            let list=$('#bodyDeliveries'+courier_id);
+            response.forEach(function (element) {
+             let user_id=element.user.id;
+             let user_tel=element.user.telephone;
+             let order_id=element.order.id;
+             let cost=element.order.total_price;
+             list.append("<tr id='lineDelivery"+order_id+"'><td>"+order_id+"</td><td>"+user_id+"</td><td>"+user_tel+"</td><td>"+cost+"</td><td><i style='cursor: pointer;' onclick='deleteDelivery("+order_id+","+courier_id+")' class='material-icons align center '>delete_forever</i></td></tr>");
+         })
+        }
+    })
+}
+function deleteDelivery(order_id,courier_id) {
+    $.ajax({
+        type:"POST",
+        url:"/shop/DeleteDelivery",
+        data: {
+            order_id:order_id,
+            courier_id:courier_id
+        },
+        success:function () {
+            $('#lineDelivery'+order_id).remove();
+        }
+    })
 }

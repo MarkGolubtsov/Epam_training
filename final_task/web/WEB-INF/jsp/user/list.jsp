@@ -47,19 +47,24 @@
                                     </div>
                                 </div>
                                 <div id="changeRole${user.id}" class="row">
+                                    <div class="col s12">
                                     <c:if test="${user.role!='ADMIN'}">
                                         <c:if test="${user.role !='USER'}">
-                                            <div id="butUser${user.id}" class="col s3">
-                                                <a  onclick="makeUser(${user.id})"class="waves-effect waves-light btn-small blue"><fmt:message key="MakeUser" bundle="${value}"/></a>
+                                            <div id="butUser${user.id}" class="col s6">
+                                                <a onclick="makeUser(${user.id})"class="waves-effect waves-light btn-small blue align left"><fmt:message key="MakeUser" bundle="${value}"/></a>
                                             </div>
                                         </c:if>
                                         <c:if test="${user.role !='COURIER'}">
-                                            <div id="butCourier${user.id}" class="col s3">
+                                            <div id="butCourier${user.id}" class="col s6">
                                                 <a  onclick="makeCourier(${user.id})"class="waves-effect waves-light btn-small blue"><fmt:message key="MakeCourier" bundle="${value}"/></a>
                                             </div>
                                         </c:if>
-                                        <a  onclick="makeAdmin(${user.id})" class="waves-effect waves-light btn-small blue align right"><fmt:message key="MakeAdmin" bundle="${value}"/></a>
+                                        <div class="col s6">
+                                            <a  onclick="makeAdmin(${user.id})" class="waves-effect waves-light btn-small blue align right"><fmt:message key="MakeAdmin" bundle="${value}"/></a>
+                                        </div>
+
                                     </c:if>
+                                    </div>
                                 </div>
                                 <c:if test="${user.role=='USER'}">
                                     <div id='TableOrders${user.id}'class="row">
@@ -84,15 +89,36 @@
                                         </script>
                                     </div>
                                 </c:if>
+                                <c:if test="${user.role=='COURIER'}">
+                                    <div id="TableDeliveries${user.id}" class="row">
+                                        <table class="centered">
+                                            <thead>
+                                            <tr>
+                                                <th><fmt:message key="OrderID" bundle="${value}"/></th>
+                                                <th><fmt:message key="UserID" bundle="${value}"/></th>
+                                                <th><fmt:message key="UserTelephone" bundle="${value}"/></th>
+                                                <th><fmt:message key="Cost" bundle="${value}"/></th>
+                                                <th><fmt:message key="Delete" bundle="${value}"/></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="bodyDeliveries${user.id}">
+                                            <script>
+                                                getDelivery(${user.id});
+                                            </script>
+                                            </tbody>
+                                        </table>
+                                        <script>
+                                            checkAvailabilityDeliveries(${user.id});
+                                        </script>
+                                    </div>
+
+                                </c:if>
 
                             </div>
                         </li>
                     </c:forEach>
                 </ul>
         </div>
-    </div>
-    <div class="row" id="dataUser">
-
     </div>
     <script>
         $(document).ready(function(){

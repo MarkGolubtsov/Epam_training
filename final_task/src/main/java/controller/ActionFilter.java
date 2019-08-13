@@ -1,22 +1,27 @@
 package controller;
-import action.*;
+
 import action.Registration;
+import action.*;
 import action.admin.CreateDelivery;
 import action.admin.GetAddressUser;
+import action.admin.GetAllUsers;
 import action.admin.GetDataForCreateDelivery;
+import action.admin.delivery.DeleteDelivery;
+import action.admin.delivery.GetDeliveryCourier;
+import action.admin.delivery.СheckAvailabilityDeliveries;
 import action.admin.order.CheckAvailabilityOrder;
 import action.admin.order.DeleteOrder;
-import action.admin.GetAllUsers;
 import action.admin.order.GetUserOrders;
 import action.admin.set_role.MakeAdmin;
 import action.admin.set_role.MakeCourier;
 import action.admin.set_role.MakeUser;
 import action.cart.*;
 import action.lang.GetLang;
-import action.lang.SetZHLang;
 import action.lang.SetEngLang;
 import action.lang.SetRusLang;
-import action.order.*;
+import action.lang.SetZHLang;
+import action.order.GetOrderProduct;
+import action.order.UserOrdersAction;
 import action.product.ProductListAction;
 import action.user.GetInfoUser;
 import action.user.SaveUserInfo;
@@ -68,6 +73,9 @@ public class ActionFilter implements Filter {
         actions.put("/delivery/create", GetDataForCreateDelivery.class);
         actions.put("/GetAddressOrders", GetAddressUser.class);
         actions.put("/CreateDelivery",  CreateDelivery.class);
+        actions.put("/GetDeliveryCourier",  GetDeliveryCourier.class);
+        actions.put("/DeleteDelivery",  DeleteDelivery.class);
+        actions.put("/CheckAvailabilityDeliveries",   СheckAvailabilityDeliveries.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
