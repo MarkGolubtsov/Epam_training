@@ -1,6 +1,13 @@
 package controller;
 import action.*;
 import action.Registration;
+import action.admin.order.CheckAvailabilityOrder;
+import action.admin.order.DeleteOrder;
+import action.admin.GetAllUsers;
+import action.admin.order.GetUserOrders;
+import action.admin.set_role.MakeAdmin;
+import action.admin.set_role.MakeCourier;
+import action.admin.set_role.MakeUser;
 import action.cart.*;
 import action.lang.GetLang;
 import action.lang.SetZHLang;
@@ -48,6 +55,14 @@ public class ActionFilter implements Filter {
         actions.put("/SetZHLang", SetZHLang.class);
 
         actions.put("/GetLang", GetLang.class);
+
+        actions.put("/user/list", GetAllUsers.class);
+        actions.put("/MakeAdmin", MakeAdmin.class);
+        actions.put("/MakeUser", MakeUser.class);
+        actions.put("/MakeCourier", MakeCourier.class);
+        actions.put("/GetUserOrders", GetUserOrders.class);
+        actions.put("/DeleteOrder", DeleteOrder.class);
+        actions.put("/CheckAvailabilityOrder", CheckAvailabilityOrder.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -81,7 +96,7 @@ public class ActionFilter implements Filter {
                 chain.doFilter(request, response);
             } catch (InstantiationException | IllegalAccessException | NullPointerException e) {
                logger.error("It is impossible to create action handler object", e);
-                httpRequest.setAttribute("error", String.format("Запрошенный адрес %s не может быть обработан сервером", uri));
+                httpRequest.setAttribute("error", String.format("Requested address "+uri+" cannot be processed by server"));
                 request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error/error.jsp").forward(request, response);
 //                httpRequest.setAttribute("error", String.format("Запрошенный адрес %s не может быть обработан сервером", uri));
 //                httpRequest.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);

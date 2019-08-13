@@ -30,8 +30,8 @@ public class LoginAction extends ActionWithForward {
                 new NavbarItem("/shop/deliverys/list", "Delivery",null)
         )));
         navbar.put(RoleUser.ADMIN, new ArrayList<>(Arrays.asList(
-                new NavbarItem("/shop/role/list", "Users",null),
-                new NavbarItem("/shop/courier/list", "Courier",null)
+                new NavbarItem("/shop/user/list", "Users","people"),
+                new NavbarItem("/shop/delivery/create", "Unassigned_delivery",null)
         )));
     }
     @Override
@@ -53,7 +53,7 @@ public class LoginAction extends ActionWithForward {
                 setAuthorizedUser(user);
                 HttpSession session = request.getSession();
                 session.setAttribute("authorizedUser", user);
-                session.setAttribute("menu",navbar.get(user.getRoleUser()));
+                session.setAttribute("menu",navbar.get(user.getRole()));
                 return new Forward("/shop/main");
             }
             return  new Forward("/shop/registration");

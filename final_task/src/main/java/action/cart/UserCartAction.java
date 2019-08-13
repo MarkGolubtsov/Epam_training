@@ -1,5 +1,6 @@
 package action.cart;
 
+import action.role.forward.AuthorizeActionForward;
 import action.role.forward.UserActionForward;
 import domain.ChoseProduct;
 import domain.User;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class UserCartAction extends UserActionForward {
+public class UserCartAction extends AuthorizeActionForward {
     private static Logger logger = Logger.getLogger( UserCartAction.class);
     @Override
     public Forward exec(HttpServletRequest request, HttpServletResponse response) throws DBException {

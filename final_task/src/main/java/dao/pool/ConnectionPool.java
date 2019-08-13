@@ -26,7 +26,6 @@ public  enum  ConnectionPool {
     private BlockingQueue<PooledConnection> freeConnections = new LinkedBlockingQueue<>();
     private Set<PooledConnection> usedConnections = new ConcurrentSkipListSet<>();
 
-//    private ConnectionPool() {}
 
     public Connection getConnection() throws DBException {
         lock.lock();
@@ -97,11 +96,6 @@ public  enum  ConnectionPool {
         lock.unlock();
     }
 
-//    private static ConnectionPool instance = new ConnectionPool();
-//
-//    public static ConnectionPool getInstance() {
-//        return instance;
-//    }
 
     private PooledConnection createConnection() throws SQLException {
         return new PooledConnection(DriverManager.getConnection(url, user, password));
@@ -124,7 +118,7 @@ public  enum  ConnectionPool {
         return lock;
     }
 //    @Override
-//    protected void finalize() throws Throwable {
+//    public void finalize() throws Throwable {
 //        destroy();
 //    }
 

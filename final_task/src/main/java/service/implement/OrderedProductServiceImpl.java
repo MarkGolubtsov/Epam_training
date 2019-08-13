@@ -43,4 +43,10 @@ public class OrderedProductServiceImpl extends ServiceImpl implements OrderedPro
         OrderedProductDao orderedProductDao= daoFactory.createDao(OrderedProductDao.class);
         orderedProductDao.addToOrder(order_id,choseProduct);
     }
+
+    @Override
+    public void delete(int order, ChoseProduct choseProduct) throws DBException {
+        OrderedProductDao orderedProductDao = daoFactory.createDao(OrderedProductDao.class);
+        orderedProductDao.deleteByOrderId(order,choseProduct.getId());
+    }
 }

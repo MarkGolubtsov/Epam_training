@@ -24,15 +24,26 @@
         <filter-name>ActionFiler</filter-name>
         <filter-class>controller.ActionFilter</filter-class>
     </filter>
+
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>controller.EncodingFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>controller.SecurityFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/shop/*</url-pattern>
+    </filter-mapping>
+
     <filter-mapping>
         <filter-name>ActionFiler</filter-name>
         <url-pattern>/shop/*</url-pattern>
     </filter-mapping>
 
-    <filter>
-        <filter-name>SecurityFilter</filter-name>
-        <filter-class>controller.SecurityFilter</filter-class>
-    </filter>
 
     <filter-mapping>
         <filter-name>SecurityFilter</filter-name>
@@ -48,8 +59,4 @@
         <error-code>404</error-code>
         <location>/WEB-INF/jsp/error/error.jsp</location>
     </error-page>
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/resources/*</url-pattern>
-    </servlet-mapping>
 </web-app>

@@ -27,7 +27,7 @@ public class Registration extends ActionWithForward {
             User user = new User();
             user.setName(login);
             user.setTelephone(telephone);
-            user.setRoleUser(RoleUser.valueOf(role));
+            user.setRole(RoleUser.valueOf(role));
             user.setPassword(password);
             int res = service.registration(user);
             if (res>0) {

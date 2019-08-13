@@ -13,7 +13,7 @@ import java.util.List;
 public class OrderedProductDaoImpl extends BaseMysql<ChoseProduct> implements OrderedProductDao {
     private static final  String READ_BY_ORDER_ID = "SELECT `order_id`,`chose_product_id` FROM `product_ordered` where `order_id`=?";
     private static final String CREATE = "INSERT INTO `product_ordered` (`order_id`,`chose_product_id`) VALUES (?,?)";
-   // private static  final String DELETE = "DELETE FROM `product_ordered` where `order_id`=? AND`chose_product_id`=?";
+    private static  final String DELETE = "DELETE FROM `product_ordered` where `order_id`=? AND`chose_product_id`=?";
     private  int order_id;
     @Override
     public List<ChoseProduct> readOrderProducts(int order_id) throws DBException {
@@ -24,6 +24,11 @@ public class OrderedProductDaoImpl extends BaseMysql<ChoseProduct> implements Or
     public void addToOrder(int order_id, ChoseProduct choseProduct) throws DBException {
         this.order_id=order_id;
          defultCreate(CREATE,connection,choseProduct);
+    }
+
+    @Override
+    public void deleteByOrderId(int order_id, int chose_product_id) throws DBException {
+        deleteByInt(DELETE, new int[]{order_id,chose_product_id}, connection);
     }
 
     @Override

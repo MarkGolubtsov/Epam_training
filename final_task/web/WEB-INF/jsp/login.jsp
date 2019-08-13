@@ -28,7 +28,7 @@
 
                          <div class='row'>
                              <div class='input-field col s12'>
-                                 <input required pattern="[a-zA-Z]" class='validate' type='text' name='name' id='email' />
+                                 <input required pattern="[a-zA-Z]+" class='validate' type='text' name='name' id='email' />
                                  <label for='email'><fmt:message key="Enter_name" bundle="${value}"/></label>
                              </div>
                          </div>

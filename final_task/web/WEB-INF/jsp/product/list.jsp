@@ -16,13 +16,13 @@
         <%@include file="/WEB-INF/js/translate.js"%>
     </script>
 
-<div class="row">
-            <div class="input-field col s3 offset-s4">
-                <i class="material-icons prefix">search</i>
-                <input  autocomplete="off" class="Serch" id="icon_prefix" type="text" class="validate">
-                <label for="icon_prefix"><fmt:message key="Search" bundle="${value}"/></label>
-            </div>
-</div>
+    <div class="row">
+        <div class="input-field col s3 offset-s4">
+            <i class="material-icons prefix">search</i>
+            <input  autocomplete="off" class="Serch" id="icon_prefix" type="text" class="validate">
+            <label for="icon_prefix"><fmt:message key="Search" bundle="${value}"/></label>
+        </div>
+    </div>
 
 <div class="row">
     <div class="col s3 offset-s1">
@@ -67,7 +67,7 @@
                         <script>
                             translateDate('${item.name}','#card-title${item.id}');
                         </script>
-                        <c:if test="${not empty authorizedUser}">
+                        <c:if test="${not (empty authorizedUser) && not (authorizedUser.role!='USER')}">
                             <button onclick="addEventOnButtonAdd(${item.id})" id="butAdd${item.id}" dataProduct="${item.id}" type="submit" class="btn-floating halfway-fab waves-effect waves-green  red"><i class="material-icons">add_shopping_cart</i></button>
                         </c:if>
                     </div>
@@ -79,7 +79,7 @@
                         </div>
                         <div style="overflow: hidden;">
                             <p style="float: left;"><fmt:message key="Type" bundle="${value}"/>:</p>
-                            <p id="type${item.id}" style="float: right;">${item.type}</p>
+                            <p data="${item.type}"id="type${item.id}" style="float: right;">${item.type}</p>
                             <script>
                                 translateDate('${item.type}','#type${item.id}');
                             </script>

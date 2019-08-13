@@ -102,7 +102,7 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
         user.setId(resultSet.getInt("id"));
         user.setName(resultSet.getString("name"));
         user.setPassword(resultSet.getString("password"));
-        user.setRoleUser(RoleUser.valueOf(resultSet.getString("role")));
+        user.setRole(RoleUser.valueOf(resultSet.getString("role")));
         user.setTelephone(resultSet.getString("telephone_number"));
         user.setImg(resultSet.getString("img"));
     }
@@ -121,7 +121,7 @@ public class UserDaoImpl extends BaseMysql<User> implements UserDao {
    public void  setFieldStatement(PreparedStatement statement, User entity) throws SQLException {
         statement.setString(1, entity.getName());
         statement.setString(2, entity.getPassword());
-        statement.setString(3, entity.getRoleUser().toString());
+        statement.setString(3, entity.getRole().toString());
         statement.setString(4,entity.getTelephone());
         statement.setString(5, entity.getImg());
     }

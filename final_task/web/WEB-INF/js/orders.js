@@ -4,6 +4,7 @@ let ATTRIBUTE_DATA_TYPE_PAY="data-type-pay";
 let ATTRIBUTE_DATA_TOTAL_PRICE="data-total_price";
 let ID_CONTAINER_FOR_INFO='#info_abount_order';
 let CLASS_MODAL_TRIGGER="secondary-content modal-trigger";
+let LIST_DATA='#listOrder';
 function addModal() {
    let elements=Array.from($("a[class='"+CLASS_MODAL_TRIGGER+"']"));
    elements.forEach(function (element) {
@@ -50,7 +51,7 @@ function getOrderProduct(order_id) {
             Order_id:order_id,
         },
         success:function (response) {
-            let id ="#listOrder"+order_id;
+            let id =LIST_DATA+order_id;
             let list=$(id);
             list.append( "<table><thead><tr><th class='Name'>Name</th><th class='Count'>Count</th><th class='ItemCost'>Item Cost</th></tr></thead><tbody id='tbody"+order_id+"'></tbody> </table>");
             let id_tbody="#tbody"+order_id;

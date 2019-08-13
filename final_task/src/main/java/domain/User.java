@@ -10,7 +10,7 @@ public class User extends Entity {
     private String password;
     private String telephone;
     private  String img;
-    private RoleUser roleUser;
+    private RoleUser role;
     public  String getImg() {
         return img;
     }
@@ -19,12 +19,12 @@ public class User extends Entity {
         this.img = img;
     }
 
-    public RoleUser getRoleUser() {
-        return roleUser;
+    public RoleUser getRole() {
+        return role;
     }
 
-    public void setRoleUser(RoleUser roleUser) {
-        this.roleUser = roleUser;
+    public void setRole(RoleUser role) {
+        this.role = role;
     }
 
     public String getName() {
