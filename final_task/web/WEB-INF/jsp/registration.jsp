@@ -29,7 +29,7 @@
 
                     <div class='row'>
                         <div class='input-field col s12'>
-                            <input class='validate   ' type='text' name='name' id='email' />
+                            <input required pattern="^[a-zA-ZА-Яа-я0-9_-]{3,16}$" class='validate' type='text' name='name' id='email' />
                             <label  for='email'><fmt:message key="Enter_name" bundle="${value}"/></label>
                         </div>
                     </div>

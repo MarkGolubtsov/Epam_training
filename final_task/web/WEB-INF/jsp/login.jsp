@@ -28,11 +28,11 @@
 
                          <div class='row'>
                              <div class='input-field col s12'>
-                                 <input required pattern="[a-zA-Z]+" class='validate' type='text' name='name' id='email' />
+                                 <input  required pattern="^[a-zA-ZА-Яа-я0-9_-]{3,16}$" class='validate' type='text' name='name' id='email' />
                                  <label for='email'><fmt:message key="Enter_name" bundle="${value}"/></label>
                              </div>
                          </div>
-
+<%--              /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/   --%>
                          <div class='row'>
                              <div class='input-field col s12'>
                                  <input  required class='validate' type='password' name='password' id='password' />

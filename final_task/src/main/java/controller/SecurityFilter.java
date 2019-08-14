@@ -25,7 +25,6 @@ public class SecurityFilter implements Filter {
             HttpServletRequest httpRequest = (HttpServletRequest) request;
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             Action action = (Action) httpRequest.getAttribute("action");
-//            Set<Role> allowRoles = action.getAllowRoles();
             HttpSession session = httpRequest.getSession(false);
             User user = null;
             if (session != null) {
