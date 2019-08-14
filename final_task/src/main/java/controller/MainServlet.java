@@ -6,7 +6,6 @@ import action.ActionWithForward;
 import dao.mysql.DaoFactoryImpl;
 import dao.pool.ConnectionPool;
 import exception.DBException;
-
 import org.apache.log4j.*;
 import service.ServiceFactory;
 import service.implement.ServiceFactoryImpl;
@@ -20,10 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Paths;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 @MultipartConfig
 @WebServlet
@@ -65,8 +62,7 @@ public class MainServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         process(request,response);
     }
-    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        logger.debug("+++++");
+    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         Action action1 = (Action) request.getAttribute("action");
         HttpSession session = request.getSession(false);
         if(session != null) {

@@ -106,7 +106,7 @@ public final  class DeliveryDaoImpl extends BaseMysql<Delivery> implements Deliv
         courier.setId(resultSet.getInt("courier_id"));
         obj.setCourier(courier);
         User user= new User();
-        courier.setId(resultSet.getInt("user_id"));
+        user.setId(resultSet.getInt("user_id"));
         obj.setUser(user);
         obj.setCost(resultSet.getBigDecimal("cost"));
     }

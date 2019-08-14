@@ -6,7 +6,7 @@ public class Product  extends Entity {
     private String name;
     private String type;
     private BigDecimal cost;
-    private String img_path;
+    private String img;
 
     public String getName() {
         return name;
@@ -32,11 +32,11 @@ public class Product  extends Entity {
         this.cost = cost;
     }
 
-    public String getImg_path() {
-        return img_path;
+    public String getImg() {
+        return img;
     }
 
-    public void setImg_path(String img_path) {
-        this.img_path = img_path;
+    public void setImg(String img) {
+        this.img = img;
     }
 }

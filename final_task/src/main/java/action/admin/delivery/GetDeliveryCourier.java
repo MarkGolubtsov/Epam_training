@@ -19,7 +19,7 @@ public class GetDeliveryCourier extends AdminActionAjax {
         DeliveryService deliveryService = factory.getService(DeliveryService.class);
         List<Delivery> deliveries=deliveryService.readByCourierId(courier_id);
         Gson gson = new Gson();
-        String json=gson.toJson(deliveries);;
+        String json=gson.toJson(deliveries);
         response.setContentType("application/json");
         response.getWriter().write(json);
     }

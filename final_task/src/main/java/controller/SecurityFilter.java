@@ -1,7 +1,6 @@
 package controller;
+
 import action.Action;
-import action.ActionWithForward;
-import action.MainAction;
 import domain.RoleUser;
 import domain.User;
 import org.apache.log4j.Logger;
@@ -51,7 +50,7 @@ public class SecurityFilter implements Filter {
             if(canExecute) {
                 chain.doFilter(request, response);
             }  else {
-                httpResponse.sendRedirect(httpRequest.getContextPath() + "/shop/login");
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/shop/product/list");
             }
 
         }

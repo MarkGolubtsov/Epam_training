@@ -16,6 +16,10 @@ $(document).ready(function(){
         });
     });
 })
+
+function deleteProduct(product_id) {
+
+}
 // $(document).ready(function(){
 //     $('input.autocomplete').autocomplete({
 //         data: {

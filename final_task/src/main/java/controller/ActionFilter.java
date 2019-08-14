@@ -12,10 +12,13 @@ import action.admin.delivery.СheckAvailabilityDeliveries;
 import action.admin.order.CheckAvailabilityOrder;
 import action.admin.order.DeleteOrder;
 import action.admin.order.GetUserOrders;
+import action.admin.product.CreateProduct;
 import action.admin.set_role.MakeAdmin;
 import action.admin.set_role.MakeCourier;
 import action.admin.set_role.MakeUser;
 import action.cart.*;
+import action.courier.DoneOrder;
+import action.courier.GetAllDelivery;
 import action.lang.GetLang;
 import action.lang.SetEngLang;
 import action.lang.SetRusLang;
@@ -76,6 +79,9 @@ public class ActionFilter implements Filter {
         actions.put("/GetDeliveryCourier",  GetDeliveryCourier.class);
         actions.put("/DeleteDelivery",  DeleteDelivery.class);
         actions.put("/CheckAvailabilityDeliveries",   СheckAvailabilityDeliveries.class);
+        actions.put("/product/create",  CreateProduct.class);
+        actions.put("/delivery/list", GetAllDelivery.class);
+        actions.put("/DoneOrder", DoneOrder.class);
     }
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

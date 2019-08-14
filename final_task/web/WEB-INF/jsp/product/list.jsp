@@ -57,11 +57,11 @@
         <c:forEach items="${listProduct}" var="item">
                 <div   typeProduct=${item.type} nameProduct="${item.name}" costProduct="${item.cost}" class="card ">
                     <div class="card-image">
-                        <c:if test="${ empty item.img_path}">
-                            <img src="/img/img2.jpg" alt="Image"/>
+                        <c:if test="${ empty item.img}">
+                            <img src="/img/product/img2.jpg" alt="Image"/>
                         </c:if>
-                        <c:if test="${ not  empty item.img_path}">
-                            <img src="/img/${item.img_path}" alt="Image"/>
+                        <c:if test="${ not  empty item.img}">
+                            <img id="photo" src="data:image/jpeg;base64, ${item.img}"/>
                         </c:if>
                         <span id="card-title${item.id}"class="card-title"></span>
                         <script>

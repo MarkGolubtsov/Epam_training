@@ -1,6 +1,5 @@
 package service.implement;
 
-import dao.DaoFactory;
 import dao.ProductDao;
 import domain.Product;
 import exception.DBException;
@@ -44,6 +43,12 @@ public class ProductServiceImpl extends ServiceImpl implements ProductService {
     public List<Product> read() throws DBException {
         ProductDao productDao = daoFactory.createDao(ProductDao.class);
         return productDao.read();
+    }
+
+    @Override
+    public Integer save(Product product) throws DBException {
+        ProductDao productDao = daoFactory.createDao(ProductDao.class);
+        return productDao.create(product);
     }
 
     @Override

@@ -12,14 +12,6 @@
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/shop/*</url-pattern>
     </servlet-mapping>
-<!--    <servlet>-->
-<!--        <servlet-name>ServletAjax</servlet-name>-->
-<!--        <servlet-class>controller.ajax.ServletAjax</servlet-class>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>ServletAjax</servlet-name>-->
-<!--        <url-pattern>/addInCart</url-pattern>-->
-<!--    </servlet-mapping>-->
     <filter>
         <filter-name>ActionFiler</filter-name>
         <filter-class>controller.ActionFilter</filter-class>
@@ -49,12 +41,8 @@
         <filter-name>SecurityFilter</filter-name>
         <url-pattern>/shop/*</url-pattern>
     </filter-mapping>
-    <context-param>
-        <description>Location to store uploaded file</description>
-        <param-name>file-upload</param-name>
-        <param-value>..\img
-        </param-value>
-    </context-param>
+
+
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/jsp/error/error.jsp</location>

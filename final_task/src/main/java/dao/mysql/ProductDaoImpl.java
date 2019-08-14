@@ -2,12 +2,14 @@ package dao.mysql;
 
 import dao.ProductDao;
 import domain.Product;
-
 import exception.DBException;
+
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public final class ProductDaoImpl extends BaseMysql<Product> implements ProductDao{
@@ -88,7 +90,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
 
 
     @Override
-    public Product fillFieldsObject(ResultSet resultSet) throws SQLException {
+    public Product fillFieldsObject(ResultSet resultSet) throws SQLException, IOException {
         Product product = null;
         if (resultSet.next()) {
             product = new Product();
@@ -98,12 +100,16 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
     }
 
     @Override
-    public void setParam(Product product, ResultSet resultSet) throws SQLException {
+    public void setParam(Product product, ResultSet resultSet) throws SQLException, IOException {
         product.setId(resultSet.getInt("id"));
         product.setName(resultSet.getString("name"));
         product.setType(resultSet.getString("type"));
         product.setCost(resultSet.getBigDecimal("cost"));
-        product.setImg_path(resultSet.getString("img"));
+        byte[] blob = resultSet.getBytes("img");
+        if (blob != null) {
+            String encode = Base64.getEncoder().encodeToString(blob);
+            product.setImg(encode);
+        }
     }
 
     @Override
@@ -112,7 +118,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
     }
 
     @Override
-    protected List<Product> fillList(ResultSet resultSet) throws SQLException, SQLException {
+    protected List<Product> fillList(ResultSet resultSet) throws SQLException, SQLException, IOException {
         List<Product> products =new ArrayList<>();
         Product product = null;
         while(resultSet.next()) {
@@ -128,6 +134,7 @@ public final class ProductDaoImpl extends BaseMysql<Product> implements ProductD
         statement.setString(1, entity.getName());
         statement.setString(2, entity.getType());
         statement.setBigDecimal(3, entity.getCost());
-        statement.setString(4,entity.getImg_path());
+        byte[] a = Base64.getDecoder().decode(entity.getImg());
+        statement.setBytes(4,a);
     }
 }

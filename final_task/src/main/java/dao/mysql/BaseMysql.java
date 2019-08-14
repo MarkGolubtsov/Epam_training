@@ -3,6 +3,7 @@ package dao.mysql;
 import exception.DBException;
 import org.apache.log4j.Logger;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.List;
 
@@ -92,6 +93,8 @@ public abstract  class BaseMysql<T>  extends Base{
             return fillList(resultSet);
         } catch (SQLException e) {
             throw new DBException(e);
+        } catch (IOException e) {
+            throw new DBException(e);
         } finally {
             try {
                 connection.close();
@@ -121,6 +124,8 @@ public abstract  class BaseMysql<T>  extends Base{
             resultSet = statement.executeQuery();
             return fillList(resultSet);
         } catch(SQLException e) {
+            throw new DBException(e);
+        } catch (IOException e) {
             throw new DBException(e);
         } finally {
             try {
@@ -182,6 +187,8 @@ public abstract  class BaseMysql<T>  extends Base{
         } catch (SQLException e) {
             logger.error(e);
             throw new DBException(e);
+        } catch (IOException e) {
+            throw new DBException(e);
         } finally {
             try {
                 connection.close();
@@ -201,7 +208,7 @@ public abstract  class BaseMysql<T>  extends Base{
      * @return returt object
      * @throws SQLException
      */
-    abstract T fillFieldsObject(ResultSet resultSet) throws SQLException;
+    abstract T fillFieldsObject(ResultSet resultSet) throws SQLException, IOException;
 
 
     /**
@@ -218,7 +225,7 @@ public abstract  class BaseMysql<T>  extends Base{
      * @return  list with objects
      * @throws SQLException
      */
-     abstract List<T> fillList(ResultSet resultSet) throws SQLException ;
+     abstract List<T> fillList(ResultSet resultSet) throws SQLException, IOException;
 
     /**
      * this method fill all fields in object using data in ResultSet
@@ -226,7 +233,7 @@ public abstract  class BaseMysql<T>  extends Base{
      * @param resultSet result of sql request
      * @throws SQLException
      */
-    abstract void setParam(T obj,ResultSet resultSet) throws SQLException;
+    abstract void setParam(T obj,ResultSet resultSet) throws SQLException, IOException;
 
     /**
      * This method is used for UPDATE request, for searching by primary keys.

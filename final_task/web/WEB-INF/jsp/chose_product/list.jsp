@@ -22,11 +22,11 @@
                 <div choseProductId="${item.id}"  countProduct="${item.count}" typeProduct=${item.product.type} nameProduct="${item.product.name}" costProduct="${item.product.cost}" id="card${item.product.id}" class="section">
                 <div  class="card">
                     <div class="card-image">
-                        <c:if test="${ empty item.product.img_path}">
-                            <img src="/img/img2.jpg" alt="Image"/>
+                        <c:if test="${ empty item.product.img}">
+                            <img src="/img/product/img2.jpg" alt="Image"/>
                         </c:if>
-                        <c:if test="${ not  empty item.product.img_path}">
-                            <img src="/img/${item.product.img_path}" alt="Image"/>
+                        <c:if test="${ not  empty item.product.img}">
+                            <img  src="data:image/jpeg;base64,${item.product.img}"/>
                         </c:if>
                         <span id="card-title${item.id}" class="card-title">${item.product.name}</span>
                         <script>
